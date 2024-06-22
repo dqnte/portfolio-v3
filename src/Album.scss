@@ -1,0 +1,40 @@
+@import "constants.scss";
+
+.Album {
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+  height: 100%;
+  overflow: hidden;
+
+  &__title {
+    font-family: $font-accent;
+    padding-left: $gutter-width;
+    margin: 0;
+  }
+
+  &__carousel {
+    height: 100%;
+    display: flex;
+    overflow-x: scroll;
+    padding-bottom: calc($gutter-width * 2);
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-button {
+      display: none;
+    } /* Chrome */
+
+    img {
+      padding-left: $gutter-width;
+      height: 100%;
+    }
+
+    img:first-child {
+      padding-left: $gutter-width;
+    }
+    img:last-child {
+      padding-right: $gutter-width;
+    }
+  }
+}

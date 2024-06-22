@@ -1,0 +1,56 @@
+@import "constants.scss";
+
+$breakpoint: 745px;
+
+@media (min-width: $breakpoint) {
+  .Home {
+    &__Image {
+      height: 100%;
+      width: unset;
+
+      &_obj {
+        height: 100%;
+        width: unset !important;
+      }
+    }
+  }
+}
+
+.Home {
+  height: 100vh;
+  padding-top: calc($header-height);
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  &__Image {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+
+    &_obj {
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__Footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 15px 0;
+
+    &_Link {
+      @include plain-button;
+      font-size: 1.5rem;
+      font-family: $font-accent;
+      font-weight: bold;
+      color: $fg-main;
+    }
+  }
+}

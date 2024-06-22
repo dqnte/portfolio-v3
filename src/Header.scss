@@ -1,0 +1,74 @@
+@import "constants.scss";
+
+.Header {
+  font-size: 30px;
+  font-weight: Bold;
+  color: $fg-main;
+
+  .Header__Name,
+  .Header__Menu,
+  .Header__Dark,
+  .Header__Light {
+    color: $fg-main;
+    transition: color 200ms;
+  }
+
+  &.menu-open {
+    .Header__Name,
+    .Header__Menu,
+    .Header__Dark,
+    .Header__Light {
+      color: $bg-main;
+      transition: color 300ms;
+    }
+  }
+
+  padding: $header-padding-top $gutter-width;
+  padding-bottom: 0;
+  height: $header-height;
+
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  &__Dark,
+  &__Light {
+    animation: fade-in 300ms;
+    @include plain-button;
+    width: min-content;
+
+    svg {
+      width: 20px;
+      font-variation-settings: "NO FILL";
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    }
+  }
+
+  &__Name {
+    justify-self: center;
+  }
+
+  &__Menu {
+    justify-self: right;
+  }
+
+  &__Menu,
+  &__Name {
+    @include plain-button;
+
+    font-size: 15px;
+    font-weight: bold;
+    font-variant: small-caps;
+  }
+}

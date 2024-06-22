@@ -1,0 +1,16 @@
+@import "constants.scss";
+
+.App {
+  transition: filter $first-transition-time ease-in;
+  background: $bg-main;
+  min-height: 100vh;
+
+  // &.transitioning {
+  //     filter: invert(1);
+  // }
+}
+
+.Divider {
+  width: 100%;
+  display: flex;
+}

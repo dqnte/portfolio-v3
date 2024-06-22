@@ -1,0 +1,46 @@
+$first-transition-time: 100ms;
+$first-gap-time: 100ms;
+$first-delay: calc($first-transition-time + $first-gap-time);
+$second-transition-time: 100ms;
+
+$bg-main: #f8f8f8;
+$fg-main: #262626;
+
+$font-main: "Inter", sans-serif;
+// $font-accent: 'Eczar', serif;
+$font-accent: "Space Mono", monospace;
+
+@mixin base-transition {
+  transition: opacity 150ms ease-out;
+}
+
+@mixin transitioning {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  opacity: 0%;
+
+  transition:
+    filter $first-transition-time ease-in,
+    opacity $second-transition-time ease-out
+      calc($first-transition-time + $first-delay);
+}
+
+@mixin plain-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.clickable-img {
+  @include plain-button;
+}
+
+$gutter-width: 20px;
+$outer-column-width: 27px;
+$header-padding-top: 10px;
+$header-height: 50px + $header-padding-top;
