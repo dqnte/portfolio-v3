@@ -122,14 +122,6 @@
 
 .dark {
   .Album {
-    &__title_text {
-      color: $fg-dark-main;
-    }
-
-    &__title_download {
-      color: $bg-dark-accent;
-    }
-
     &__carousel_photo.selected {
       background: rgba($bg-dark-main, 0.8);
     }
@@ -137,9 +129,17 @@
     &__carousel_photo_info {
       background: #000;
     }
+  }
+}
 
-    &__carousel_photo_download {
-      color: $bg-dark-accent;
+.light {
+  .Album {
+    &__carousel_photo.selected {
+      background: rgba($bg-light-main, 0.8);
+    }
+
+    &__carousel_photo_info {
+      background: #fff;
     }
   }
 }

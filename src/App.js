@@ -13,7 +13,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   const { albums } = fetchPhotoManifest();
 
-  const [useDarkTheme, setDarkTheme] = useState(false);
+  const [useDarkTheme, setDarkTheme] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
