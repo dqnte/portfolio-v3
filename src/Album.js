@@ -40,8 +40,8 @@ export default function Album(props) {
 
     const aspectRatio = image.naturalWidth / image.naturalHeight;
 
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+    const windowWidth = document.documentElement.clientWidth;
+    const windowHeight = document.documentElement.clientHeight
 
     const portraitHeight = (windowWidth - 2 * gutter) / aspectRatio;
     const landscapeWidth = (windowHeight - 2 * gutter) * aspectRatio;
