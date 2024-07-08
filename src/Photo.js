@@ -12,6 +12,7 @@ export default function Photo() {
   const { albums } = fetchPhotoManifest();
 
   const [selectedAlbum, setAlbum] = useState(null);
+  const [hoverAlbum, setHoverAlbum] = useState(null);
 
   useEffect(() => {
     if (location.pathname === "/photo") {
@@ -41,9 +42,11 @@ export default function Photo() {
           {albums.map((album) => (
             <Link to={`/photo/${album.key}`} key={album.key}>
               <img
+                onMouseEnter={() => setHoverAlbum(album)}
+                onMouseLeave={() => setHoverAlbum(selectedAlbum)}
                 src={album.coverUrl}
                 alt={album.location}
-                className={`${album.index === selectedAlbum?.index || !selectedAlbum ? "show" : ""} Photo__preview__image`}
+                className={`${album.index === hoverAlbum?.index ? "show" : ""} Photo__preview__image`}
               />
             </Link>
           ))}

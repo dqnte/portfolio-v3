@@ -28,9 +28,8 @@
       opacity: 0.5;
       height: 100%;
       padding-left: $gutter-width;
-      transition: opacity 150ms;
+      transition: opacity 200ms;
 
-      &:hover,
       &.show {
         opacity: 1;
       }
