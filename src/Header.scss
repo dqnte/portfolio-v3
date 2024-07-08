@@ -1,15 +1,31 @@
 @import "constants.scss";
 
+.dark {
+  .Header__Name,
+  .Header__Menu,
+  .Header__Dark,
+  .Header__Light {
+    color: $fg-dark-main;
+  }
+}
+
+.light {
+  .Header__Name,
+  .Header__Menu,
+  .Header__Dark,
+  .Header__Light {
+    color: $fg-light-main;
+  }
+}
+
 .Header {
   font-size: 30px;
   font-weight: Bold;
-  color: $fg-main;
 
   .Header__Name,
   .Header__Menu,
   .Header__Dark,
   .Header__Light {
-    color: $fg-main;
     transition: color 200ms;
   }
 
@@ -18,7 +34,7 @@
     .Header__Menu,
     .Header__Dark,
     .Header__Light {
-      color: $bg-main;
+      // color: $bg-main;
       transition: color 300ms;
     }
   }

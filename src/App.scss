@@ -1,19 +1,15 @@
 @import "constants.scss";
 
 .App {
-  transition: filter $first-transition-time ease-in;
-  background: $bg-main;
-  min-height: 100vh;
-
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-
-  // &.transitioning {
-  //     filter: invert(1);
-  // }
+  transition: background 300ms, color 300ms;
 }
 
-.Divider {
-  width: 100%;
-  display: flex;
+.dark {
+    background: $bg-dark-main;
+    color: $fg-dark-main;
+}
+
+.light {
+    background: $bg-light-main;
+    color: $fg-light-main;
 }

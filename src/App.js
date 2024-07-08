@@ -7,7 +7,7 @@ import Home from "./Home";
 import Menu from "./Menu";
 import { fetchPhotoManifest } from "./utilities.ts";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -15,6 +15,15 @@ function App() {
 
   const [useDarkTheme, setDarkTheme] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (darkThemeMq.matches) {
+      setDarkTheme(true);
+    } else {
+      setDarkTheme(false);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -26,9 +35,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div
-        className="App"
-      >
+      <div className={`App ${useDarkTheme ? "dark" : "light"}`}>
         <Header
           useDarkTheme={useDarkTheme}
           setDarkTheme={setDarkTheme}

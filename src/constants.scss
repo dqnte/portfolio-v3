@@ -3,9 +3,13 @@ $first-gap-time: 100ms;
 $first-delay: calc($first-transition-time + $first-gap-time);
 $second-transition-time: 100ms;
 
-$bg-main: #f8f8f8;
-$fg-main: #262626;
-$bg-accent: #0156cf;
+$bg-light-main: #f8f8f8;
+$fg-light-main: #262626;
+$bg-light-accent: #0156cf;
+
+$bg-dark-main: #121212;
+$fg-dark-main: #dbe7f3;
+$bg-dark-accent: #ff7e67;
 
 $font-main: "Inter", sans-serif;
 // $font-accent: 'Eczar', serif;

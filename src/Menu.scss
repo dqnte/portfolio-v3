@@ -12,7 +12,7 @@
   top: 0;
   width: 100vw;
 
-  background: $bg-accent;
+  background: $bg-light-accent;
 
   &_Link {
     padding: 20px;
@@ -53,7 +53,7 @@
     }
 
     &_Item:nth-child(2) {
-      background: $bg-main;
+      background: $bg-light-main;
       height: 90%;
       margin: auto;
     }

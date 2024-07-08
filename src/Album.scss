@@ -58,7 +58,6 @@
         z-index: 1000;
         position: absolute;
         display: flex;
-        background: rgba($bg-main, 0.8);
         justify-content: center;
         align-items: center;
         padding: $gutter-width;
@@ -101,7 +100,7 @@
         position: absolute;
         right: 0;
         padding: 10px;
-        color: $bg-main;
+        color: $bg-light-main;
         transition: opacity 150ms;
       }
 
@@ -117,6 +116,30 @@
       &:last-child {
         padding-right: $gutter-width;
       }
+    }
+  }
+}
+
+.dark {
+  .Album {
+    &__title_text {
+      color: $fg-dark-main;
+    }
+
+    &__title_download {
+      color: $bg-dark-accent;
+    }
+
+    &__carousel_photo.selected {
+      background: rgba($bg-dark-main, 0.8);
+    }
+
+    &__carousel_photo_info {
+      background: #000;
+    }
+
+    &__carousel_photo_download {
+      color: $bg-dark-accent;
     }
   }
 }

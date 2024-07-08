@@ -50,7 +50,7 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
             largeUrl: BASE_URL + "/albums/chamonix/chamonix-4.jpg",
           },
           {
-            camera: "Sony a7 iii",
+            camera: "Mamiya 645",
             smallUrl: BASE_URL + "/albums/chamonix/chamonix-5.jpg",
             largeUrl: BASE_URL + "/albums/chamonix/chamonix-5.jpg",
           },

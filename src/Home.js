@@ -13,6 +13,8 @@ export default function Home(props) {
   const { album } = props;
   const cover = album.photos[4];
 
+  const animateButton = (e) => {};
+
   return (
     <AnimatePresence>
       <motion.div
