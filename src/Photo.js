@@ -17,8 +17,8 @@ export default function Photo() {
     if (location.pathname === "/photo") {
       setAlbum(null);
     } else {
-      const id = location.pathname.split("/")[2];
-      const album = albums.find((album) => album.index.toString() === id);
+      const key = location.pathname.split("/")[2];
+      const album = albums.find((album) => album.key === key);
       setAlbum(album);
     }
   }, [location]);
@@ -39,7 +39,7 @@ export default function Photo() {
         {selectedAlbum && <Album album={selectedAlbum} />}
         <div className="Photo__preview">
           {albums.map((album) => (
-            <Link to={`/photo/${album.index}`} key={album.index}>
+            <Link to={`/photo/${album.key}`} key={album.key}>
               <img
                 src={album.coverUrl}
                 alt={album.location}

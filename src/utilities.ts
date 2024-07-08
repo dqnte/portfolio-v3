@@ -9,6 +9,7 @@ export interface IPhoto {
 
 export interface IAlbum {
   index: number;
+  key: string;
   location: string;
   date: string;
   coverUrl: string;
@@ -20,6 +21,7 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
     albums: [
       {
         index: 1,
+        key: "chamonix",
         location: "Chamonix, France",
         date: "January, 2024",
         coverUrl: BASE_URL + "/albums/chamonix/chamonix-5.jpg",
@@ -56,6 +58,7 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
       },
       {
         index: 2,
+        key: "aiguille-du-midi",
         location: "Aiguille Du Midi, France",
         date: "January, 2024",
         coverUrl: BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-1.jpg",
@@ -102,6 +105,7 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
       },
       {
         index: 3,
+        key: "geneva",
         location: "Geneva, Switzerland",
         date: "January, 2024",
         coverUrl: BASE_URL + "/albums/geneva/geneva-2.jpg",
@@ -121,3 +125,11 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
     ],
   };
 }
+
+export const downloadAlbum = (album: IAlbum) => {
+  console.log("Downloading album", album.key);
+};
+
+export const downloadPhoto = (photo: IPhoto) => {
+  console.log("Downloading photo", photo.largeUrl);
+};

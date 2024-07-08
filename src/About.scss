@@ -1,0 +1,6 @@
+@import "constants.scss";
+
+.About {
+  height: 100vh;
+  padding: calc(20px + $header-height) $gutter-width 0 $gutter-width;
+}

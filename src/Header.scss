@@ -24,7 +24,7 @@
   }
 
   padding: $header-padding-top $gutter-width;
-  padding-bottom: 0;
+  padding-bottom: $header-padding-bottom;
   height: $header-height;
 
   position: absolute;

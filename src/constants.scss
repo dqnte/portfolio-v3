@@ -5,6 +5,7 @@ $second-transition-time: 100ms;
 
 $bg-main: #f8f8f8;
 $fg-main: #262626;
+$bg-accent: #0156cf;
 
 $font-main: "Inter", sans-serif;
 // $font-accent: 'Eczar', serif;
@@ -42,5 +43,6 @@ $font-accent: "Space Mono", monospace;
 
 $gutter-width: 20px;
 $outer-column-width: 27px;
-$header-padding-top: 10px;
-$header-height: 50px + $header-padding-top;
+$header-padding-top: 15px;
+$header-padding-bottom: $header-padding-top;
+$header-height: 50px + $header-padding-top + $header-padding-bottom;

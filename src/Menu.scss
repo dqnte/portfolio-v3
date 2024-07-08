@@ -7,10 +7,12 @@
   flex-direction: column;
   justify-content: flex-end;
 
+  scroll-snap-align: start;
+
   top: 0;
   width: 100vw;
 
-  background: #0156cf;
+  background: $bg-accent;
 
   &_Link {
     padding: 20px;

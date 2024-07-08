@@ -5,6 +5,9 @@
   background: $bg-main;
   min-height: 100vh;
 
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+
   // &.transitioning {
   //     filter: invert(1);
   // }

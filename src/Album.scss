@@ -7,9 +7,21 @@
   overflow: hidden;
 
   &__title {
-    font-family: $font-accent;
-    padding-left: $gutter-width;
-    margin: 0;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    &_text {
+      font-family: $font-accent;
+      padding-left: $gutter-width;
+      margin: 0;
+    }
+
+    &_download {
+      @include plain-button;
+      position: relative;
+      top: 3px;
+    }
   }
 
   &__carousel {
@@ -25,16 +37,60 @@
       display: none;
     } /* Chrome */
 
-    img {
+    &_photo {
+      position: relative;
       padding-left: $gutter-width;
       height: 100%;
-    }
+      cursor: pointer;
 
-    img:first-child {
-      padding-left: $gutter-width;
-    }
-    img:last-child {
-      padding-right: $gutter-width;
+      &.selected {
+        z-index: 1000;
+        position: absolute;
+        display: flex;
+        background: rgba($bg-main, 0.8);
+        justify-content: center;
+        align-items: center;
+        padding: $gutter-width;
+        height: 100%;
+        width: 100%;
+        top: 0;
+
+        img {
+          height: unset;
+          margin: 0 auto;
+          max-height: 100%;
+          max-width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      img {
+        height: 100%;
+      }
+
+      &_download {
+        @include plain-button;
+        display: unset;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        padding: 10px;
+        color: $bg-main;
+        transition: opacity 150ms;
+      }
+
+      &:hover .Album__carousel_photo_download {
+        display: unset;
+        opacity: 1;
+      }
+
+      &:first-child {
+        padding-left: $gutter-width;
+      }
+
+      &:last-child {
+        padding-right: $gutter-width;
+      }
     }
   }
 }
