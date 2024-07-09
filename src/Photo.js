@@ -17,6 +17,7 @@ export default function Photo() {
   useEffect(() => {
     if (location.pathname === "/photo") {
       setAlbum(null);
+      setHoverAlbum(null);
     } else {
       const key = location.pathname.split("/")[2];
       const album = albums.find((album) => album.key === key);
@@ -46,7 +47,7 @@ export default function Photo() {
                 onMouseLeave={() => setHoverAlbum(selectedAlbum)}
                 src={album.coverUrl}
                 alt={album.location}
-                className={`${album.index === hoverAlbum?.index ? "show" : ""} Photo__preview__image`}
+                className={`${album.index === hoverAlbum?.index || !hoverAlbum ? "show" : ""} Photo__preview__image`}
               />
             </Link>
           ))}

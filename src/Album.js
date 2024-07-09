@@ -41,7 +41,7 @@ export default function Album(props) {
     const aspectRatio = image.naturalWidth / image.naturalHeight;
 
     const windowWidth = document.documentElement.clientWidth;
-    const windowHeight = document.documentElement.clientHeight
+    const windowHeight = document.documentElement.clientHeight;
 
     const portraitHeight = (windowWidth - 2 * gutter) / aspectRatio;
     const landscapeWidth = (windowHeight - 2 * gutter) * aspectRatio;
@@ -91,13 +91,13 @@ export default function Album(props) {
           {/* </button> */}
         </div>
         <div className="Album__carousel" ref={carouselRef}>
-          {album.photos.map((photo, index) => (
+          {album.photos.map((photo) => (
             <div
               className="Album__carousel_photo"
-              key={photo.title}
+              key={photo.smallUrl}
               onClick={() => toggleSelect(photo)}
             >
-              <img key={index} src={photo.smallUrl} alt={photo.title} />
+              <img src={photo.smallUrl} alt={photo.title} />
             </div>
           ))}
         </div>
@@ -105,6 +105,7 @@ export default function Album(props) {
 
       {selectedPhoto && (
         <motion.div
+          key="selected"
           className={`Album__carousel_photo selected ${orientation}`}
           initial={page.initial}
           animate={page.animate}
