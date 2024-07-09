@@ -32,7 +32,7 @@
   &_Grid {
     display: grid;
     height: 100%;
-    grid-template-columns: 1fr 1.5px 1fr;
+    grid-template-columns: 1fr 2px 1fr;
     margin-top: $header-height;
     padding: $gutter-width;
 
@@ -60,10 +60,6 @@
 
     &_Item:nth-child(3) .Menu_Link {
       justify-content: flex-start;
-
-      // &:hover {
-      //   transform: translateX(10px);
-      // }
 
       .Menu_Link_Text {
         transform: rotate(90deg) translateX(-100%);

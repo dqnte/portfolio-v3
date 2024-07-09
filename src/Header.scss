@@ -3,18 +3,49 @@
 .dark {
   .Header__Name,
   .Header__Menu,
-  .Header__Dark,
-  .Header__Light {
+  .Header__Light,
+  .Header__Dark {
     color: $fg-dark-main;
+  }
+
+  ::after {
+    background: $fg-dark-main;
+  }
+
+  .menu-open {
+    .Header__Name,
+    .Header__Menu,
+    .Header__Light,
+    .Header__Dark {
+      color: $fg-light-main;
+    }
+
+    ::after {
+      background: $fg-light-main;
+    }
   }
 }
 
 .light {
-  .Header__Name,
-  .Header__Menu,
-  .Header__Dark,
-  .Header__Light {
+  .Header__Name {
     color: $fg-light-main;
+  }
+
+  ::after {
+    background: $fg-light-main;
+  }
+
+  .menu-open {
+    .Header__Name,
+    .Header__Menu,
+    .Header__Light,
+    .Header__Dark {
+      color: $fg-dark-main;
+    }
+
+    ::after {
+      background: $fg-dark-main;
+    }
   }
 }
 
@@ -23,9 +54,7 @@
   font-weight: Bold;
 
   .Header__Name,
-  .Header__Menu,
-  .Header__Dark,
-  .Header__Light {
+  .Header__Menu {
     transition: color 200ms;
   }
 
@@ -34,8 +63,11 @@
     .Header__Menu,
     .Header__Dark,
     .Header__Light {
-      // color: $bg-main;
       transition: color 300ms;
+    }
+
+    .Header__Menu::after {
+      width: 110%;
     }
   }
 
@@ -57,6 +89,9 @@
     animation: fade-in 300ms;
     @include plain-button;
     width: min-content;
+    transition:
+      transform 150ms ease-in-out,
+      color 200ms;
 
     svg {
       width: 20px;
@@ -69,6 +104,10 @@
           "opsz" 24;
       }
     }
+
+    &:hover {
+      transform: rotate(45deg);
+    }
   }
 
   &__Name {
@@ -77,14 +116,31 @@
 
   &__Menu {
     justify-self: right;
+
+    &::after {
+      position: absolute;
+      top: 51%;
+      left: -5%;
+      content: " ";
+      height: 2px;
+      width: 0%;
+      transition:
+        width 200ms,
+        background 200ms;
+    }
+
+    &:hover::after {
+      width: 110%;
+    }
   }
 
   &__Menu,
   &__Name {
     @include plain-button;
 
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     font-variant: small-caps;
+    position: relative;
   }
 }
