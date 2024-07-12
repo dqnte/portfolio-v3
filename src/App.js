@@ -13,9 +13,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   const { albums } = fetchPhotoManifest();
 
-  const [useDarkTheme, setDarkTheme] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
 
+  const [useDarkTheme, setDarkTheme] = useState(true);
   useEffect(() => {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
     if (darkThemeMq.matches) {

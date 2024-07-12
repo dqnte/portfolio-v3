@@ -3,8 +3,7 @@
 .dark {
   .Header__Name,
   .Header__Menu,
-  .Header__Light,
-  .Header__Dark {
+  .Header__Mode_button {
     color: $fg-dark-main;
   }
 
@@ -14,9 +13,7 @@
 
   .menu-open {
     .Header__Name,
-    .Header__Menu,
-    .Header__Light,
-    .Header__Dark {
+    .Header__Menu {
       color: $fg-light-main;
     }
 
@@ -27,7 +24,9 @@
 }
 
 .light {
-  .Header__Name {
+  .Header__Name,
+  .Header__Menu,
+  .Header__Mode_button {
     color: $fg-light-main;
   }
 
@@ -38,8 +37,7 @@
   .menu-open {
     .Header__Name,
     .Header__Menu,
-    .Header__Light,
-    .Header__Dark {
+    .Header__Mode_button {
       color: $fg-dark-main;
     }
 
@@ -60,9 +58,7 @@
 
   &.menu-open {
     .Header__Name,
-    .Header__Menu,
-    .Header__Dark,
-    .Header__Light {
+    .Header__Menu {
       transition: color 300ms;
     }
 
@@ -84,32 +80,6 @@
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
 
-  &__Dark,
-  &__Light {
-    animation: fade-in 300ms;
-    @include plain-button;
-    width: min-content;
-    transition:
-      transform 150ms ease-in-out,
-      color 200ms;
-
-    svg {
-      width: 20px;
-      font-variation-settings: "NO FILL";
-      .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
-      }
-    }
-
-    &:hover {
-      transform: rotate(45deg);
-    }
-  }
-
   &__Name {
     justify-self: center;
   }
@@ -120,7 +90,7 @@
     &::after {
       position: absolute;
       top: 51%;
-      left: -5%;
+      right: -5%;
       content: " ";
       height: 2px;
       width: 0%;
@@ -130,6 +100,7 @@
     }
 
     &:hover::after {
+      left: -5%;
       width: 110%;
     }
   }
@@ -142,5 +113,42 @@
     font-weight: bold;
     font-variant: small-caps;
     position: relative;
+  }
+
+  &__Mode {
+    display: flex;
+    position: relative;
+    height: 25px;
+    width: 30px;
+    cursor: pointer;
+
+    &_button {
+      @include plain-button;
+      position: absolute;
+      opacity: 0;
+      width: min-content;
+      transition:
+        opacity 150ms ease-in-out,
+        color 300ms;
+
+      &.show {
+        opacity: 1;
+        transition:
+          opacity 150ms 150ms ease-in-out,
+          color 300ms;
+      }
+
+      svg {
+        width: 20px;
+        font-variation-settings: "NO FILL";
+        .material-symbols-outlined {
+          font-variation-settings:
+            "FILL" 0,
+            "wght" 400,
+            "GRAD" 0,
+            "opsz" 24;
+        }
+      }
+    }
   }
 }
