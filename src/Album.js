@@ -3,6 +3,7 @@ import "./Album.scss";
 import { motion, AnimatePresence } from "framer-motion";
 import { downloadAlbum, downloadPhoto } from "./utilities.ts";
 import { page } from "./transitions";
+import Image from "./Image";
 import Download from "@mui/icons-material/Download";
 
 import { useEffect, useState, useRef } from "react";
@@ -97,7 +98,7 @@ export default function Album(props) {
               key={photo.smallUrl}
               onClick={() => toggleSelect(photo)}
             >
-              <img src={photo.smallUrl} alt={photo.title} />
+              <Image photo={photo} alt={photo.title} />
             </div>
           ))}
         </div>
@@ -113,8 +114,8 @@ export default function Album(props) {
           onClick={() => toggleSelect(selectedPhoto)}
         >
           <div className="Album__carousel_photo_container">
-            <img
-              src={selectedPhoto?.smallUrl}
+            <Image
+              photo={selectedPhoto}
               alt={selectedPhoto?.title}
               onLoad={(e) => sizeImage(e.target)}
             />

@@ -5,6 +5,9 @@ export interface IPhoto {
   smallUrl: string;
   largeUrl: string;
   film?: string;
+  height: number;
+  width: number;
+  color?: string;
 }
 
 export interface IAlbum {
@@ -31,28 +34,38 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
             film: "Porta 400",
             smallUrl: BASE_URL + "/albums/chamonix/chamonix-1.jpg",
             largeUrl: BASE_URL + "/albums/chamonix/chamonix-1.jpg",
+            width: 2048,
+            height: 1365,
           },
           {
             camera: "Mamiya 645",
             film: "Porta 400",
             smallUrl: BASE_URL + "/albums/chamonix/chamonix-2.jpg",
             largeUrl: BASE_URL + "/albums/chamonix/chamonix-2.jpg",
+            width: 2048,
+            height: 1365,
           },
 
           {
             camera: "Sony a7 iii",
             smallUrl: BASE_URL + "/albums/chamonix/chamonix-3.jpg",
             largeUrl: BASE_URL + "/albums/chamonix/chamonix-3.jpg",
+            width: 1638,
+            height: 2048,
           },
           {
             camera: "Sony a7 iii",
             smallUrl: BASE_URL + "/albums/chamonix/chamonix-4.jpg",
             largeUrl: BASE_URL + "/albums/chamonix/chamonix-4.jpg",
+            width: 1638,
+            height: 2048,
           },
           {
             camera: "Mamiya 645",
             smallUrl: BASE_URL + "/albums/chamonix/chamonix-5.jpg",
             largeUrl: BASE_URL + "/albums/chamonix/chamonix-5.jpg",
+            width: 1638,
+            height: 2048,
           },
         ],
       },
@@ -70,6 +83,8 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-1.jpg",
             largeUrl:
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-1.jpg",
+            width: 1638,
+            height: 2048,
           },
           {
             camera: "Mamiya 645",
@@ -78,6 +93,8 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-2.jpg",
             largeUrl:
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-2.jpg",
+            width: 1638,
+            height: 2048,
           },
 
           {
@@ -86,6 +103,8 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-3.jpg",
             largeUrl:
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-3.jpg",
+            width: 1638,
+            height: 2048,
           },
           {
             camera: "Sony a7 iii",
@@ -93,6 +112,8 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-4.jpg",
             largeUrl:
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-4.jpg",
+            width: 2048,
+            height: 1365,
           },
           {
             camera: "Sony a7 iii",
@@ -100,6 +121,8 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-5.jpg",
             largeUrl:
               BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-5.jpg",
+            width: 2048,
+            height: 1536,
           },
         ],
       },
@@ -114,11 +137,15 @@ export function fetchPhotoManifest(): { albums: IAlbum[] } {
             camera: "Sony a7 iii",
             smallUrl: BASE_URL + "/albums/geneva/geneva-2.jpg",
             largeUrl: BASE_URL + "/albums/geneva/geneva-2.jpg",
+            width: 2048,
+            height: 1536,
           },
           {
             camera: "Sony a7 iii",
             smallUrl: BASE_URL + "/albums/geneva/geneva-1.jpg",
             largeUrl: BASE_URL + "/albums/geneva/geneva-1.jpg",
+            width: 2048,
+            height: 1536,
           },
         ],
       },

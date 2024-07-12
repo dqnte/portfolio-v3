@@ -6,6 +6,11 @@
 
   display: grid;
   grid-template-rows: 80% 20%;
+  transition: grid-template-rows 250ms;
+
+  &.show-none {
+    grid-template-rows: 70% 30%;
+  }
 
   &__empty {
     display: flex;
@@ -19,15 +24,16 @@
 
   &__preview {
     height: 100%;
-    padding-bottom: $gutter-width;
+    padding: $gutter-width;
+    padding-top: 0;
 
     display: flex;
+    gap: $gutter-width;
     overflow: scroll;
 
     &__image {
       opacity: 0.5;
       height: 100%;
-      padding-left: $gutter-width;
       transition: opacity 200ms;
 
       &.show {
