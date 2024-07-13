@@ -12,7 +12,12 @@ export default function Photo() {
   const location = useLocation();
   const { albums } = fetchPhotoManifest();
 
-  const [selectedAlbum, setAlbum] = useState(null);
+  const findAlbumFromLocation = (location) => {
+    const key = location.pathname.split("/")[2];
+    return albums.find((album) => album.key === key);
+  };
+
+  const [selectedAlbum, setAlbum] = useState(findAlbumFromLocation(location));
   const [hoverAlbum, setHoverAlbum] = useState(null);
 
   useEffect(() => {
@@ -20,9 +25,7 @@ export default function Photo() {
       setAlbum(null);
       setHoverAlbum(null);
     } else {
-      const key = location.pathname.split("/")[2];
-      const album = albums.find((album) => album.key === key);
-      setAlbum(album);
+      setAlbum(findAlbumFromLocation(location));
     }
   }, [location]);
 
