@@ -14,11 +14,11 @@
   .menu-open {
     .Header__Name,
     .Header__Menu {
-      color: $fg-light-main;
+      color: $fg-dark-main;
     }
 
     ::after {
-      background: $fg-light-main;
+      background: $fg-dark-main;
     }
   }
 }
@@ -86,23 +86,7 @@
 
   &__Menu {
     justify-self: right;
-
-    &::after {
-      position: absolute;
-      top: 51%;
-      right: -5%;
-      content: " ";
-      height: 2px;
-      width: 0%;
-      transition:
-        width 200ms,
-        background 200ms;
-    }
-
-    &:hover::after {
-      left: -5%;
-      width: 110%;
-    }
+    @include strikethrough-button;
   }
 
   &__Menu,

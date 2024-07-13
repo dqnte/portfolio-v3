@@ -11,7 +11,7 @@ $bg-light-accent: #0156cf;
 $bg-dark-main: #121212;
 $bg-dark-overlay: #000;
 $fg-dark-main: #dbe7f3;
-$bg-dark-accent: #ff7e67;
+$bg-dark-accent: #0156cf;
 
 $font-main: "Inter", sans-serif;
 // $font-accent: 'Eczar', serif;
@@ -43,8 +43,26 @@ $font-accent: "Space Mono", monospace;
   text-decoration: none;
 }
 
-.clickable-img {
+@mixin strikethrough-button {
   @include plain-button;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 51%;
+    right: -5%;
+    content: " ";
+    height: 2px;
+    width: 0%;
+    transition:
+      width 200ms,
+      background 200ms;
+  }
+
+  &:hover::after, &.selected::after {
+    left: -5%;
+    width: 110%;
+  }
 }
 
 $gutter-width: 20px;

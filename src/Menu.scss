@@ -1,6 +1,7 @@
 @import "constants.scss";
 
 .Menu {
+  transition: color 150ms ease-out;
   position: absolute;
   z-index: 999;
   display: flex;
@@ -12,67 +13,32 @@
   top: 0;
   width: 100vw;
 
-  background: $bg-light-accent;
-
   &_Link {
-    padding: 20px;
-    height: 100%;
-    width: 100%;
-    color: white;
+    transition: color 150ms ease-out;
     text-decoration: none;
-    display: flex;
-    align-items: center;
+
+    @include strikethrough-button;
+
+    &::after {
+      height: 5px;
+    }
 
     &_Text {
-      font-size: 3rem;
+      display: inline-block;
+      font-size: 63px;
+      line-height: 53px;
+      height: 64px;
       font-family: $font-accent;
-    }
-  }
-
-  &_Grid {
-    display: grid;
-    height: 100%;
-    grid-template-columns: 1fr 2px 1fr;
-    margin-top: $header-height;
-    padding: $gutter-width;
-
-    &_Item {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    &_Item:nth-child(1) .Menu_Link {
-      justify-content: flex-end;
-
-      .Menu_Link_Text {
-        transform: rotate(-90deg) translateX(100%);
-        transform-origin: right bottom;
-      }
-    }
-
-    &_Item:nth-child(2) {
-      background: $bg-light-main;
-      height: 90%;
-      margin: auto;
-    }
-
-    &_Item:nth-child(3) .Menu_Link {
-      justify-content: flex-start;
-
-      .Menu_Link_Text {
-        transform: rotate(90deg) translateX(-100%);
-        transform-origin: left bottom;
-      }
+      font-variant: small-caps;
     }
   }
 
   &__Pages {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 1rem 2rem;
     padding: $gutter-width;
+    gap: $gutter-width;
     width: 100%;
     &_Link {
       color: white;
@@ -88,9 +54,42 @@
 
     &_Link {
       margin: 0;
-      color: white;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 20px;
+      font-variant: small-caps;
+      font-weight: bold;
     }
+  }
+}
+
+.dark .Menu {
+  color: $fg-dark-main;
+  background: $bg-dark-accent;
+
+  &_Link {
+    color: $fg-dark-main;
+    &::after {
+      background: $fg-dark-main;
+    }
+  }
+
+  &__Socials_Link {
+    color: $fg-dark-main;
+  }
+}
+
+.light .Menu {
+  color: $bg-light-main;
+  background: $bg-light-accent;
+
+  &_Link {
+    color: $bg-light-main;
+    &::after {
+      background: $bg-light-main;
+    }
+  }
+
+  &__Socials_Link {
+    color: $bg-light-main;
   }
 }
