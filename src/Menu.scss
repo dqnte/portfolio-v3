@@ -1,7 +1,7 @@
 @import "constants.scss";
 
 .Menu {
-  transition: color 150ms ease-out;
+  transition: color 150ms ease-out, background 150ms ease-out;
   position: absolute;
   z-index: 999;
   display: flex;
