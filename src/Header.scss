@@ -128,13 +128,13 @@
       opacity: 0;
       width: min-content;
       transition:
-        opacity 150ms ease-in-out,
+        opacity 50ms ease-in-out,
         color 300ms;
 
       &.show {
         opacity: 1;
         transition:
-          opacity 150ms 150ms ease-in-out,
+          opacity 150ms 50ms ease-in-out,
           color 300ms;
       }
 
