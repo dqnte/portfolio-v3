@@ -25,7 +25,9 @@ export default function Photo() {
       setAlbum(null);
       setHoverAlbum(null);
     } else {
-      setAlbum(findAlbumFromLocation(location));
+      const currentAlbum = findAlbumFromLocation(location);
+      setAlbum(currentAlbum);
+      setHoverAlbum(currentAlbum);
     }
   }, [location]);
 

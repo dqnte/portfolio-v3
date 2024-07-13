@@ -44,6 +44,9 @@ export default function Album(props) {
     const windowWidth = document.documentElement.clientWidth;
     const windowHeight = document.documentElement.clientHeight;
 
+    // using this because of the container Image component
+    const parent = image.parentElement;
+
     const portraitHeight = (windowWidth - 2 * gutter) / aspectRatio;
     const landscapeWidth = (windowHeight - 2 * gutter) * aspectRatio;
 
@@ -54,11 +57,11 @@ export default function Album(props) {
 
       // check that the label doesn't overflow the window
       if (width > windowWidth - 2 * gutter) {
-        image.style.width = `${windowWidth - 2 * gutter}px`;
-        image.style.height = `${(windowWidth - 2 * gutter) / aspectRatio}px`;
+        parent.style.width = `${windowWidth - 2 * gutter}px`;
+        parent.style.height = `${(windowWidth - 2 * gutter) / aspectRatio}px`;
       } else {
-        image.style.height = `${height}px`;
-        image.style.width = `${width}px`;
+        parent.style.height = `${height}px`;
+        parent.style.width = `${width}px`;
       }
       setOrientation("portrait");
     } else {
@@ -67,11 +70,11 @@ export default function Album(props) {
 
       // check that the label doesn't overflow the window
       if (height > windowHeight - 2 * gutter) {
-        image.style.height = `${windowHeight - 2 * gutter}px`;
-        image.style.width = `${(windowHeight - 2 * gutter) * aspectRatio}px`;
+        parent.style.height = `${windowHeight - 2 * gutter}px`;
+        parent.style.width = `${(windowHeight - 2 * gutter) * aspectRatio}px`;
       } else {
-        image.style.width = `${width}px`;
-        image.style.height = `${height}px`;
+        parent.style.width = `${width}px`;
+        parent.style.height = `${height}px`;
       }
       setOrientation("landscape");
     }

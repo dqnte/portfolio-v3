@@ -15,15 +15,14 @@ const Image = (props) => {
   };
 
   return (
-    <Fragment>
+    <div className="Image">
       <img
-        style={{ display: isLoaded ? "block" : "none" }}
         onLoad={loaded}
-        className={className}
+        src={photo.smallUrl}
+        className={`Image__img ${className} ${isLoaded ? "" : "hide"}`}
         alt={alt}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        src={photo.smallUrl}
       />
       {!isLoaded && (
         <div
@@ -31,7 +30,7 @@ const Image = (props) => {
           style={{ aspectRatio, background: photo?.color }}
         />
       )}
-    </Fragment>
+    </div>
   );
 };
 
