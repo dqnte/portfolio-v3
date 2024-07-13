@@ -1,10 +1,10 @@
 import "./Album.scss";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { downloadAlbum, downloadPhoto } from "./utilities.ts";
 import { page } from "./transitions";
 import Image from "./Image";
 import Download from "@mui/icons-material/Download";
+import { downloadAlbum, downloadPhoto } from "./utilities.ts";
 
 import { useEffect, useState, useRef } from "react";
 

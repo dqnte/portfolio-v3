@@ -1,3 +1,5 @@
+import jsyaml from "js-yaml";
+
 const BASE_URL = "https://s3.us-west-1.amazonaws.com/dantetobar.com";
 
 export interface IPhoto {
@@ -19,138 +21,20 @@ export interface IAlbum {
   photos: IPhoto[];
 }
 
-export function fetchPhotoManifest(): { albums: IAlbum[] } {
-  return {
-    albums: [
-      {
-        index: 1,
-        key: "chamonix",
-        location: "Chamonix, France",
-        date: "January, 2024",
-        coverUrl: BASE_URL + "/albums/chamonix/chamonix-5.jpg",
-        photos: [
-          {
-            camera: "Mamiya 645",
-            film: "Porta 400",
-            smallUrl: BASE_URL + "/albums/chamonix/chamonix-1.jpg",
-            largeUrl: BASE_URL + "/albums/chamonix/chamonix-1.jpg",
-            width: 2048,
-            height: 1365,
-          },
-          {
-            camera: "Mamiya 645",
-            film: "Porta 400",
-            smallUrl: BASE_URL + "/albums/chamonix/chamonix-2.jpg",
-            largeUrl: BASE_URL + "/albums/chamonix/chamonix-2.jpg",
-            width: 2048,
-            height: 1365,
-          },
-
-          {
-            camera: "Sony a7 iii",
-            smallUrl: BASE_URL + "/albums/chamonix/chamonix-3.jpg",
-            largeUrl: BASE_URL + "/albums/chamonix/chamonix-3.jpg",
-            width: 1638,
-            height: 2048,
-          },
-          {
-            camera: "Sony a7 iii",
-            smallUrl: BASE_URL + "/albums/chamonix/chamonix-4.jpg",
-            largeUrl: BASE_URL + "/albums/chamonix/chamonix-4.jpg",
-            width: 1638,
-            height: 2048,
-          },
-          {
-            camera: "Mamiya 645",
-            smallUrl: BASE_URL + "/albums/chamonix/chamonix-5.jpg",
-            largeUrl: BASE_URL + "/albums/chamonix/chamonix-5.jpg",
-            width: 1638,
-            height: 2048,
-          },
-        ],
-      },
-      {
-        index: 2,
-        key: "aiguille-du-midi",
-        location: "Aiguille Du Midi, France",
-        date: "January, 2024",
-        coverUrl: BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-1.jpg",
-        photos: [
-          {
-            camera: "Mamiya 645",
-            film: "Porta 400",
-            smallUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-1.jpg",
-            largeUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-1.jpg",
-            width: 1638,
-            height: 2048,
-          },
-          {
-            camera: "Mamiya 645",
-            film: "Porta 400",
-            smallUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-2.jpg",
-            largeUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-2.jpg",
-            width: 1638,
-            height: 2048,
-          },
-
-          {
-            camera: "Sony a7 iii",
-            smallUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-3.jpg",
-            largeUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-3.jpg",
-            width: 1638,
-            height: 2048,
-          },
-          {
-            camera: "Sony a7 iii",
-            smallUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-4.jpg",
-            largeUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-4.jpg",
-            width: 2048,
-            height: 1365,
-          },
-          {
-            camera: "Sony a7 iii",
-            smallUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-5.jpg",
-            largeUrl:
-              BASE_URL + "/albums/aiguille-du-midi/aiguille-du-midi-5.jpg",
-            width: 2048,
-            height: 1536,
-          },
-        ],
-      },
-      {
-        index: 3,
-        key: "geneva",
-        location: "Geneva, Switzerland",
-        date: "January, 2024",
-        coverUrl: BASE_URL + "/albums/geneva/geneva-2.jpg",
-        photos: [
-          {
-            camera: "Sony a7 iii",
-            smallUrl: BASE_URL + "/albums/geneva/geneva-2.jpg",
-            largeUrl: BASE_URL + "/albums/geneva/geneva-2.jpg",
-            width: 2048,
-            height: 1536,
-          },
-          {
-            camera: "Sony a7 iii",
-            smallUrl: BASE_URL + "/albums/geneva/geneva-1.jpg",
-            largeUrl: BASE_URL + "/albums/geneva/geneva-1.jpg",
-            width: 2048,
-            height: 1536,
-          },
-        ],
-      },
-    ],
-  };
+export async function fetchPhotoManifest(): Promise<{ albums: IAlbum[] }> {
+  return fetch("/photoManifest.yaml").then(async (response) => {
+    return response.text().then((text) => {
+      const config = jsyaml.load(text);
+      config.albums.forEach((album: IAlbum) => {
+        album.coverUrl = `${BASE_URL}${album.coverUrl}`;
+        album.photos.forEach((photo: IPhoto) => {
+          photo.smallUrl = `${BASE_URL}${photo.smallUrl}`;
+          photo.largeUrl = `${BASE_URL}${photo.largeUrl}`;
+        });
+      });
+      return config.albums;
+    });
+  });
 }
 
 export const downloadAlbum = (album: IAlbum) => {

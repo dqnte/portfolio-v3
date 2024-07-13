@@ -3,7 +3,6 @@ import "./Header.scss";
 import DarkMode from "@mui/icons-material/DarkMode";
 import LightMode from "@mui/icons-material/LightMode";
 import { Link } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
 
 function Header(props) {
   const { useDarkTheme, setDarkTheme, toggleMenu, closeMenu, showMenu } = props;

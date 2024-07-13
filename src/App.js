@@ -11,9 +11,8 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  const { albums } = fetchPhotoManifest();
-
   const [showMenu, setShowMenu] = useState(false);
+  const [albums, setAlbums] = useState([]);
 
   const [useDarkTheme, setDarkTheme] = useState(true);
   useEffect(() => {
@@ -23,6 +22,12 @@ function App() {
     } else {
       setDarkTheme(false);
     }
+  }, []);
+
+  useEffect(() => {
+    fetchPhotoManifest().then((albums) => {
+      setAlbums(albums);
+    });
   }, []);
 
   const toggleMenu = () => {
@@ -45,8 +50,8 @@ function App() {
         />
         <Menu setShowMenu={setShowMenu} show={showMenu} />
         <Routes>
-          <Route path="/" element={<Home album={albums[0]} />} />
-          <Route path="/photo/*" element={<Photo />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/photo/*" element={<Photo albums={albums} />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>

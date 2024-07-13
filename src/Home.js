@@ -9,12 +9,7 @@ import { Link } from "react-router-dom";
 
 import { page } from "./transitions";
 
-export default function Home(props) {
-  const { album } = props;
-  const cover = album.photos[4];
-
-  const animateButton = (e) => {};
-
+export default function Home() {
   return (
     <AnimatePresence>
       <motion.div

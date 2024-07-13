@@ -6,18 +6,19 @@ import { page } from "./transitions";
 import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { fetchPhotoManifest } from "./utilities.ts";
 
-export default function Photo() {
+const findAlbumFromLocation = (location, albums) => {
+  const key = location.pathname.split("/")[2];
+  return albums.find((album) => album.key === key);
+};
+
+export default function Photo(props) {
   const location = useLocation();
-  const { albums } = fetchPhotoManifest();
+  const { albums } = props;
 
-  const findAlbumFromLocation = (location) => {
-    const key = location.pathname.split("/")[2];
-    return albums.find((album) => album.key === key);
-  };
-
-  const [selectedAlbum, setAlbum] = useState(findAlbumFromLocation(location));
+  const [selectedAlbum, setAlbum] = useState(
+    findAlbumFromLocation(location, albums),
+  );
   const [hoverAlbum, setHoverAlbum] = useState(null);
 
   useEffect(() => {
@@ -25,11 +26,11 @@ export default function Photo() {
       setAlbum(null);
       setHoverAlbum(null);
     } else {
-      const currentAlbum = findAlbumFromLocation(location);
+      const currentAlbum = findAlbumFromLocation(location, albums);
       setAlbum(currentAlbum);
       setHoverAlbum(currentAlbum);
     }
-  }, [location]);
+  }, [location, albums]);
 
   return (
     <AnimatePresence>
