@@ -2,5 +2,75 @@
 
 .About {
   height: 100vh;
-  padding: calc(20px + $header-height) $gutter-width 0 $gutter-width;
+  padding: calc(50px + $header-height) $gutter-width $gutter-width $gutter-width;
+  margin: 0 auto;
+  max-width: 1200px;
+
+  display: flex;
+  justify-content: center;
+  gap: calc($gutter-width);
+
+
+  &__image {
+    height: 80%;
+  }
+
+  &__text {
+    width: 40%;
+    font-wieght: 600;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+
+    a {
+      color: $fg-light-main;
+    }
+  }
+
+  &__bio {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-variant: small-caps;
+    font-weight: 600;
+    font-size: 16px;
+    p {
+      margin: 0;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 20px;
+
+    &_link, a {
+      color: $fg-light-main;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: $font-accent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: unset;
+
+    &__image {
+      height: unset;
+      width: 100%;
+    }
+
+    &__text {
+      padding-top: 0;
+      width: 100%;
+    }
+  }
 }
