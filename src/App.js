@@ -50,7 +50,7 @@ function App() {
         />
         <Menu setShowMenu={setShowMenu} show={showMenu} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home albums={albums} />} />
           <Route path="/photo/*" element={<Photo albums={albums} />} />
           <Route path="/about" element={<About />} />
         </Routes>

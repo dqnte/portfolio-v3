@@ -4,12 +4,11 @@ import "./Home.scss";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Arrow from "@mui/icons-material/ArrowForward";
-
-import { Link } from "react-router-dom";
+import Carousel from "./Carousel";
 
 import { page } from "./transitions";
 
-export default function Home() {
+export default function Home({ albums }) {
   return (
     <AnimatePresence>
       <motion.div
@@ -18,28 +17,9 @@ export default function Home() {
         animate={page.animate}
         exit={page.exit}
       >
-        <div className="Home__Image">
-          <img
-            className="Home__Image_obj landscape"
-            src={"./background_landscape.jpg"}
-            alt="Chamonix"
-          />
-          <img
-            className="Home__Image_obj portrait"
-            src={"./background_portrait.jpg"}
-            alt="Chamonix"
-          />
-        </div>
-        <div className="Home__Footer">
-          <Link className="Home__Footer_Link" to="/photo">
-            photography
-            <Arrow />
-          </Link>
-          <Link to="/about" className="Home__Footer_Link">
-            about
-            <Arrow />
-          </Link>
-        </div>
+      <div className="Home__carousel">
+        <Carousel albums={[...albums, ...albums, ...albums]} />
+    </div>
       </motion.div>
     </AnimatePresence>
   );

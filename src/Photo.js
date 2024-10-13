@@ -1,9 +1,9 @@
 import "./constants.scss";
 import "./Photo.scss";
 import Album from "./Album";
-import Image from "./Image";
 import { page } from "./transitions";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Carousel from "./Carousel";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -46,19 +46,12 @@ export default function Photo(props) {
           </motion.div>
         )}
         {selectedAlbum && <Album album={selectedAlbum} />}
-        <div className="Photo__preview">
-          {albums.map((album) => (
-            <Link to={`/photo/${album.key}`} key={album.key}>
-              <Image
-                onMouseEnter={() => setHoverAlbum(album)}
-                onMouseLeave={() => setHoverAlbum(selectedAlbum)}
-                photo={album.photos[0]}
-                alt={album.location}
-                className={`${album.index === hoverAlbum?.index || !hoverAlbum ? "show" : ""} Photo__preview__image`}
-              />
-            </Link>
-          ))}
-        </div>
+        <Carousel
+          albums={albums}
+          selectedAlbum={selectedAlbum}
+          hoverAlbum={hoverAlbum}
+          setHoverAlbum={setHoverAlbum}
+        />
       </motion.div>
     </AnimatePresence>
   );
