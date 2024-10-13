@@ -38,9 +38,5 @@ export async function fetchPhotoManifest(): Promise<{ albums: IAlbum[] }> {
 }
 
 export const downloadAlbum = (album: IAlbum) => {
-  console.log("Downloading album", album.key);
-};
-
-export const downloadPhoto = (photo: IPhoto) => {
-  console.log("Downloading photo", photo.largeUrl);
+  const photos = album.photos.map((photo) => photo.smallUrl);
 };

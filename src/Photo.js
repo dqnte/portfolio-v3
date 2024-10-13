@@ -42,7 +42,7 @@ export default function Photo(props) {
       >
         {!selectedAlbum && (
           <motion.div className="Photo__empty">
-            <h1>Photography</h1>
+            <h1>Dante Tobar</h1>
           </motion.div>
         )}
         {selectedAlbum && <Album album={selectedAlbum} />}

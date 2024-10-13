@@ -116,7 +116,10 @@ export default function Album(props) {
           exit={page.exit}
           onClick={() => toggleSelect(selectedPhoto)}
         >
-          <div className="Album__carousel_photo_container">
+          <div
+            className="Album__carousel_photo_container"
+            onClick={(e) => e.preventDefault()}
+          >
             <Image
               photo={selectedPhoto}
               alt={selectedPhoto?.title}

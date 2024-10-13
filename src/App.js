@@ -11,9 +11,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  const [showMenu, setShowMenu] = useState(false);
-  const [albums, setAlbums] = useState([]);
-
+  /* --- THEME --- */
   const [useDarkTheme, setDarkTheme] = useState(true);
   useEffect(() => {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -24,12 +22,18 @@ function App() {
     }
   }, []);
 
+
+  /* --- IMAGES --- */
+  const [albums, setAlbums] = useState([]);
   useEffect(() => {
     fetchPhotoManifest().then((albums) => {
       setAlbums(albums);
     });
   }, []);
 
+
+  /* --- MENU --- */
+  const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -50,9 +54,10 @@ function App() {
         />
         <Menu setShowMenu={setShowMenu} show={showMenu} />
         <Routes>
-          <Route path="/" element={<Home albums={albums} />} />
-          <Route path="/photo/*" element={<Photo albums={albums} />} />
-          <Route path="/about" element={<About />} />
+          { <Route path="/*" element={<Photo albums={albums} />} /> }
+          {/* <Route path="/" element={<Home albums={albums} />} /> */}
+          {/* <Route path="/photo/*" element={<Photo albums={albums} />} /> */}
+          {/* <Route path="/about" element={<About />} /> */}
         </Routes>
       </div>
     </BrowserRouter>
