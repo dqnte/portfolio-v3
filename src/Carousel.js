@@ -16,7 +16,7 @@ export const Carousel = ({
             onMouseLeave={() => setHoverAlbum(selectedAlbum)}
             photo={album.photos[0]}
             alt={album.location}
-            className={`${album.index === hoverAlbum?.index || !hoverAlbum ? "show" : ""} Photo__preview__image`}
+            className={`${album.key === hoverAlbum?.key || !hoverAlbum ? "show" : ""} Photo__preview__image`}
           />
         </Link>
       ))}
