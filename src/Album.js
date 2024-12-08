@@ -158,27 +158,34 @@ export default function Album(props) {
       {selectedPhoto && (
         <motion.div
           key="selected"
-          className={`Album__carousel_photo selected ${orientation}`}
-          initial={page.initial}
-          animate={page.animate}
-          exit={page.exit}
-          onClick={() => toggleSelect(selectedPhoto)}
+          className={"Album__overlay"}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.2 } }}
+          exit={{ opacity: 0 }}
         >
-          <div
-            className="Album__carousel_photo_container"
-            onClick={(e) => e.preventDefault()}
+          <motion.div
+            className={`Album__carousel_photo selected ${orientation}`}
+            initial={{ y: 10 }}
+            animate={{ y: 0, transition: { duration: 0.2 } }}
+            exit={{ y: 10 }}
+            onClick={() => toggleSelect(selectedPhoto)}
           >
-            <Image
-              photo={selectedPhoto}
-              alt={selectedPhoto?.title}
-              onLoad={(e) => sizeImage(e.target)}
-            />
-            <div className="Album__carousel_photo_info">
-              <h4>{album.date}</h4>
-              <h4>{selectedPhoto.camera}</h4>
-              {/* <h4>{selectedPhoto.film}</h4> */}
+            <div
+              className="Album__carousel_photo_container"
+              onClick={(e) => e.preventDefault()}
+            >
+              <Image
+                photo={selectedPhoto}
+                alt={selectedPhoto?.title}
+                onLoad={(e) => sizeImage(e.target)}
+              />
+              <div className="Album__carousel_photo_info">
+                <h4>{album.date}</h4>
+                <h4>{selectedPhoto.camera}</h4>
+                {/* <h4>{selectedPhoto.film}</h4> */}
+              </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -29,7 +29,7 @@
 
     display: flex;
     gap: $gutter-width;
-    overflow: scroll;
+    overflow-x: scroll;
 
     &__image {
       opacity: 0.5;

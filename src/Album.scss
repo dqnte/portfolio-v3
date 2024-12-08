@@ -57,6 +57,16 @@
     }
   }
 
+
+  &__overlay {
+    z-index: 1000;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    overflow: hidden;
+  }
+
   &__carousel {
     height: 100%;
     display: flex;
@@ -88,7 +98,6 @@
       }
 
       &.selected {
-        z-index: 1000;
         position: absolute;
         display: flex;
         justify-content: center;
