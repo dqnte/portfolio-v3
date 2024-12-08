@@ -1,9 +1,11 @@
 import "./Album.scss";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { page } from "./transitions";
 import Image from "./Image";
+import East from "@mui/icons-material/East";
 import Download from "@mui/icons-material/Download";
+import West from "@mui/icons-material/West";
 import { downloadAlbum, downloadPhoto } from "./utilities.ts";
 
 import { useEffect, useState, useRef } from "react";
@@ -13,6 +15,7 @@ export default function Album(props) {
   const carouselRef = useRef(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [orientation, setOrientation] = useState(null);
+  const controls = useAnimation();
 
   // resets the scroll position of the carousel when the album changes
   useEffect(() => {
@@ -80,6 +83,37 @@ export default function Album(props) {
     }
   };
 
+  const scroll = (direction) => {
+    if (!carouselRef.current) return;
+    const amount = window.innerWidth / 2;
+
+    const currentScroll = carouselRef.current.scrollLeft;
+    let targetOffset =
+      direction === "left" ? currentScroll - amount : currentScroll + amount;
+
+    if (
+      targetOffset >
+      carouselRef.current.scrollWidth - carouselRef.current.clientWidth
+    ) {
+      targetOffset =
+        carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+    } else if (targetOffset < 0) {
+      targetOffset = 0;
+    }
+
+    controls.set({ scrollOffset: currentScroll });
+    controls.start({
+      scrollOffset: targetOffset,
+      transition: { duration: 0.4, ease: "easeInOut" },
+    });
+  };
+
+  const onUpdate = (latest) => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft = latest.scrollOffset;
+    }
+  };
+
   return (
     <AnimatePresence initial={false}>
       <motion.div
@@ -93,8 +127,22 @@ export default function Album(props) {
           {/* <button className="Album__title_download"> */}
           {/*   <Download onClick={() => downloadAlbum(album)} /> */}
           {/* </button> */}
+          <div className="Album__controls">
+            <button onClick={() => scroll("left")}>
+              <West />
+            </button>
+            <button onClick={() => scroll("right")}>
+              <East />
+            </button>
+          </div>
         </div>
-        <div className="Album__carousel" ref={carouselRef}>
+        <motion.div
+          className="Album__carousel"
+          ref={carouselRef}
+          custom={{ scrollOffset: 0 }}
+          animate={controls}
+          onUpdate={onUpdate}
+        >
           {album.photos.map((photo) => (
             <div
               className="Album__carousel_photo"
@@ -104,7 +152,7 @@ export default function Album(props) {
               <Image photo={photo} alt={photo.title} />
             </div>
           ))}
-        </div>
+        </motion.div>
       </motion.div>
 
       {selectedPhoto && (

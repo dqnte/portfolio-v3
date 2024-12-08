@@ -2,6 +2,7 @@
 
 .Album {
   display: grid;
+  position: relative;
   grid-template-rows: 1fr 10fr;
   height: 100%;
   overflow: hidden;
@@ -10,6 +11,7 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    justify-content: space-between;
 
     &_text {
       font-family: $font-accent;
@@ -21,6 +23,37 @@
       @include plain-button;
       position: relative;
       top: 3px;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    padding-right: $gutter-width;
+    gap: 1rem;
+
+    button {
+      @include plain-button;
+    }
+  }
+
+  &__scroll {
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    width: 100px;
+    z-index: 1000;
+
+    &:hover {
+      background: rgba($bg-dark-main, 0.2);
+    }
+
+    &.left {
+      margin-left: $gutter-width;
+    }
+
+    &.right {
+      right: 0;
+      margin-right: $gutter-width;
     }
   }
 
