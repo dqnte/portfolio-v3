@@ -85,7 +85,7 @@ export default function Album(props) {
 
   const scroll = (direction) => {
     if (!carouselRef.current) return;
-    const amount = window.innerWidth / 2;
+    const amount = window.innerWidth * 5 / 8;
 
     const currentScroll = carouselRef.current.scrollLeft;
     let targetOffset =
