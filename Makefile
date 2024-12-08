@@ -3,3 +3,6 @@ build:
 
 up:
 	npm start
+
+dev:
+	npm start
