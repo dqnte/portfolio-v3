@@ -1,7 +1,12 @@
 import "./Album.scss";
 
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { page } from "./transitions";
+import {
+  motion,
+  AnimatePresence,
+  useAnimation,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import Image from "./Image";
 import East from "@mui/icons-material/East";
 import Download from "@mui/icons-material/Download";
@@ -9,6 +14,64 @@ import West from "@mui/icons-material/West";
 import { downloadAlbum, downloadPhoto } from "./utilities.ts";
 
 import { useEffect, useState, useRef } from "react";
+
+const Controls = ({ carouselRef, controls }) => {
+  const [position, setPosition] = useState("left");
+
+  const scroll = (direction) => {
+    if (!carouselRef.current) return;
+    const amount = (window.innerWidth * 5) / 8;
+
+    const currentScroll = carouselRef.current.scrollLeft;
+    let targetOffset =
+      direction === "left" ? currentScroll - amount : currentScroll + amount;
+
+    if (
+      targetOffset >
+      carouselRef.current.scrollWidth - carouselRef.current.clientWidth
+    ) {
+      targetOffset =
+        carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+    } else if (targetOffset < 0) {
+      targetOffset = 0;
+    }
+
+    controls.set({ scrollOffset: currentScroll });
+    controls.start({
+      scrollOffset: targetOffset,
+      transition: { duration: 0.4, ease: "easeInOut" },
+    });
+  };
+
+  const { scrollX } = useScroll({
+    container: carouselRef,
+    initial: 0,
+  });
+
+  useMotionValueEvent(scrollX, "change", (latest) => {
+    if (latest === 0) {
+      setPosition("left");
+    } else if (
+      latest >=
+      carouselRef.current.scrollWidth - carouselRef.current.clientWidth
+    ) {
+      setPosition("right");
+    } else {
+      setPosition("center");
+    }
+  });
+
+  return (
+    <div className="Album__controls">
+      <button onClick={() => scroll("left")} disabled={position === "left"}>
+        <West />
+      </button>
+      <button onClick={() => scroll("right")} disabled={position === "right"}>
+        <East />
+      </button>
+    </div>
+  );
+};
 
 export default function Album(props) {
   const { album } = props;
@@ -83,31 +146,6 @@ export default function Album(props) {
     }
   };
 
-  const scroll = (direction) => {
-    if (!carouselRef.current) return;
-    const amount = window.innerWidth * 5 / 8;
-
-    const currentScroll = carouselRef.current.scrollLeft;
-    let targetOffset =
-      direction === "left" ? currentScroll - amount : currentScroll + amount;
-
-    if (
-      targetOffset >
-      carouselRef.current.scrollWidth - carouselRef.current.clientWidth
-    ) {
-      targetOffset =
-        carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
-    } else if (targetOffset < 0) {
-      targetOffset = 0;
-    }
-
-    controls.set({ scrollOffset: currentScroll });
-    controls.start({
-      scrollOffset: targetOffset,
-      transition: { duration: 0.4, ease: "easeInOut" },
-    });
-  };
-
   const onUpdate = (latest) => {
     if (carouselRef.current) {
       carouselRef.current.scrollLeft = latest.scrollOffset;
@@ -127,14 +165,7 @@ export default function Album(props) {
           {/* <button className="Album__title_download"> */}
           {/*   <Download onClick={() => downloadAlbum(album)} /> */}
           {/* </button> */}
-          <div className="Album__controls">
-            <button onClick={() => scroll("left")}>
-              <West />
-            </button>
-            <button onClick={() => scroll("right")}>
-              <East />
-            </button>
-          </div>
+          <Controls carouselRef={carouselRef} controls={controls} />
         </div>
         <motion.div
           className="Album__carousel"

@@ -33,6 +33,11 @@
 
     button {
       @include plain-button;
+      transition: opacity 300ms;
+
+      &:disabled {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -56,7 +61,6 @@
       margin-right: $gutter-width;
     }
   }
-
 
   &__overlay {
     z-index: 1000;
