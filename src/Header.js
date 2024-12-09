@@ -55,7 +55,7 @@ function Header({ useDarkTheme, setDarkTheme, toggleMenu, closeMenu, showMenu, a
   const [headerState, setHeaderState] = useState("hidden");
 
   useEffect(() => {
-    if (location.pathname === "/") {
+    if (location.pathname === "/" || location.pathname === "/photo") {
       setHeaderState("hidden");
     } else {
       setHeaderState("default");
@@ -66,7 +66,7 @@ function Header({ useDarkTheme, setDarkTheme, toggleMenu, closeMenu, showMenu, a
     <div className={`Header ${showMenu ? "menu-open" : "menu-closed"}`}>
       {/* <Mode useDarkTheme={useDarkTheme} setDarkTheme={setDarkTheme} /> */}
       <Name closeMenu={closeMenu} headerState={headerState}/>
-      {/* <Menu toggleMenu={toggleMenu} /> */}
+      <Menu toggleMenu={toggleMenu} />
     </div>
   );
 }

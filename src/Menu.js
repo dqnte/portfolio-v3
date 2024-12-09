@@ -6,11 +6,7 @@ import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Menu(props) {
-  const { show, setShowMenu } = props;
-
-  const closeMenu = () => {
-    setShowMenu(false);
-  };
+  const { show, closeMenu } = props;
 
   const [hoverPage, setHoverPage] = useState(null);
 
@@ -67,14 +63,14 @@ export default function Menu(props) {
               <span className="Menu_Link_Text">home</span>
             </Link>
             <h1> • </h1>
-            <Link
-              to="/photo"
-              className={`Menu_Link ${hoverPage === "photo" ? "selected" : ""}`}
-              onClick={closeMenu}
-            >
-              <span className="Menu_Link_Text">photo</span>
-            </Link>
-            <h1> • </h1>
+            {/* <Link */}
+            {/*   to="/photo" */}
+            {/*   className={`Menu_Link ${hoverPage === "photo" ? "selected" : ""}`} */}
+            {/*   onClick={closeMenu} */}
+            {/* > */}
+            {/*   <span className="Menu_Link_Text">photo</span> */}
+            {/* </Link> */}
+            {/* <h1> • </h1> */}
             <Link
               to="/about"
               className={`Menu_Link ${hoverPage === "about" ? "selected" : ""}`}
