@@ -36,6 +36,7 @@
   &__Pages {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
     padding: $gutter-width;
     gap: $gutter-width;
@@ -49,6 +50,7 @@
 
   &__Socials {
     display: flex;
+    justify-content: flex-end;
     gap: 1rem;
     padding: $gutter-width;
 
