@@ -19,7 +19,7 @@ export default function Menu(props) {
         setHoverPage("home");
         break;
       case "photo":
-        setHoverPage("photo");
+        setHoverPage("home");
         break;
       case "about":
         setHoverPage("about");
