@@ -52,7 +52,7 @@ const Controls = ({ carouselRef, controls }) => {
     if (latest === 0) {
       setPosition("left");
     } else if (
-      latest >=
+      latest + 1 >=
       carouselRef.current.scrollWidth - carouselRef.current.clientWidth
     ) {
       setPosition("right");
