@@ -12,6 +12,7 @@
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: $gutter-width;
 
     &_text {
       font-family: $font-accent;

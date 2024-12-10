@@ -13,27 +13,35 @@ export interface IPhoto {
 }
 
 export interface IAlbum {
-  index: number;
   key: string;
   location: string;
   date: string;
-  coverUrl: string;
   photos: IPhoto[];
 }
 
-export async function fetchPhotoManifest(): Promise<{ albums: IAlbum[] }> {
-  return fetch("/photoManifest.yaml").then(async (response) => {
+const pullConfig = async (url: string) => {
+  return fetch(url).then(async (response) => {
     return response.text().then((text) => {
-      const config = jsyaml.load(text);
-      config.albums.forEach((album: IAlbum) => {
-        album.coverUrl = `${BASE_URL}${album.coverUrl}`;
-        album.photos.forEach((photo: IPhoto) => {
-          photo.smallUrl = `${BASE_URL}${photo.smallUrl}`;
-          photo.largeUrl = `${BASE_URL}${photo.largeUrl}`;
-        });
-      });
-      return config.albums;
+      return jsyaml.load(text);
     });
+  });
+};
+
+export async function fetchPhotoManifest(): Promise<IAlbum[]> {
+  const manifest = await pullConfig("/photo-manifest.yaml");
+
+  return manifest.albums.map((album: IAlbum) => {
+    return {
+      key: album.key,
+      location: album.location,
+      date: album.date,
+      photos: album.photos.map((photo) => {
+        return {
+          ...photo,
+          smallUrl: `${BASE_URL}${photo.smallUrl}`,
+        };
+      }),
+    };
   });
 }
 
