@@ -8,10 +8,7 @@
 
   &__container {
     width: 100%;
-    margin: 0 auto;
     padding: $gutter-width;
-    padding-top: calc($gutter-width * 2);
-    max-width: 800px;
     height: min-content;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -34,16 +31,30 @@
 
   &__image {
     width: 100%;
+    aspect-ratio: 1/1;
+    max-width: calc(100vh - 2 * $gutter-width - $header-height);
     margin-left: auto;
+    background: #fff;
+
+    // temp styles
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & span {
+      font-size: 13px;
+      font-weight: 600;
+      color: #c9c9c9;
+    }
   }
 
   &__text {
     width: 100%;
+    max-width: 600px;
     font-wieght: 600;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 20px;
 
     a {

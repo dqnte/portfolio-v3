@@ -12,7 +12,10 @@ export default function About() {
       <div className={"About"}>
         <Riser>
           <div className="About__container">
-            <img className="About__image" src="/F17.jpg" />
+            {/* <img className="About__image" src="" /> */}
+            <div className="About__image">
+              <span>need to take this...</span>
+            </div>
             <div className="About__text">
               <div className="About__bio">
                 <p>
