@@ -1,4 +1,4 @@
-import jsyaml from "js-yaml";
+const jsyaml = require("js-yaml");
 
 const BASE_URL = "https://s3.us-west-1.amazonaws.com/dantetobar.com";
 
