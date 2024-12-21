@@ -5,7 +5,7 @@ import About from "./About";
 import Photo from "./Photo";
 import Home from "./Home";
 import Menu from "./Menu";
-import { fetchPhotoManifest } from "./utilities.ts";
+import { fetchPhotoManifest } from "./utilities";
 
 import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -58,6 +58,7 @@ function App() {
           toggleMenu={toggleMenu}
           closeMenu={closeMenu}
           showMenu={showMenu}
+          albums={albums}
         />
         <Menu closeMenu={closeMenu} show={showMenu} />
         <Routes>

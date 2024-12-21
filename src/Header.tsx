@@ -4,6 +4,7 @@ import DarkMode from "@mui/icons-material/DarkMode";
 import LightMode from "@mui/icons-material/LightMode";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { IAlbum } from "./utilities";
 
 function Mode({ useDarkTheme, setDarkTheme }) {
   const [showDark, setShowDark] = useState(useDarkTheme);
@@ -36,21 +37,42 @@ function Mode({ useDarkTheme, setDarkTheme }) {
   );
 }
 
-function Name({closeMenu, headerState}) {
+function Name({ closeMenu, headerState }) {
   return (
-    <Link to="/" className={`Header__Name ${headerState === 'hidden' ? 'hidden' : ''}`}>
+    <Link
+      to="/"
+      className={`Header__Name ${headerState === "hidden" ? "hidden" : ""}`}
+    >
       dante tobar
     </Link>
   );
 }
 
-function Menu({toggleMenu}) {
-  return <button className="Header__Menu" onClick={toggleMenu}>
-    menu
-  </button>;
+function Menu({ toggleMenu }) {
+  return (
+    <button className="Header__Menu" onClick={toggleMenu}>
+      menu
+    </button>
+  );
 }
 
-function Header({ useDarkTheme, setDarkTheme, toggleMenu, closeMenu, showMenu, albums}) {
+interface HeaderProps {
+  useDarkTheme: boolean;
+  setDarkTheme: (value: boolean) => void;
+  toggleMenu: () => void;
+  closeMenu: () => void;
+  showMenu: boolean;
+  albums: IAlbum[];
+}
+
+function Header({
+  useDarkTheme,
+  setDarkTheme,
+  toggleMenu,
+  closeMenu,
+  showMenu,
+  albums,
+}: HeaderProps) {
   const location = useLocation();
   const [headerState, setHeaderState] = useState("hidden");
 
@@ -65,7 +87,7 @@ function Header({ useDarkTheme, setDarkTheme, toggleMenu, closeMenu, showMenu, a
   return (
     <div className={`Header ${showMenu ? "menu-open" : "menu-closed"}`}>
       {/* <Mode useDarkTheme={useDarkTheme} setDarkTheme={setDarkTheme} /> */}
-      <Name closeMenu={closeMenu} headerState={headerState}/>
+      <Name closeMenu={closeMenu} headerState={headerState} />
       <Menu toggleMenu={toggleMenu} />
     </div>
   );

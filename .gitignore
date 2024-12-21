@@ -6,6 +6,9 @@
 # testing
 /coverage
 
+# parcel
+.cache
+
 # production
 /build
 /public
