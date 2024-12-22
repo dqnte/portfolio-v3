@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 
 // import { Mail } from "@mui/icons-material";
-import { LinkedIn, Instagram } from "@mui/icons-material";
+import { LinkedIn, Instagram, GitHub } from "@mui/icons-material";
 import Riser from "./components/Riser";
 
 import "./About.scss";
@@ -18,10 +18,11 @@ export default function About() {
             </div>
             <div className="About__text">
               <div className="About__bio">
+                <h1 className="About__name">Dante Tobar</h1>
                 <p>
-                  I'm Dante Tobar, an engineer & photographer. I shoot both film
-                  and digital. Most of my photos are candids, but there are some
-                  posed exceptions. Currently, I work at{" "}
+                  I'm an engineer & photographer. I shoot both film and digital.
+                  Most of my photos are candids, but there are some posed
+                  exceptions. Currently, I work at{" "}
                   <a
                     href="https://www.fabrichealth.com/about"
                     target="_blank"
@@ -33,30 +34,34 @@ export default function About() {
                   free to dm me.
                 </p>
               </div>
-              <span className="About__divider" />
               <div className="About__socials">
-                {/* <div className="About__socials_link"> */}
-                {/*   <Mail /> */}
-                {/*   {/1* dante.m.tobar@gmail.com *1/} */}
-                {/* </div> */}
-                <a
-                  href="https://www.instagram.com/dantistador/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="About__social_link"
-                >
-                  <Instagram />
-                  {/* @dantistador */}
-                </a>
-                <a
-                  className="About__social_link"
-                  href="https://www.linkedin.com/in/dante-m-tobar/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <LinkedIn />
-                  {/* dante-m-tobar */}
-                </a>
+                <span className="About__socials_topline" />
+                <div className="About__socials_links">
+                  <a
+                    href="https://www.instagram.com/dantistador/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="About__social_link"
+                  >
+                    <Instagram />
+                  </a>
+                  <a
+                    className="About__social_link"
+                    href="https://www.linkedin.com/in/dante-m-tobar/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <LinkedIn />
+                  </a>
+                  <a
+                    className="About__social_link"
+                    href="https://www.github.com/dqnte"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <GitHub />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
