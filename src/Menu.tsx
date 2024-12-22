@@ -62,7 +62,6 @@ export default function Menu(props) {
             >
               <span className="Menu_Link_Text">home</span>
             </Link>
-            <h1> • </h1>
             {/* <Link */}
             {/*   to="/photo" */}
             {/*   className={`Menu_Link ${hoverPage === "photo" ? "selected" : ""}`} */}
