@@ -70,6 +70,11 @@
     width: 100vw;
     position: absolute;
     overflow: hidden;
+
+    &_close {
+
+    }
+
   }
 
   &__carousel {
@@ -93,7 +98,7 @@
       cursor: pointer;
 
       img {
-        height: 100%;
+        height: inherit;
       }
 
       &_container {

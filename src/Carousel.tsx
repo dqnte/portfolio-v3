@@ -1,12 +1,19 @@
 import Image from "./Image";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { IAlbum } from "./utilities";
 
-export const Carousel = ({ albums, selectedAlbum }) => {
+export const Carousel = ({
+  albums,
+  selectedAlbum,
+}: {
+  albums: IAlbum[];
+  selectedAlbum: IAlbum;
+}) => {
   const [globalHover, setGlobalHover] = useState(false);
-  const [hoverAlbum, setHover] = useState(null);
+  const [hoverAlbum, setHover] = useState<IAlbum | null>(null);
 
-  const showHoverStyles = (album) => {
+  const showHoverStyles = (album: IAlbum) => {
     if (!globalHover && !selectedAlbum) return true;
     if (!globalHover && selectedAlbum) return selectedAlbum.key === album.key;
     if (globalHover && !selectedAlbum && hoverAlbum) {

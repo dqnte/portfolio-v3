@@ -1,16 +1,16 @@
-@import 'constants.scss';
+@import "constants.scss";
 
 .Image {
   position: relative;
-  height: 100%;
-
+  height: inherit;
+  width: inherit;
 
   &__Loading {
     position: absolute;
     left: 0;
     top: 0;
-    background-color: #d1d1d1;
     height: 100%;
+    width: 100%;
   }
 
   &__img {
@@ -33,4 +33,3 @@
     background-color: $bg-light-overlay;
   }
 }
-
