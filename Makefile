@@ -1,8 +1,10 @@
 install:
 	npm install
 
+i: install
+
 build:
-	rm dist/src.*
+	rm dist/index.*
 	npm run build
 
 up:
@@ -10,3 +12,6 @@ up:
 
 dev:
 	make up
+
+clean:
+	rm -rf node_modules .parcel-cache

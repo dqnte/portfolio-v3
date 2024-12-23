@@ -31,6 +31,11 @@ const pullConfig = async (url: string) => {
 export async function fetchPhotoManifest(): Promise<IAlbum[]> {
   const manifest = await pullConfig("/photo-manifest.yaml");
 
+  if (!manifest.albums) {
+    return [];
+  }
+
+
   return manifest.albums.map((album: IAlbum) => {
     return {
       key: album.key,
