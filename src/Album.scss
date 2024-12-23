@@ -70,11 +70,29 @@
     width: 100vw;
     position: absolute;
     overflow: hidden;
+    background: rgba($bg-light-main, 0.98);
 
-    &_close {
+    &_controls {
+      @include strikethrough-button;
+      position: absolute;
+      z-index: 1001;
+      margin: $gutter-width;
+      font-size: 16px;
+      font-weight: bold;
+      font-variant: small-caps;
 
+      &.prev {
+        margin: 0 $gutter-width;
+        left: 0;
+        top: calc(50% - 1rem);
+      }
+
+      &.next {
+        margin: 0 $gutter-width;
+        right: 0;
+        top: calc(50% - 1rem);
+      }
     }
-
   }
 
   &__carousel {
@@ -108,6 +126,7 @@
       }
 
       &.selected {
+        cursor: default;
         position: absolute;
         display: flex;
         justify-content: center;
@@ -187,7 +206,7 @@
 .light {
   .Album {
     &__carousel_photo.selected {
-      background: rgba($bg-light-main, 0.8);
+      // background: rgba($bg-light-main, 0.8);
     }
 
     &__carousel_photo_info {

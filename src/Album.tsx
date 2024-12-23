@@ -9,16 +9,15 @@ import {
 } from "framer-motion";
 import Image from "./Image";
 import East from "@mui/icons-material/East";
-import Download from "@mui/icons-material/Download";
 import West from "@mui/icons-material/West";
-import { downloadAlbum, downloadPhoto } from "./utilities.ts";
+import { IAlbum, IPhoto } from "./utilities";
 
 import { useEffect, useState, useRef } from "react";
 
 const Controls = ({ carouselRef, controls }) => {
-  const [position, setPosition] = useState("left");
+  const [position, setPosition] = useState<"left" | "right" | "center">("left");
 
-  const scroll = (direction) => {
+  const scroll = (direction: "left" | "right") => {
     if (!carouselRef.current) return;
     const amount = (window.innerWidth * 5) / 8;
 
@@ -45,7 +44,6 @@ const Controls = ({ carouselRef, controls }) => {
 
   const { scrollX } = useScroll({
     container: carouselRef,
-    initial: 0,
   });
 
   useMotionValueEvent(scrollX, "change", (latest) => {
@@ -73,10 +71,9 @@ const Controls = ({ carouselRef, controls }) => {
   );
 };
 
-export default function Album(props) {
-  const { album } = props;
+export default function Album({ album }: { album: IAlbum }) {
   const carouselRef = useRef(null);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const [orientation, setOrientation] = useState(null);
   const controls = useAnimation();
 
@@ -87,27 +84,21 @@ export default function Album(props) {
     }
   }, [album.key]);
 
-  const toggleSelect = (photo) => {
-    if (selectedPhoto === photo) {
-      setSelectedPhoto(null);
-    } else {
-      setSelectedPhoto(photo);
-    }
-  };
-
   /*
    * This functions finds the correct size for the image to fit the screen
    * Using the aspect ratio, the function determines if there's more space for the
    * image label in portrait or landscape mode.
    */
-  const sizeImage = (image) => {
+  const sizeImage = (image: HTMLImageElement) => {
     // constants defined in CSS
     const gutter = 20;
     const labelHeight = gutter * 4;
+    const closeButtonWidth = 45;
 
     const aspectRatio = image.naturalWidth / image.naturalHeight;
 
-    const windowWidth = document.documentElement.clientWidth;
+    const windowWidth =
+      document.documentElement.clientWidth - closeButtonWidth * 2;
     const windowHeight = document.documentElement.clientHeight;
 
     // using this because of the container Image component
@@ -146,10 +137,24 @@ export default function Album(props) {
     }
   };
 
-  const onUpdate = (latest) => {
+  const onUpdate = (latest: { scrollOffset: number }) => {
     if (carouselRef.current) {
       carouselRef.current.scrollLeft = latest.scrollOffset;
     }
+  };
+
+  const openPhoto = (photo: IPhoto) => {
+    const index = album.photos.indexOf(photo);
+    console.log(index);
+    setSelectedIndex(index);
+  };
+
+  const nextPhoto = () => {
+    setSelectedIndex(selectedIndex + 1);
+  };
+
+  const prevPhoto = () => {
+    setSelectedIndex(selectedIndex - 1);
   };
 
   return (
@@ -178,7 +183,7 @@ export default function Album(props) {
             <div
               className="Album__carousel_photo"
               key={photo.smallUrl}
-              onClick={() => toggleSelect(photo)}
+              onClick={() => openPhoto(photo)}
             >
               <Image photo={photo} alt={photo.title} />
             </div>
@@ -186,7 +191,7 @@ export default function Album(props) {
         </motion.div>
       </motion.div>
 
-      {selectedPhoto && (
+      {selectedIndex !== null && (
         <motion.div
           key="selected"
           className={"Album__overlay"}
@@ -194,26 +199,41 @@ export default function Album(props) {
           animate={{ opacity: 1, transition: { duration: 0.2 } }}
           exit={{ opacity: 0 }}
         >
+          <button
+            className={"Album__overlay_controls close"}
+            onClick={() => setSelectedIndex(null)}
+          >
+            close
+          </button>
+          <button
+            disabled={selectedIndex === album.photos.length - 1}
+            className={"Album__overlay_controls next"}
+            onClick={nextPhoto}
+          >
+            next
+          </button>
+          <button
+            disabled={selectedIndex === 0}
+            className={"Album__overlay_controls prev"}
+            onClick={prevPhoto}
+          >
+            prev
+          </button>
           <motion.div
             className={`Album__carousel_photo selected ${orientation}`}
             initial={{ y: 10 }}
             animate={{ y: 0, transition: { duration: 0.2 } }}
             exit={{ y: 10 }}
-            onClick={() => toggleSelect(selectedPhoto)}
           >
-            <div
-              className="Album__carousel_photo_container"
-              onClick={(e) => e.preventDefault()}
-            >
+            <div className="Album__carousel_photo_container">
               <Image
-                photo={selectedPhoto}
-                alt={selectedPhoto?.title}
+                photo={album.photos[selectedIndex]}
+                alt={album.photos[selectedIndex]?.title}
                 onLoad={(e) => sizeImage(e.target)}
               />
               <div className="Album__carousel_photo_info">
                 <h4>{album.date}</h4>
-                <h4>{selectedPhoto.camera}</h4>
-                {/* <h4>{selectedPhoto.film}</h4> */}
+                <h4>{selectedIndex.camera}</h4>
               </div>
             </div>
           </motion.div>

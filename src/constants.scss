@@ -59,9 +59,17 @@ $font-accent: "Space Mono", monospace;
       background 200ms;
   }
 
-  &:hover::after, &.selected::after {
+  &:hover::after,
+  &.selected::after {
     left: -5%;
     width: 110%;
+  }
+
+  &:disabled {
+    cursor: default;
+    &::after {
+      display: none;
+    }
   }
 }
 

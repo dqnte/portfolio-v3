@@ -10,6 +10,7 @@ export interface IPhoto {
   height: number;
   width: number;
   color?: string;
+  title: string;
 }
 
 export interface IAlbum {

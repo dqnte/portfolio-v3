@@ -4,10 +4,10 @@ import { IPhoto } from "./utilities";
 
 interface ImageProps {
   photo: IPhoto;
-  className: string;
-  alt: string;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
+  className?: string;
+  alt?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement>) => void;
 }
 
