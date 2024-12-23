@@ -2,16 +2,23 @@
 
 .Home {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  padding: $gutter-width;
+  padding-top: $header-height;
+
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: $gutter-width;
+
+  &__carousel {
+    height: 50vh;
+    width: calc(100vw - $gutter-width * 2);
+  }
 
   &__Image {
+    padding-right: 3px;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    padding: $gutter-width;
-    padding-top: $header-height;
     display: flex;
 
     &_obj {
@@ -22,16 +29,24 @@
   }
 
   &__Footer {
-    padding: $gutter-width * 2;
-    padding-top: $gutter-width;
     display: flex;
-    justify-content: flex-end;
-    gap: 40px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-bottom: $gutter-width;
+
+    h1 {
+      font-family: $font-accent;
+    }
 
     &_Link {
-      @include plain-button;
+      @include strikethrough-button;
+
+      &::after {
+        height: 3px;
+      }
       font-size: 1.5rem;
-      font-family: $font-accent;
+      font-variant: small-caps;
       font-weight: bold;
     }
   }

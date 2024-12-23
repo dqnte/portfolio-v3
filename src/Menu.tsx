@@ -6,11 +6,7 @@ import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Menu(props) {
-  const { show, setShowMenu } = props;
-
-  const closeMenu = () => {
-    setShowMenu(false);
-  };
+  const { show, closeMenu } = props;
 
   const [hoverPage, setHoverPage] = useState(null);
 
@@ -23,7 +19,7 @@ export default function Menu(props) {
         setHoverPage("home");
         break;
       case "photo":
-        setHoverPage("photo");
+        setHoverPage("home");
         break;
       case "about":
         setHoverPage("about");
@@ -34,7 +30,7 @@ export default function Menu(props) {
     }
   }, [location]);
 
-  const SLIDE_IN = 0.2;
+  const SLIDE_IN = 0.3;
   const TEXT_IN = 0.025;
 
   return (
@@ -43,7 +39,14 @@ export default function Menu(props) {
         <motion.div
           className="Menu"
           initial={{ height: "0vh" }}
-          animate={{ height: "100vh", transition: { duration: SLIDE_IN } }}
+          animate={{
+            height: "100vh",
+            transition: {
+              duration: SLIDE_IN,
+              type: "tween",
+              ease: "easeInOut",
+            },
+          }}
           exit={{ height: "0vh", transition: { delay: TEXT_IN * 2 } }}
         >
           <motion.div
@@ -52,22 +55,21 @@ export default function Menu(props) {
             animate={{ opacity: 1, transition: { delay: SLIDE_IN + TEXT_IN } }}
             exit={{ opacity: 0 }}
           >
-              <Link
-                to="/"
-                className={`Menu_Link ${hoverPage === "home" ? "selected" : ""}`}
-                onClick={closeMenu}
-              >
-                <span className="Menu_Link_Text">home</span>
-              </Link>
-              <h1> • </h1>
-              <Link
-                to="/photo"
-                className={`Menu_Link ${hoverPage === "photo" ? "selected" : ""}`}
-                onClick={closeMenu}
-              >
-                <span className="Menu_Link_Text">photo</span>
-              </Link>
-            <h1> • </h1>
+            <Link
+              to="/"
+              className={`Menu_Link ${hoverPage === "home" ? "selected" : ""}`}
+              onClick={closeMenu}
+            >
+              <span className="Menu_Link_Text">home</span>
+            </Link>
+            {/* <Link */}
+            {/*   to="/photo" */}
+            {/*   className={`Menu_Link ${hoverPage === "photo" ? "selected" : ""}`} */}
+            {/*   onClick={closeMenu} */}
+            {/* > */}
+            {/*   <span className="Menu_Link_Text">photo</span> */}
+            {/* </Link> */}
+            {/* <h1> • </h1> */}
             <Link
               to="/about"
               className={`Menu_Link ${hoverPage === "about" ? "selected" : ""}`}

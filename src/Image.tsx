@@ -1,13 +1,22 @@
 import { useState } from "react";
 import "./Image.scss";
+import { IPhoto } from "./utilities";
 
-const Image = (props) => {
+interface ImageProps {
+  photo: IPhoto;
+  className?: string;
+  alt?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  onLoad?: (event: React.SyntheticEvent<HTMLImageElement>) => void;
+}
+
+const Image = (props: ImageProps) => {
   const { photo, className, alt, onMouseEnter, onMouseLeave, onLoad } = props;
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const aspectRatio = photo.width / photo.height;
 
-  const loaded = (e) => {
+  const loaded = (e: React.SyntheticEvent<HTMLImageElement>) => {
     setIsLoaded(true);
     if (onLoad) {
       onLoad(e);
@@ -19,7 +28,7 @@ const Image = (props) => {
       <img
         onLoad={loaded}
         src={photo.smallUrl}
-        className={`Image__img ${className} ${isLoaded ? "" : "hide"}`}
+        className={`Image__img ${className ?? ""} ${isLoaded ? "" : "hide"}`}
         alt={alt}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -27,7 +36,9 @@ const Image = (props) => {
       {!isLoaded && (
         <div
           className="Image__Loading"
-          style={{ aspectRatio, background: photo?.color }}
+          style={{
+            background: photo?.color ?? "white",
+          }}
         />
       )}
     </div>

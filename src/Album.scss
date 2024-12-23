@@ -2,6 +2,7 @@
 
 .Album {
   display: grid;
+  position: relative;
   grid-template-rows: 1fr 10fr;
   height: 100%;
   overflow: hidden;
@@ -10,6 +11,8 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    justify-content: space-between;
+    padding-bottom: $gutter-width;
 
     &_text {
       font-family: $font-accent;
@@ -21,6 +24,74 @@
       @include plain-button;
       position: relative;
       top: 3px;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    padding-right: $gutter-width;
+    gap: 1rem;
+
+    button {
+      @include plain-button;
+      transition: opacity 300ms;
+
+      &:disabled {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__scroll {
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    width: 100px;
+    z-index: 1000;
+
+    &:hover {
+      background: rgba($bg-dark-main, 0.2);
+    }
+
+    &.left {
+      margin-left: $gutter-width;
+    }
+
+    &.right {
+      right: 0;
+      margin-right: $gutter-width;
+    }
+  }
+
+  &__overlay {
+    z-index: 1000;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    overflow: hidden;
+    background: rgba($bg-light-main, 0.98);
+
+    &_controls {
+      @include strikethrough-button;
+      position: absolute;
+      z-index: 1001;
+      margin: $gutter-width;
+      font-size: 16px;
+      font-weight: bold;
+      font-variant: small-caps;
+
+      &.prev {
+        margin: 0 $gutter-width;
+        left: 0;
+        top: calc(50% - 1rem);
+      }
+
+      &.next {
+        margin: 0 $gutter-width;
+        right: 0;
+        top: calc(50% - 1rem);
+      }
     }
   }
 
@@ -45,7 +116,7 @@
       cursor: pointer;
 
       img {
-        height: 100%;
+        height: inherit;
       }
 
       &_container {
@@ -55,7 +126,7 @@
       }
 
       &.selected {
-        z-index: 1000;
+        cursor: default;
         position: absolute;
         display: flex;
         justify-content: center;
@@ -135,7 +206,7 @@
 .light {
   .Album {
     &__carousel_photo.selected {
-      background: rgba($bg-light-main, 0.8);
+      // background: rgba($bg-light-main, 0.8);
     }
 
     &__carousel_photo_info {

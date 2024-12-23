@@ -6,9 +6,15 @@
 # testing
 /coverage
 
+# parcel
+.cache
+.parcel-cache
+parcel-bundle-reports
+
 # production
 /build
 /public
+/dist
 
 # misc
 .DS_Store

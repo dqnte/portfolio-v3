@@ -1,28 +1,60 @@
 @import "constants.scss";
 
 .About {
-  height: 100vh;
-  padding: calc(50px + $header-height) $gutter-width $gutter-width $gutter-width;
-  margin: 0 auto;
-  max-width: 1200px;
+  width: 100%;
+  background: #f5f5f5;
+  padding-top: $header-height;
+  min-height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  gap: calc($gutter-width);
+  &__container {
+    width: 100%;
+    padding: $gutter-width;
+    height: min-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc($gutter-width);
+  }
 
+  a {
+    transition: color 0.3s;
+    &:hover {
+      color: $bg-light-accent;
+    }
+  }
 
   &__image {
-    height: 80%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    max-width: calc(100vh - 2 * $gutter-width - $header-height);
+    margin-left: auto;
+    background: #fff;
+
+    // temp styles
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & span {
+      font-size: 13px;
+      font-weight: 600;
+      color: #c9c9c9;
+    }
   }
 
   &__text {
-    width: 40%;
+    width: 100%;
+    max-width: 600px;
     font-wieght: 600;
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 20px;
 
+    h1 {
+      font-family: $font-accent;
+      margin: 0;
+      margin-left: -1rem;
+    }
 
     a {
       color: $fg-light-main;
@@ -33,21 +65,36 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
-    font-variant: small-caps;
-    font-weight: 600;
+    font-weight: 500;
+    line-height: 1.75;
     font-size: 16px;
+    margin-left: 2rem;
     p {
-      margin: 0;
+      text-indent: -1rem;
     }
   }
 
   &__socials {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding-top: 20px;
+    gap: 30px;
+    margin-left: 2rem;
+    width: min-content;
 
-    &_link, a {
+    &_topline {
+      height: 2px;
+      width: 100%;
+      background: $fg-light-main;
+    }
+
+    &_links {
+      width: min-content;
+      display: flex;
+      gap: 16px;
+    }
+
+    &_link,
+    a {
       color: $fg-light-main;
       text-decoration: none;
       font-size: 16px;
@@ -60,8 +107,11 @@
   }
 
   @media (max-width: 768px) {
-    flex-direction: column;
     height: unset;
+
+    &__container {
+      grid-template-columns: 1fr;
+    }
 
     &__image {
       height: unset;

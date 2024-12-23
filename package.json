@@ -7,30 +7,21 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.5",
     "@mui/material": "^5.15.5",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
     "framer-motion": "^11.2.11",
     "js-yaml": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-lazy-load-image-component": "^1.6.2",
     "react-router-dom": "^6.23.1",
-    "react-scripts": "5.0.1",
-    "sass": "^1.69.7",
-    "web-vitals": "^2.1.4"
+    "sass": "^1.69.7"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -44,5 +35,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@parcel/reporter-bundle-analyzer": "^2.13.3",
+    "@parcel/transformer-sass": "^2.13.3",
+    "@types/js-yaml": "^4.0.9",
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
   }
 }

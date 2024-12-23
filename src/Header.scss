@@ -82,10 +82,20 @@
 
   &__Name {
     justify-self: center;
+    grid-column-start: 2;
+    opacity: 1;
+
+    transition: color 300ms, opacity 200ms !important;
+
+    &.hidden {
+      transition-delay: 0ms;
+      opacity: 0;
+    }
   }
 
   &__Menu {
     justify-self: right;
+    grid-column-start: 3;
     @include strikethrough-button;
   }
 
