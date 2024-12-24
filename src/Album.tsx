@@ -6,15 +6,25 @@ import {
   useAnimation,
   useScroll,
   useMotionValueEvent,
+  type AnimationControls,
 } from "framer-motion";
 import Image from "./Image";
 import East from "@mui/icons-material/East";
 import West from "@mui/icons-material/West";
+import Close from "@mui/icons-material/Close";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
 import { IAlbum, IPhoto } from "./utilities";
 
 import { useEffect, useState, useRef } from "react";
 
-const Controls = ({ carouselRef, controls }) => {
+const Controls = ({
+  carouselRef,
+  controls,
+}: {
+  carouselRef: React.RefObject<HTMLDivElement>;
+  controls: AnimationControls;
+}) => {
   const [position, setPosition] = useState<"left" | "right" | "center">("left");
 
   const scroll = (direction: "left" | "right") => {
@@ -203,21 +213,21 @@ export default function Album({ album }: { album: IAlbum }) {
             className={"Album__overlay_controls close"}
             onClick={() => setSelectedIndex(null)}
           >
-            close
+            <Close />
           </button>
           <button
             disabled={selectedIndex === album.photos.length - 1}
             className={"Album__overlay_controls next"}
             onClick={nextPhoto}
           >
-            next
+            <ChevronRight />
           </button>
           <button
             disabled={selectedIndex === 0}
             className={"Album__overlay_controls prev"}
             onClick={prevPhoto}
           >
-            prev
+            <ChevronLeft />
           </button>
           <motion.div
             className={`Album__carousel_photo selected ${orientation}`}

@@ -73,13 +73,33 @@
     background: rgba($bg-light-main, 0.98);
 
     &_controls {
-      @include strikethrough-button;
+      @include plain-button;
       position: absolute;
       z-index: 1001;
       margin: $gutter-width;
-      font-size: 16px;
       font-weight: bold;
       font-variant: small-caps;
+      transition: color 200ms;
+
+      &:hover {
+        color: $bg-light-accent;
+      }
+
+      &:disabled {
+        color: gray;
+      }
+
+      svg {
+        font-size: 2rem;
+      }
+
+      &.close {
+        top: 0;
+        right: 0;
+        svg {
+          font-size: 1.5rem;
+        }
+      }
 
       &.prev {
         margin: 0 $gutter-width;
