@@ -35,7 +35,9 @@ export default function Photo(props) {
         <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
           {!selectedAlbum && (
             <motion.div className="Photo__empty">
+              <p>photography by</p>
               <h1>Dante Tobar</h1>
+              <p>click on any of the images to view</p>
             </motion.div>
           )}
           {selectedAlbum && <Album album={selectedAlbum} />}
