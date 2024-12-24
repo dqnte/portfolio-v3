@@ -18,6 +18,7 @@ export interface IAlbum {
   location: string;
   date: string;
   photos: IPhoto[];
+  display?: "all" | "archive" | "hide";
 }
 
 const pullConfig = async (url: string) => {

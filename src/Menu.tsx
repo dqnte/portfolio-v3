@@ -24,6 +24,9 @@ export default function Menu(props) {
       case "about":
         setHoverPage("about");
         break;
+      case "archive":
+        setHoverPage("archive");
+        break;
       default:
         setHoverPage("home");
         break;
@@ -76,6 +79,13 @@ export default function Menu(props) {
               onClick={closeMenu}
             >
               <span className="Menu_Link_Text">about</span>
+            </Link>
+            <Link
+              to="/archive"
+              className={`Menu_Link ${hoverPage === "archive" ? "selected" : ""}`}
+              onClick={closeMenu}
+            >
+              <span className="Menu_Link_Text">archive</span>
             </Link>
           </motion.div>
           <motion.div

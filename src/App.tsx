@@ -5,6 +5,7 @@ import About from "./About";
 import Photo from "./Photo";
 import Home from "./Home";
 import Menu from "./Menu";
+import Archive from "./Archive";
 import { fetchPhotoManifest } from "./utilities";
 
 import { useState, useEffect } from "react";
@@ -22,7 +23,6 @@ function App() {
     }
   }, []);
 
-
   /* --- IMAGES --- */
   const [albums, setAlbums] = useState([]);
   useEffect(() => {
@@ -30,7 +30,6 @@ function App() {
       setAlbums(albums);
     });
   }, []);
-
 
   /* --- MENU --- */
   const [showMenu, setShowMenu] = useState(false);
@@ -62,10 +61,11 @@ function App() {
         />
         <Menu closeMenu={closeMenu} show={showMenu} />
         <Routes>
-          { <Route path="/*" element={<Photo albums={albums} />} /> }
+          {<Route path="/*" element={<Photo albums={albums} />} />}
           {/* <Route path="/" element={<Home albums={albums} />} /> */}
           {/* <Route path="/photo/*" element={<Photo albums={albums} />} /> */}
           <Route path="/about" element={<About />} />
+          <Route path="/archive/*" element={<Archive albums={albums} />} />
         </Routes>
       </div>
     </BrowserRouter>

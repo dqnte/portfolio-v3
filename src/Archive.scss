@@ -1,0 +1,55 @@
+@import "constants.scss";
+
+.Archive {
+  a {
+    font-family: $font-accent;
+    font-weight: bold;
+    text-decoration: none;
+    color: $fg-light-main;
+    transition: color 300ms;
+
+    &:hover {
+      color: $bg-light-accent;
+    }
+  }
+
+  h1 {
+    margin-bottom: $gutter-width;
+  }
+
+  &__table {
+    padding: $gutter-width;
+    padding-top: $header-height;
+    min-height: calc(100vh);
+
+    &_list {
+      margin: 0;
+
+      li {
+        list-style: none;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  &__album {
+    padding: $gutter-width;
+    padding-top: $header-height;
+    flex-direction: column;
+    width: 100%;
+
+    &_container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: $gutter-width;
+      width: 100%;
+    }
+  }
+
+  &__image {
+    height: unset;
+    width: 100%;
+    max-width: 600px;
+  }
+}

@@ -16,7 +16,7 @@
     "sass": "^1.69.7"
   },
   "scripts": {
-    "start": "parcel src/index.html",
+    "start": "parcel src/index.html --open",
     "build": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
   },
   "eslintConfig": {

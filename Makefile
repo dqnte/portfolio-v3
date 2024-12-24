@@ -4,14 +4,14 @@ install:
 i: install
 
 build:
-	rm dist/index.*
+	rm dist/index.* dist/*.jpg
 	npm run build
 
 up:
+	cp public/photo-manifest.yaml dist/
 	npm start
 
-dev:
-	make up
+dev: up
 
 clean:
 	rm -rf node_modules .parcel-cache
