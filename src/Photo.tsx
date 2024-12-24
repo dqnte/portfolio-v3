@@ -35,9 +35,12 @@ export default function Photo({ albums }: { albums: IAlbum[] }) {
           <Carousel albums={albums} selectedAlbum={selectedAlbum} />
           {!selectedAlbum && (
             <motion.div className="Photo__empty">
-              <p>photography by</p>
-              <h1>Dante Tobar</h1>
-              <p>click on any of the images to view</p>
+              <span className="Photo__empty_line" />
+              <div className={"Photo__empty_title"}>
+                <p>photography by</p>
+                <h1>Dante Tobar</h1>
+                <p>click on any of the images to view</p>
+              </div>
             </motion.div>
           )}
           {selectedAlbum && <Album album={selectedAlbum} />}
