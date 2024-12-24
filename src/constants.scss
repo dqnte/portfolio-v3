@@ -78,3 +78,12 @@ $outer-column-width: 27px;
 $header-padding-top: 15px;
 $header-padding-bottom: $header-padding-top;
 $header-height: 50px + $header-padding-top + $header-padding-bottom;
+
+@mixin sans-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-button {
+    display: none;
+  } /* Chrome */
+}

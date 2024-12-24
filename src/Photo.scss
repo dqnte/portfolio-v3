@@ -2,14 +2,14 @@
 
 .Photo {
   height: 100vh;
-  padding-top: calc(20px + $header-height);
+  padding-top: calc($header-height);
 
   display: grid;
-  grid-template-rows: 80% 20%;
+  grid-template-rows: 20% 80%;
   transition: grid-template-rows 250ms;
 
   &.show-none {
-    grid-template-rows: 70% 30%;
+    grid-template-rows: 40% 60%;
   }
 
   &__empty {
@@ -37,6 +37,7 @@
   }
 
   &__preview {
+    @include sans-scrollbar;
     height: 100%;
     padding: $gutter-width;
     padding-top: 0;
@@ -50,7 +51,7 @@
     }
 
     &__image {
-      opacity: 0.5;
+      opacity: 0.75;
       height: 100%;
       transition: opacity 200ms ease-in-out;
 

@@ -1,7 +1,15 @@
 import { motion } from "framer-motion";
 import "./Riser.scss";
 
-export default function Riser({ className, children, style }) {
+export default function Riser({
+  children,
+  className,
+  style,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   return (
     <motion.div
       className={"riser"}

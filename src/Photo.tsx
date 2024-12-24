@@ -1,5 +1,5 @@
-import "./constants.scss";
 import "./Photo.scss";
+import { IAlbum } from "./utilities";
 import Album from "./Album";
 import { useLocation } from "react-router-dom";
 import Carousel from "./Carousel";
@@ -12,9 +12,8 @@ const findAlbumFromLocation = (location, albums) => {
   return albums.find((album) => album.key === key);
 };
 
-export default function Photo(props) {
+export default function Photo({ albums }: { albums: IAlbum[] }) {
   const location = useLocation();
-  const { albums } = props;
 
   const [selectedAlbum, setAlbum] = useState(
     findAlbumFromLocation(location, albums),
@@ -33,6 +32,7 @@ export default function Photo(props) {
     <AnimatePresence>
       <Riser>
         <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
+          <Carousel albums={albums} selectedAlbum={selectedAlbum} />
           {!selectedAlbum && (
             <motion.div className="Photo__empty">
               <p>photography by</p>
@@ -41,10 +41,6 @@ export default function Photo(props) {
             </motion.div>
           )}
           {selectedAlbum && <Album album={selectedAlbum} />}
-          <Carousel
-            albums={albums}
-            selectedAlbum={selectedAlbum}
-          />
         </div>
       </Riser>
     </AnimatePresence>
