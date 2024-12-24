@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./Image.scss";
 import { IPhoto } from "./utilities";
 
 interface ImageProps {

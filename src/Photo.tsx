@@ -1,4 +1,3 @@
-import "./Photo.scss";
 import { IAlbum } from "./utilities";
 import Album from "./Album";
 import { useLocation } from "react-router-dom";

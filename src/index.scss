@@ -1,0 +1,22 @@
+@use "constants";
+@use "About";
+@use "Album";
+@use "App";
+@use "Archive";
+@use "Header";
+@use "Home";
+@use "Image";
+@use "Menu";
+@use "Photo";
+@use "components/Riser";
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}

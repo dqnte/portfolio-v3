@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "parcel src/index.html --open",
-    "build": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
+    "build": "parcel build src/index.html",
+    "build:analyze": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
   },
   "eslintConfig": {
     "extends": [

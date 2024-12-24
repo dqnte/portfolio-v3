@@ -1,4 +1,3 @@
-import "./Archive.scss";
 import { IAlbum } from "./utilities";
 
 import Image from "./Image";

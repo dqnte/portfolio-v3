@@ -1,9 +1,5 @@
-import "./constants.scss";
-import "./Home.scss";
-
 import { motion, AnimatePresence } from "framer-motion";
 
-import Arrow from "@mui/icons-material/ArrowForward";
 import Carousel from "./Carousel";
 
 import { page } from "./transitions";

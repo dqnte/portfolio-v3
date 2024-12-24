@@ -1,10 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 
-// import { Mail } from "@mui/icons-material";
 import { LinkedIn, Instagram, GitHub } from "@mui/icons-material";
 import Riser from "./components/Riser";
-
-import "./About.scss";
 
 export default function About() {
   return (

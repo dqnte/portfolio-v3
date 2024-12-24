@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import "./Riser.scss";
 
 export default function Riser({
   children,

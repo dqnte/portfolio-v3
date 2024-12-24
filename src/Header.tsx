@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./Header.scss";
 import DarkMode from "@mui/icons-material/DarkMode";
 import LightMode from "@mui/icons-material/LightMode";
 import { useLocation } from "react-router-dom";

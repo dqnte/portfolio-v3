@@ -1,5 +1,3 @@
-import "./Album.scss";
-
 import {
   motion,
   AnimatePresence,
