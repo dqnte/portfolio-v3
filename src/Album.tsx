@@ -153,7 +153,6 @@ export default function Album({ album }: { album: IAlbum }) {
 
   const openPhoto = (photo: IPhoto) => {
     const index = album.photos.indexOf(photo);
-    console.log(index);
     setSelectedIndex(index);
   };
 

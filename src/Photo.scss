@@ -17,29 +17,56 @@
       flex-direction: column;
       align-items: center;
       gap: $gutter-width;
+      height: 100%;
+      padding-bottom: $gutter-width;
 
     &_title {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       text-align: justify;
       text-align-last: justify;
       color: black;
 
       width: 100%;
-      max-width: 525px;
+      height: 100%;
       padding: 0 $gutter-width;
 
       p {
-        font-size: 1rem;
+        font-size: 2rem;
         font-weight: bold;
         font-variant: small-caps;
         margin: 0;
       }
 
       h1 {
-        font-size: 3rem;
+        font-size: 7rem;
         font-family: $font-accent;
         width: 100%;
+      }
+
+      @media (min-width: 1000px) {
+        h1 {
+          text-align-last: center;
+        }
+      }
+
+      @media (max-width: 800px) {
+        h1 {
+          font-size: 5rem;
+        }
+        p {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 3rem;
+        }
+        p {
+          font-size: 1.25rem;
+        }
       }
     }
 

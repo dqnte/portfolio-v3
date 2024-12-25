@@ -42,6 +42,7 @@ export async function fetchPhotoManifest(): Promise<IAlbum[]> {
       key: album.key,
       location: album.location,
       date: album.date,
+      display: album.display,
       photos: album.photos.map((photo) => {
         return {
           ...photo,

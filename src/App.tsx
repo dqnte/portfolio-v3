@@ -25,6 +25,7 @@ function App() {
   /* --- IMAGES --- */
   const [albums, setAlbums] = useState([]);
   useEffect(() => {
+    console.log("ok hacker... u can find the source code here: http://github.com/dqnte/portfolio-v3");
     fetchPhotoManifest().then((albums) => {
       setAlbums(albums);
     });

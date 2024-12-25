@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # You may need to install identify from ImageMagick
 # brew install imagemagick
 

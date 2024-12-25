@@ -27,11 +27,15 @@ export default function Photo({ albums }: { albums: IAlbum[] }) {
     }
   }, [location, albums]);
 
+  const displayableAlbums = albums.filter(
+    (album) => album.display === "all" || !album.display,
+  );
+
   return (
     <AnimatePresence>
       <Riser>
         <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
-          <Carousel albums={albums} selectedAlbum={selectedAlbum} />
+          <Carousel albums={displayableAlbums} selectedAlbum={selectedAlbum} />
           {!selectedAlbum && (
             <motion.div className="Photo__empty">
               <span className="Photo__empty_line" />

@@ -2,21 +2,24 @@
 
 ### Instalations
 
-Node:
+Requirements:
+
+- node v20.17.0
+- npm 10.8.2
 
 ```sh
-# First install node
-brew install node
-
-# Then install create react app
-npm install -g create-react-app
-
-# Create the react app
-npx create-react-app .
+make install
 ```
 
-### Running the application
+
+### Running
 
 ```sh
-npm run
+make dev
+```
+
+### Building
+
+```sh
+make build
 ```
