@@ -4,11 +4,9 @@ install:
 i: install
 
 build:
-	rm -f dist/*
-	npm run build
+	sh build.sh
 
 up:
-	rm -f dist/*
 	cp public/photo-manifest.yaml dist/
 	npm start
 
