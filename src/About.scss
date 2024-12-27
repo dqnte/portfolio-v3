@@ -1,8 +1,73 @@
 @use "constants" as *;
 
+.light {
+  .About {
+    &__image {
+      background: #fff;
+    }
+
+    &__text {
+      h1 {
+        color: $fg-light-main;
+      }
+
+      a {
+        // color: $fg-light-accent;
+      }
+    }
+
+    &__bio {
+      color: $fg-light-main;
+    }
+
+    &__socials {
+      &_topline {
+        background: $fg-light-main;
+      }
+
+      &_link,
+      a {
+        color: $fg-light-main;
+      }
+    }
+  }
+}
+
+.dark {
+  .About {
+    &__image {
+      background: #000;
+    }
+
+    &__text {
+      h1 {
+        color: $fg-dark-main;
+      }
+
+      a {
+        // color: $fg-dark-accent;
+      }
+    }
+
+    &__bio {
+      color: $fg-dark-main;
+    }
+
+    &__socials {
+      &_topline {
+        background: $fg-dark-main;
+      }
+
+      &_link,
+      a {
+        color: $fg-dark-main;
+      }
+    }
+  }
+}
+
 .About {
   width: 100%;
-  background: #f5f5f5;
   padding-top: $header-height;
   min-height: 100vh;
 
@@ -17,9 +82,6 @@
 
   a {
     transition: color 0.3s;
-    &:hover {
-      color: $bg-light-accent;
-    }
   }
 
   &__image {
@@ -27,7 +89,6 @@
     aspect-ratio: 1/1;
     max-width: calc(100vh - 2 * $gutter-width - $header-height);
     margin-left: auto;
-    background: #fff;
 
     // temp styles
     display: flex;
@@ -36,7 +97,6 @@
     & span {
       font-size: 13px;
       font-weight: 600;
-      color: #c9c9c9;
     }
   }
 
@@ -52,10 +112,6 @@
 
     h1 {
       margin: 0;
-    }
-
-    a {
-      color: $fg-light-main;
     }
   }
 
@@ -93,7 +149,6 @@
 
     &_link,
     a {
-      color: $fg-light-main;
       text-decoration: none;
       font-size: 16px;
       font-weight: bold;

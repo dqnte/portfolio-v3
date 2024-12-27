@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
     if (darkThemeMq.matches) {
-      setDarkTheme(false);
+      setDarkTheme(true);
     } else {
       setDarkTheme(false);
     }

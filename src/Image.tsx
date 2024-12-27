@@ -34,9 +34,9 @@ const Image = (props: ImageProps) => {
       />
       {!isLoaded && (
         <div
-          className="Image__Loading"
+          className={`Image__Loading ${className ?? ""}`}
           style={{
-            background: photo?.color ?? "white",
+            background: photo?.color,
           }}
         />
       )}

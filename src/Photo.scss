@@ -1,72 +1,72 @@
 @use "constants" as *;
 
+.light {
+  .Photo {
+    &__empty_title {
+      color: black;
+    }
+
+    &__preview {
+      &__image {
+        &__indicator {
+          background: $fg-light-main;
+        }
+      }
+    }
+  }
+}
+
+.dark {
+  .Photo {
+    &__empty_title {
+      color: white;
+    }
+
+    &__preview {
+      &__image {
+        &__indicator {
+          background: $fg-dark-main;
+        }
+      }
+    }
+  }
+}
+
 .Photo {
   height: 100vh;
   padding-top: calc($header-height);
 
   display: grid;
-  grid-template-rows: 20% 80%;
-  transition: grid-template-rows 250ms;
+  grid-template-rows: 80% 20%;
+  transition: all 250ms;
 
   &.show-none {
-    grid-template-rows: 40% 60%;
+    height: 80vh;
+    grid-template-rows: 60% 40%;
   }
 
   &__empty {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: $gutter-width;
-      height: 100%;
-      padding-bottom: $gutter-width;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $gutter-width;
+    height: 100%;
+    padding-bottom: $gutter-width;
 
     &_title {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      text-align: justify;
-      text-align-last: justify;
-      color: black;
+      justify-content: flex-end;
+      transition: all 200ms ease-in-out;
 
       width: 100%;
       height: 100%;
       padding: 0 $gutter-width;
 
-      p {
-        font-size: 2rem;
-        font-weight: bold;
-        font-variant: small-caps;
-        margin: 0;
-      }
-
       h1 {
-        font-size: 7rem;
+        font-size: 5rem;
         font-family: $font-accent;
         width: 100%;
-      }
-
-      @media (min-width: 1000px) {
-        h1 {
-          text-align-last: center;
-        }
-      }
-
-      @media (max-width: 800px) {
-        h1 {
-          font-size: 5rem;
-        }
-        p {
-          font-size: 1.5rem;
-        }
-      }
-
-      @media (max-width: 600px) {
-        h1 {
-          font-size: 3rem;
-        }
-        p {
-          font-size: 1.25rem;
-        }
       }
     }
 
@@ -92,6 +92,11 @@
       height: 100%;
     }
 
+    &_trailer {
+      padding-left: 200px;
+      height: 100%;
+    }
+
     &__image {
       opacity: 0.75;
       height: 100%;
@@ -106,7 +111,6 @@
         margin-top: 3px;
         width: 100%;
         height: 3px;
-        background: $fg-light-main;
         opacity: 0;
         transition: opacity 200ms ease-in-out;
 
