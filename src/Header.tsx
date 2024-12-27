@@ -5,7 +5,13 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { IAlbum } from "./utilities";
 
-function Mode({ useDarkTheme, setDarkTheme }) {
+function Mode({
+  useDarkTheme,
+  setDarkTheme,
+}: {
+  useDarkTheme: boolean;
+  setDarkTheme: (value: boolean) => void;
+}) {
   const [showDark, setShowDark] = useState(useDarkTheme);
   useEffect(() => {
     setShowDark(useDarkTheme);
@@ -20,38 +26,88 @@ function Mode({ useDarkTheme, setDarkTheme }) {
   };
 
   return (
-    <div
-      className="Header__Mode"
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-      onClick={() => setDarkTheme(!useDarkTheme)}
-    >
-      <button className={`Header__Mode_button ${showDark ? "show" : ""}`}>
-        <DarkMode />
+    <div className="Header__Mode">
+      <button
+        className={`Header__Mode_button ${showDark ? "selected" : ""}`}
+        onClick={() => setDarkTheme(true)}
+      >
+        dark
+        {/* <DarkMode /> */}
       </button>
-      <button className={`Header__Mode_button ${!showDark ? "show" : ""}`}>
-        <LightMode />
+      <button
+        className={`Header__Mode_button ${!showDark ? "selected" : ""}`}
+        onClick={() => setDarkTheme(false)}
+      >
+        light
+        {/* <LightMode /> */}
       </button>
     </div>
   );
 }
 
-function Name({ closeMenu, headerState }) {
+function Name({
+  closeMenu,
+  headerState,
+}: {
+  closeMenu: () => void;
+  headerState: string;
+}) {
   return (
-    <Link
-      to="/"
-      className={`Header__Name ${headerState === "hidden" ? "hidden" : ""}`}
-    >
-      dante tobar
-    </Link>
+    <div className={"Header__Name"}>
+      <Link to="/">dante tobar</Link>
+    </div>
   );
 }
 
-function Menu({ toggleMenu }) {
+function Menu({ toggleMenu }: { toggleMenu: () => void }) {
   return (
     <button className="Header__Menu" onClick={toggleMenu}>
       menu
     </button>
+  );
+}
+
+function Navigation() {
+  const location = useLocation();
+  const [hoverPage, setHoverPage] = useState(null);
+
+  useEffect(() => {
+    const key = location.pathname.split("/")[1];
+
+    switch (key) {
+      case "":
+        setHoverPage("home");
+        break;
+      case "photo":
+        setHoverPage("home");
+        break;
+      case "about":
+        setHoverPage("about");
+        break;
+      case "archive":
+        setHoverPage("archive");
+        break;
+      default:
+        setHoverPage("home");
+        break;
+    }
+  }, [location]);
+
+  return (
+    <div className="Header__Nav">
+      <Link
+        to="/archive"
+        className={`${hoverPage === "archive" ? "selected" : ""}`}
+      >
+        archive
+      </Link>
+      <Link
+        to="/about"
+        className={`${hoverPage === "about" ? "selected" : ""}`}
+      >
+        about
+      </Link>
+    </div>
   );
 }
 
@@ -85,8 +141,13 @@ function Header({
 
   return (
     <div className={`Header ${showMenu ? "menu-open" : "menu-closed"}`}>
-      {/* <Mode useDarkTheme={useDarkTheme} setDarkTheme={setDarkTheme} /> */}
       <Name closeMenu={closeMenu} headerState={headerState} />
+      <div className="Header__Text">
+        <p>photographer - engineer </p>
+        <p>based in nyc</p>
+      </div>
+      <Navigation />
+      <Mode useDarkTheme={useDarkTheme} setDarkTheme={setDarkTheme} />
       <Menu toggleMenu={toggleMenu} />
     </div>
   );
