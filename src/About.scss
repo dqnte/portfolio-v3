@@ -12,7 +12,11 @@
       }
 
       a {
-        // color: $fg-light-accent;
+        color: $fg-light-main;
+
+        &:hover {
+          color: $bg-light-accent;
+        }
       }
     }
 
@@ -28,6 +32,9 @@
       &_link,
       a {
         color: $fg-light-main;
+        &:hover {
+          color: $bg-light-accent;
+        }
       }
     }
   }
@@ -45,7 +52,11 @@
       }
 
       a {
-        // color: $fg-dark-accent;
+        color: $fg-dark-main;
+
+        &:hover {
+          color: $bg-dark-accent;
+        }
       }
     }
 
@@ -61,6 +72,10 @@
       &_link,
       a {
         color: $fg-dark-main;
+
+        &:hover {
+          color: $bg-dark-accent;
+        }
       }
     }
   }

@@ -26,12 +26,13 @@ export default function Archive({ albums }: { albums: IAlbum[] }) {
   }, [location, albums]);
 
   return (
-      <div className={"Archive Archive__table"}>
-        <h1 className={"Archive__table_header"}>
-          <Link to={"/archive"}>archive/</Link>
-          {selectedAlbum?.key}
-        </h1>
-        {selectedAlbum ? (
+    <div className={"Archive Archive__table"}>
+      <h1 className={"Archive__table_header"}>
+        <Link to={"/archive"}>archive/</Link>
+        {selectedAlbum?.key}
+      </h1>
+      {selectedAlbum ? (
+        <Riser key={"Archive__album"}>
           <div className={"Archive__album_container"}>
             {selectedAlbum.photos.map((photo) => (
               <Image
@@ -41,7 +42,9 @@ export default function Archive({ albums }: { albums: IAlbum[] }) {
               />
             ))}
           </div>
-        ) : (
+        </Riser>
+      ) : (
+        <Riser key={"Archive__table"}>
           <ul className={"Archive__table_list"}>
             {albums.map((album) => (
               <li key={album.key}>
@@ -49,7 +52,8 @@ export default function Archive({ albums }: { albums: IAlbum[] }) {
               </li>
             ))}
           </ul>
-        )}
-      </div>
+        </Riser>
+      )}
+    </div>
   );
 }

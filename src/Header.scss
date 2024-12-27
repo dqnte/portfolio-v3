@@ -1,7 +1,7 @@
 @use "constants" as *;
 
 $mobile: 500px;
-$tablet: 800px;
+$tablet: 700px;
 
 .dark {
   .Header__Name,
@@ -121,6 +121,7 @@ $tablet: 800px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-self: right;
 
     a {
       @include strikethrough-button;
@@ -142,6 +143,7 @@ $tablet: 800px;
   }
 
   &__Mode {
+    justify-self: right;
     @media (max-width: $tablet) {
       display: none;
     }
