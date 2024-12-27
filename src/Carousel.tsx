@@ -49,6 +49,7 @@ export const Carousel = ({
           />
         </Link>
       ))}
+      <div className="Photo__preview_trailer" />
     </div>
   );
 };

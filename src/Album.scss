@@ -3,7 +3,7 @@
 .Album {
   display: grid;
   position: relative;
-  grid-template-rows: 10fr 1fr;
+  grid-template-rows: 1fr 10fr;
   height: 100%;
   overflow: hidden;
 
@@ -13,7 +13,6 @@
     align-items: center;
     justify-content: space-between;
     padding-top: $gutter-width;
-    padding-bottom: calc($gutter-width * 2);
 
     &_text {
       font-family: $font-accent;
@@ -50,10 +49,6 @@
     width: 100px;
     z-index: 1000;
 
-    &:hover {
-      background: rgba($bg-dark-main, 0.2);
-    }
-
     &.left {
       margin-left: $gutter-width;
     }
@@ -71,7 +66,6 @@
     width: 100vw;
     position: absolute;
     overflow: hidden;
-    background: rgba($bg-light-main, 0.98);
 
     &_controls {
       @include plain-button;
@@ -84,10 +78,6 @@
 
       &:hover {
         color: $bg-light-accent;
-      }
-
-      &:disabled {
-        color: gray;
       }
 
       svg {
@@ -208,24 +198,68 @@
 
 .dark {
   .Album {
-    &__carousel_photo.selected {
-      background: rgba($bg-dark-main, 0.8);
-    }
-
     &__carousel_photo_info {
       background: #000;
+    }
+
+    &__scroll {
+      &:hover {
+        background: rgba($bg-dark-main, 0.2);
+      }
+    }
+
+    &__controls button {
+      color: $fg-dark-main;
+
+      &:hover {
+        color: $bg-dark-accent;
+      }
+
+      &:disabled {
+        color: gray;
+      }
+    }
+
+    &__overlay {
+      background: rgba($bg-dark-main, 0.98);
+
+      &_controls {
+        color: $fg-dark-main;
+      }
     }
   }
 }
 
 .light {
   .Album {
-    &__carousel_photo.selected {
-      // background: rgba($bg-light-main, 0.8);
-    }
-
     &__carousel_photo_info {
       background: #fff;
+    }
+
+    &__scroll {
+      &:hover {
+        background: rgba($bg-light-main, 0.2);
+      }
+    }
+
+    &__controls button {
+      color: $fg-light-main;
+
+      &:hover {
+        color: $bg-light-accent;
+      }
+
+      &:disabled {
+        color: gray;
+      }
+    }
+
+    &__overlay {
+      background: rgba($bg-light-main, 0.98);
+
+      &_controls {
+        color: $fg-light-main;
+      }
     }
   }
 }

@@ -172,6 +172,13 @@ export default function Album({ album }: { album: IAlbum }) {
         animate={{ opacity: 1, y: 0, transition: { duration: 0.25 } }}
         exit={{ opacity: 0, y: 10 }}
       >
+        <div className="Album__title">
+          <h1 className="Album__title_text">{album.location}</h1>
+          {/* <button className="Album__title_download"> */}
+          {/*   <Download onClick={() => downloadAlbum(album)} /> */}
+          {/* </button> */}
+          <Controls carouselRef={carouselRef} controls={controls} />
+        </div>
         <motion.div
           className="Album__carousel"
           ref={carouselRef}
@@ -189,13 +196,6 @@ export default function Album({ album }: { album: IAlbum }) {
             </div>
           ))}
         </motion.div>
-        <div className="Album__title">
-          <h1 className="Album__title_text">{album.location}</h1>
-          {/* <button className="Album__title_download"> */}
-          {/*   <Download onClick={() => downloadAlbum(album)} /> */}
-          {/* </button> */}
-          <Controls carouselRef={carouselRef} controls={controls} />
-        </div>
       </motion.div>
 
       {selectedIndex !== null && (
@@ -240,7 +240,7 @@ export default function Album({ album }: { album: IAlbum }) {
               />
               <div className="Album__carousel_photo_info">
                 <h4>{album.date}</h4>
-                <h4>{selectedIndex.camera}</h4>
+                <h4>{album.photos[selectedIndex].camera}</h4>
               </div>
             </div>
           </motion.div>
