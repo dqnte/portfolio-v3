@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import DarkMode from "@mui/icons-material/DarkMode";
 import LightMode from "@mui/icons-material/LightMode";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 import { IAlbum } from "./utilities";
 
 function Mode({

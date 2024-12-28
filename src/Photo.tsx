@@ -1,6 +1,6 @@
 import { IAlbum } from "./utilities";
 import Album from "./Album";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import Carousel from "./Carousel";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";

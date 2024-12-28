@@ -8,7 +8,7 @@ import Archive from "./Archive";
 import { fetchPhotoManifest } from "./utilities";
 
 import { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
 
 function App() {
   /* --- THEME --- */

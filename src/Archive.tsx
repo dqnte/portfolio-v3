@@ -2,7 +2,7 @@ import { IAlbum } from "./utilities";
 
 import Riser from "./components/Riser";
 import Image from "./Image";
-import { useLocation, type Location, Link } from "react-router-dom";
+import { useLocation, type Location, Link } from "react-router";
 import { useEffect, useState } from "react";
 
 const findAlbumFromLocation = (location: Location, albums: IAlbum[]) => {
