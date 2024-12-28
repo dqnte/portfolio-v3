@@ -13,14 +13,14 @@ import { BrowserRouter, Route, Routes } from "react-router";
 function App() {
   /* --- THEME --- */
   const [useDarkTheme, setDarkTheme] = useState(false);
-  useEffect(() => {
-    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    if (darkThemeMq.matches) {
-      setDarkTheme(true);
-    } else {
-      setDarkTheme(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+  //   if (darkThemeMq.matches) {
+  //     setDarkTheme(true);
+  //   } else {
+  //     setDarkTheme(false);
+  //   }
+  // }, []);
 
   /* --- IMAGES --- */
   const [albums, setAlbums] = useState([]);
