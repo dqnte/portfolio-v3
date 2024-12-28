@@ -141,16 +141,19 @@ function Header({
   }, [location, albums]);
 
   return (
-    <div className={`Header ${showMenu ? "menu-open" : "menu-closed"}`}>
-      <Name closeMenu={closeMenu} headerState={headerState} />
-      <div className="Header__Text">
-        <p>photographer - engineer </p>
-        <p>based in nyc</p>
+    <>
+      <span className={"Header__background"} />
+      <div className={`Header ${showMenu ? "menu-open" : "menu-closed"}`}>
+        <Name closeMenu={closeMenu} headerState={headerState} />
+        <div className="Header__Text">
+          <p>photographer - engineer </p>
+          <p>based in nyc</p>
+        </div>
+        <Navigation />
+        <Mode useDarkTheme={useDarkTheme} setDarkTheme={setDarkTheme} />
+        <Menu toggleMenu={toggleMenu} />
       </div>
-      <Navigation />
-      <Mode useDarkTheme={useDarkTheme} setDarkTheme={setDarkTheme} />
-      <Menu toggleMenu={toggleMenu} />
-    </div>
+    </>
   );
 }
 

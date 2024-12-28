@@ -1,6 +1,10 @@
 @use "constants" as *;
 
 .dark {
+  .Header__background {
+    background: rgba($bg-dark-main, 0.98);
+  }
+
   .Header__Name,
   .Header__Menu,
   .Header__Nav,
@@ -25,6 +29,10 @@
 }
 
 .light {
+  .Header__background {
+    background: rgba($bg-light-main, 0.98);
+  }
+
   .Header__Name,
   .Header__Menu,
   .Header__Mode_button {
@@ -51,6 +59,16 @@
 .Header {
   font-size: 30px;
   font-weight: Bold;
+  z-index: 1000;
+
+  &__background {
+    z-index: 10;
+    width: 100%;
+    height: $header-height-mobile;
+    position: fixed;
+    top: 0;
+    background: rgba($bg-light-main, 0.98);
+  }
 
   .Header__Name,
   .Header__Menu {
@@ -72,9 +90,8 @@
   padding-bottom: $header-padding-bottom;
   height: $header-height;
 
-  position: absolute;
+  position: fixed;
   top: 0;
-  z-index: 1000;
   width: 100%;
 
   display: grid;
