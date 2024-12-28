@@ -10,15 +10,7 @@
       }
     }
 
-    h1 {
-      margin-bottom: $gutter-width;
-    }
-
     &__table {
-      padding: $gutter-width;
-      padding-top: $header-height;
-      min-height: calc(100vh);
-
       &_header {
         background: $bg-dark-main;
       }
@@ -36,15 +28,7 @@
       }
     }
 
-    h1 {
-      margin-bottom: $gutter-width;
-    }
-
     &__table {
-      padding: $gutter-width;
-      padding-top: $header-height;
-      min-height: calc(100vh);
-
       &_header {
         background: $bg-light-main;
       }
@@ -73,6 +57,10 @@
     padding: $gutter-width;
     padding-top: $header-height;
     min-height: calc(100vh);
+
+    @media (max-width: $mobile) {
+      padding-top: $header-height-mobile;
+    }
 
     &_header {
       position: sticky;

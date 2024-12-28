@@ -1,18 +1,23 @@
 import { useState } from "react";
 import { IPhoto } from "./utilities";
 
-interface ImageProps {
+const Image = ({
+  photo,
+  className,
+  containerClassName,
+  alt,
+  onMouseEnter,
+  onMouseLeave,
+  onLoad,
+}: {
   photo: IPhoto;
   className?: string;
+  containerClassName?: string;
   alt?: string;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement>) => void;
-}
-
-const Image = (props: ImageProps) => {
-  const { photo, className, alt, onMouseEnter, onMouseLeave, onLoad } = props;
-
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const loaded = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -23,7 +28,7 @@ const Image = (props: ImageProps) => {
   };
 
   return (
-    <div className="Image">
+    <div className={`Image ${containerClassName ?? ""}`}>
       <img
         onLoad={loaded}
         src={photo.smallUrl}

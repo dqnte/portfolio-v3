@@ -14,7 +14,6 @@ $fg-dark-main: #f8f8f8;
 $bg-dark-accent: #0865c0;
 
 $font-main: "Inter", sans-serif;
-// $font-accent: 'Eczar', serif;
 $font-accent: "Space Mono", monospace;
 
 @mixin base-transition {
@@ -78,6 +77,9 @@ $outer-column-width: 27px;
 $header-padding-top: 15px;
 $header-padding-bottom: $header-padding-top;
 $header-height: 50px + $header-padding-top + $header-padding-bottom;
+$header-height-mobile: 25px + $header-padding-top + $header-padding-bottom;
+
+$mobile: 700px;
 
 @mixin sans-scrollbar {
   scrollbar-width: none; /* Firefox */
@@ -86,4 +88,11 @@ $header-height: 50px + $header-padding-top + $header-padding-bottom;
   &::-webkit-scrollbar-button {
     display: none;
   } /* Chrome */
+}
+
+@mixin unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }

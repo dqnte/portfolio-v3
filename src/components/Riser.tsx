@@ -18,7 +18,7 @@ export default function Riser({
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
       style={style}
-      key={key}
+      key={key ?? null}
     >
       <motion.div
         initial={{ y: 10 }}

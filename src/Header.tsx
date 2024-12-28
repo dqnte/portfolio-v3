@@ -52,7 +52,9 @@ function Name({
   headerState: string;
 }) {
   return (
-    <div className={"Header__Name"}>
+    <div
+      className={`Header__Name ${headerState === "hidden" ? "selected" : ""}`}
+    >
       <Link to="/">dante tobar</Link>
     </div>
   );

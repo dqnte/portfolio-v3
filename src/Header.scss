@@ -1,8 +1,5 @@
 @use "constants" as *;
 
-$mobile: 500px;
-$tablet: 700px;
-
 .dark {
   .Header__Name,
   .Header__Menu,
@@ -83,11 +80,14 @@ $tablet: 700px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
-  @media (max-width: $tablet) {
+  @media (max-width: $mobile) {
+    height: $header-height-mobile;
     grid-template-columns: 1fr 1fr;
   }
 
   &__Name {
+    @include strikethrough-button;
+    height: min-content;
     justify-self: left;
 
     grid-column-start: 1;
@@ -101,9 +101,16 @@ $tablet: 700px;
       transition-delay: 0ms;
       opacity: 0;
     }
+
+    @media (max-width: $mobile) {
+      &::after {
+        width: 0 !important;
+      }
+    }
   }
 
   &__Text {
+    @include unselectable;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -112,7 +119,7 @@ $tablet: 700px;
       margin: 0;
     }
 
-    @media (max-width: $tablet) {
+    @media (max-width: $mobile) {
       display: none;
     }
   }
@@ -127,7 +134,7 @@ $tablet: 700px;
       @include strikethrough-button;
     }
 
-    @media (max-width: $tablet) {
+    @media (max-width: $mobile) {
       display: none;
     }
   }
@@ -137,14 +144,14 @@ $tablet: 700px;
     height: min-content;
     justify-self: right;
 
-    @media (min-width: $tablet) {
+    @media (min-width: $mobile) {
       display: none;
     }
   }
 
   &__Mode {
     justify-self: right;
-    @media (max-width: $tablet) {
+    @media (max-width: $mobile) {
       display: none;
     }
   }
