@@ -64,10 +64,15 @@
   &__background {
     z-index: 10;
     width: 100%;
-    height: $header-height-mobile;
+    height: $header-height;
     position: fixed;
     top: 0;
+    transition: background 300ms;
     background: rgba($bg-light-main, 0.98);
+
+    @media (max-width: $mobile) {
+      height: $header-height-mobile;
+    }
   }
 
   .Header__Name,
