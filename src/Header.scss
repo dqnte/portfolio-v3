@@ -61,6 +61,17 @@
   font-weight: Bold;
   z-index: 1000;
 
+  padding: $header-padding-top $gutter-width;
+  padding-bottom: $header-padding-bottom;
+  height: $header-height;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
   &__background {
     z-index: 10;
     width: 100%;
@@ -90,17 +101,6 @@
       width: 110%;
     }
   }
-
-  padding: $header-padding-top $gutter-width;
-  padding-bottom: $header-padding-bottom;
-  height: $header-height;
-
-  position: fixed;
-  top: 0;
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
 
   @media (max-width: $mobile) {
     height: $header-height-mobile;
