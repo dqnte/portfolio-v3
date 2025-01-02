@@ -225,6 +225,14 @@
 
       &_controls {
         color: $fg-dark-main;
+
+        &:disabled {
+          color: gray !important;
+        }
+
+        &:hover {
+          color: $bg-dark-accent;
+        }
       }
     }
   }
@@ -259,6 +267,14 @@
 
       &_controls {
         color: $fg-light-main;
+
+        &:disabled {
+          color: gray !important;
+        }
+
+        &:hover {
+          color: $bg-light-accent;
+        }
       }
     }
   }

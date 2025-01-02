@@ -18,6 +18,7 @@ export default function Archive({ albums }: { albums: IAlbum[] }) {
 
   useEffect(() => {
     if (location.pathname === "/archive") {
+      window.scrollTo(0, 0);
       setAlbum(null);
     } else {
       const currentAlbum = findAlbumFromLocation(location, albums);
@@ -32,7 +33,7 @@ export default function Archive({ albums }: { albums: IAlbum[] }) {
         {selectedAlbum?.key}
       </h1>
       {selectedAlbum ? (
-        <Riser key={"Archive__album"}>
+        <Riser motionKey={"Archive__album"}>
           <div className={"Archive__album_container"}>
             {selectedAlbum.photos.map((photo) => (
               <Image
@@ -44,7 +45,7 @@ export default function Archive({ albums }: { albums: IAlbum[] }) {
           </div>
         </Riser>
       ) : (
-        <Riser key={"Archive__table"}>
+        <Riser motionKey={"Archive__table"}>
           <ul className={"Archive__table_list"}>
             {albums.map((album) => (
               <li key={album.key}>

@@ -44,9 +44,12 @@ const AlbumMobile = ({ album }: { album: IAlbum }) => {
       >
         {album.photos.map((photo) => {
           return (
-            <div className={"Album__mobile_photos_container"}>
+            <div
+              className={"Album__mobile_photos_container"}
+              key={`photo-${photo.smallUrl}`}
+            >
               <Image
-                key={photo.smallUrl}
+                key={`image-${photo.smallUrl}`}
                 photo={photo}
                 containerClassName={"Album__mobile_image"}
               />
@@ -99,12 +102,13 @@ export default function Photo({ albums }: { albums: IAlbum[] }) {
         </div>
         <div className={"Photo__mobile"}>
           <div className={"Photo__mobile_bio"}>
+            <h2>Dante Tobar</h2>
             <p>photographer - engineer</p>
             <p>based in nyc</p>
           </div>
-
+          <span className="Photo__mobile_topline" />
           {displayableAlbums.map((album) => {
-            return <AlbumMobile album={album} />;
+            return <AlbumMobile key={album.key} album={album} />;
           })}
         </div>
       </Riser>

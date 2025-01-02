@@ -4,12 +4,12 @@ export default function Riser({
   children,
   className,
   style,
-  key,
+  motionKey,
 }: {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  key?: string;
+  motionKey?: string;
 }) {
   return (
     <motion.div
@@ -18,7 +18,7 @@ export default function Riser({
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
       style={style}
-      key={key ?? null}
+      key={motionKey ?? null}
     >
       <motion.div
         initial={{ y: 10 }}

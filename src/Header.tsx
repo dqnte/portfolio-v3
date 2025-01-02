@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import DarkMode from "@mui/icons-material/DarkMode";
-import LightMode from "@mui/icons-material/LightMode";
 import { Link, useLocation } from "react-router";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import { IAlbum } from "./utilities";
 
 function Mode({
@@ -52,9 +51,7 @@ function Name({
   headerState: string;
 }) {
   return (
-    <div
-      className={`Header__Name ${headerState === "hidden" ? "selected" : ""}`}
-    >
+    <div className={`Header__Name ${headerState === "hidden" ? "hidden" : ""}`}>
       <Link to="/">dante tobar</Link>
     </div>
   );
@@ -112,14 +109,9 @@ function Navigation() {
   );
 }
 
-interface HeaderProps {
-  useDarkTheme: boolean;
-  setDarkTheme: (value: boolean) => void;
-  toggleMenu: () => void;
-  closeMenu: () => void;
-  showMenu: boolean;
-  albums: IAlbum[];
-}
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
 function Header({
   useDarkTheme,
@@ -128,17 +120,41 @@ function Header({
   closeMenu,
   showMenu,
   albums,
-}: HeaderProps) {
+}: {
+  useDarkTheme: boolean;
+  setDarkTheme: (value: boolean) => void;
+  toggleMenu: () => void;
+  closeMenu: () => void;
+  showMenu: boolean;
+  albums: IAlbum[];
+}) {
   const location = useLocation();
   const [headerState, setHeaderState] = useState("hidden");
+  const { scrollY } = useScroll();
 
   useEffect(() => {
     if (location.pathname === "/" || location.pathname === "/photo") {
-      setHeaderState("hidden");
+      if (scrollY.get() < 300) {
+        setHeaderState("hidden");
+      } else {
+        scrollToTop();
+      }
     } else {
       setHeaderState("default");
     }
   }, [location, albums]);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (location.pathname !== "/") {
+      setHeaderState("default");
+    } else {
+      if (latest < 300) {
+        setHeaderState("hidden");
+      } else if (latest > 300) {
+        setHeaderState("default");
+      }
+    }
+  });
 
   return (
     <>

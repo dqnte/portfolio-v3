@@ -124,6 +124,10 @@
       opacity: 0;
     }
 
+    @media (min-width: $mobile) {
+      opacity: 1 !important;
+    }
+
     @media (max-width: $mobile) {
       &::after {
         width: 0 !important;

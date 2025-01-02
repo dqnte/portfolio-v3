@@ -9,6 +9,7 @@ const Image = ({
   onMouseEnter,
   onMouseLeave,
   onLoad,
+  shouldLoad = true,
 }: {
   photo: IPhoto;
   className?: string;
@@ -17,8 +18,9 @@ const Image = ({
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement>) => void;
+  shouldLoad?: boolean;
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(!shouldLoad);
 
   const loaded = (e: React.SyntheticEvent<HTMLImageElement>) => {
     setIsLoaded(true);

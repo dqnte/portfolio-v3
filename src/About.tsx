@@ -1,9 +1,14 @@
 import { AnimatePresence } from "framer-motion";
 
 import { LinkedIn, Instagram, GitHub } from "@mui/icons-material";
+import { useEffect } from "react";
 import Riser from "./components/Riser";
 
 export default function About() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <AnimatePresence>
       <div className={"About"}>

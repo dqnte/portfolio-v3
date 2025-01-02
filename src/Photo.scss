@@ -6,6 +6,12 @@
       color: black;
     }
 
+    &__mobile {
+      &_topline {
+        background: $fg-light-main;
+      }
+    }
+
     &__preview {
       &__image {
         &__indicator {
@@ -100,14 +106,27 @@
 
     &_bio {
       padding: calc($gutter-width * 2) $gutter-width;
-      padding-bottom: calc(3 * $gutter-width);
-      font-size: 16px;
+      padding-top: 30vh;
+      padding-bottom: 0;
       font-weight: bold;
-      font-variant: small-caps;
+
+      h2 {
+        font-size: 2.5rem;
+      }
 
       p {
+        font-size: 16px;
+        font-variant: small-caps;
         margin: 0;
       }
+    }
+
+    &_topline {
+      display: flex;
+      height: 3px;
+      width: 80px;
+      margin: calc($gutter-width * 2) 0;
+      margin-left: $gutter-width;
     }
   }
 
@@ -158,7 +177,6 @@
   }
 
   &__preview {
-    @include sans-scrollbar;
     height: 100%;
     padding: $gutter-width;
     padding-top: 0;

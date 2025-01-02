@@ -2,7 +2,6 @@ import Header from "./Header";
 
 import About from "./About";
 import Photo from "./Photo";
-import Home from "./Home";
 import Menu from "./Menu";
 import Archive from "./Archive";
 import { fetchPhotoManifest } from "./utilities";
@@ -13,14 +12,6 @@ import { BrowserRouter, Route, Routes } from "react-router";
 function App() {
   /* --- THEME --- */
   const [useDarkTheme, setDarkTheme] = useState(false);
-  // useEffect(() => {
-  //   const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-  //   if (darkThemeMq.matches) {
-  //     setDarkTheme(true);
-  //   } else {
-  //     setDarkTheme(false);
-  //   }
-  // }, []);
 
   /* --- IMAGES --- */
   const [albums, setAlbums] = useState([]);
@@ -50,7 +41,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className={`App ${useDarkTheme ? "dark" : "light"}`}>
+     <div className={`App ${useDarkTheme ? "dark" : "light"}`}>
         <Header
           useDarkTheme={useDarkTheme}
           setDarkTheme={setDarkTheme}
@@ -62,8 +53,6 @@ function App() {
         <Menu closeMenu={closeMenu} show={showMenu} />
         <Routes>
           {<Route path="/*" element={<Photo albums={albums} />} />}
-          {/* <Route path="/" element={<Home albums={albums} />} /> */}
-          {/* <Route path="/photo/*" element={<Photo albums={albums} />} /> */}
           <Route path="/about" element={<About />} />
           <Route path="/archive/*" element={<Archive albums={albums} />} />
         </Routes>
