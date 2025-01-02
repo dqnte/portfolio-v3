@@ -199,7 +199,7 @@
 
     button {
       @include strikethrough-button;
-      font-size: 16px;
+      font-size: 16px !important; // these seem to be overriden on mobile
       font-weight: bold;
       font-variant: small-caps;
     }
