@@ -1,118 +1,30 @@
 @use "constants" as *;
 
-.light {
-  .About {
-    &__image {
-      background: #fff;
-    }
-
-    &__text {
-      h1 {
-        color: $fg-light-main;
-      }
-
-      a {
-        color: $fg-light-main;
-
-        &:hover {
-          color: $bg-light-accent;
-        }
-      }
-    }
-
-    &__bio {
-      color: $fg-light-main;
-    }
-
-    &__socials {
-      &_topline {
-        background: $fg-light-main;
-      }
-
-      &_link,
-      a {
-        color: $fg-light-main;
-        &:hover {
-          color: $bg-light-accent;
-        }
-      }
-    }
-  }
-}
-
-.dark {
-  .About {
-    &__image {
-      background: #000;
-    }
-
-    &__text {
-      h1 {
-        color: $fg-dark-main;
-      }
-
-      a {
-        color: $fg-dark-main;
-
-        &:hover {
-          color: $bg-dark-accent;
-        }
-      }
-    }
-
-    &__bio {
-      color: $fg-dark-main;
-    }
-
-    &__socials {
-      &_topline {
-        background: $fg-dark-main;
-      }
-
-      &_link,
-      a {
-        color: $fg-dark-main;
-
-        &:hover {
-          color: $bg-dark-accent;
-        }
-      }
-    }
-  }
-}
-
 .About {
   width: 100%;
-  padding-top: $header-height;
   min-height: 100vh;
-
-  @media (max-width: $mobile) {
-    padding-top: $header-height-mobile;
-  }
+  padding-top: $header-height;
 
   &__container {
+    height: min-content;
     width: 100%;
     padding: $gutter-width;
-    height: min-content;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: calc($gutter-width);
-  }
-
-  a {
-    transition: color 0.3s;
+    gap: $gutter-width;
   }
 
   &__image {
     width: 100%;
-    aspect-ratio: 1/1;
     max-width: calc(100vh - 2 * $gutter-width - $header-height);
+    aspect-ratio: 1/1;
     margin-left: auto;
 
-    // temp styles
     display: flex;
     justify-content: center;
     align-items: center;
+
     & span {
       font-size: 13px;
       font-weight: 600;
@@ -122,63 +34,22 @@
   &__text {
     width: 100%;
     max-width: 600px;
-    font-wieght: 600;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: $gutter-width;
-
-    h1 {
-      margin: 0;
-    }
   }
+}
 
-  &__bio {
-    text-align: justify;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    font-weight: 500;
-    line-height: 1.75;
-    font-size: 16px;
-
-    p {
-      margin: 0;
-    }
+@media (max-width: $mobile) {
+  .About {
+    padding-top: $header-height-mobile;
   }
+}
 
-  &__socials {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: min-content;
-
-    &_topline {
-      height: 3px;
-      width: 100%;
-      background: $fg-light-main;
-    }
-
-    &_links {
-      width: min-content;
-      display: flex;
-      gap: 16px;
-    }
-
-    &_link,
-    a {
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      font-family: $font-accent;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-  }
-
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .About {
     height: unset;
 
     &__container {
@@ -194,5 +65,94 @@
       padding-top: 0;
       width: 100%;
     }
+  }
+}
+
+.light .About {
+  &__image {
+    background: #fff;
+  }
+}
+
+.dark .About {
+  &__image {
+    background: #000;
+  }
+}
+
+.Bio {
+  display: flex;
+  text-align: justify;
+  flex-direction: column;
+  gap: 14px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.75;
+
+  &--link {
+    color: inherit;
+    transition: color 200ms;
+  }
+}
+
+.dark .Bio {
+  &--link:hover {
+    color: $bg-dark-accent;
+  }
+}
+
+.light .Bio {
+  &--link:hover {
+    color: $bg-light-accent;
+  }
+}
+
+.Socials {
+  width: min-content;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  &__topline {
+    height: 3px;
+    width: 100%;
+  }
+
+  &__links {
+    width: min-content;
+
+    display: flex;
+    gap: 16px;
+  }
+
+  &--link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: inherit;
+    transition: color 200ms;
+  }
+}
+
+.dark .Socials {
+  &__topline {
+    background: $fg-dark-main;
+  }
+
+  &--link:hover {
+    color: $bg-dark-accent;
+  }
+}
+
+.light .Socials {
+  &__topline {
+    background: $fg-light-main;
+  }
+
+  &--link:hover {
+    color: $bg-light-accent;
   }
 }
