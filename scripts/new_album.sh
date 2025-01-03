@@ -5,7 +5,8 @@
 
 desktop=/Users/dtobar/Desktop
 
-directory=$desktop/$1
+new_dir=$(LS $desktop | fzf)
+directory=$desktop/$new_dir
 
 touch $directory/manifest.yaml
 key=$(basename $directory)

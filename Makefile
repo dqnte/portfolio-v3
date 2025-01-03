@@ -4,7 +4,7 @@ install:
 i: install
 
 build:
-	sh build.sh
+	sh scripts/build.sh
 
 up:
 	cp public/photo-manifest.yaml dist/
@@ -14,3 +14,6 @@ dev: up
 
 clean:
 	rm -rf .parcel-cache
+
+new-album:
+	zsh scripts/new_album.sh
