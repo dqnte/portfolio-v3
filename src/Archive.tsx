@@ -1,7 +1,7 @@
 import { IAlbum } from "./utilities";
 
 import Riser from "./components/Riser";
-import Image from "./Image";
+import Image from "./components/Image";
 import { useLocation, type Location, Link } from "react-router";
 import { useEffect, useState } from "react";
 

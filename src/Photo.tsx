@@ -1,6 +1,6 @@
 import { IAlbum } from "./utilities";
 import Album from "./Album";
-import Image from "./Image";
+import Image from "./components/Image";
 import { useLocation } from "react-router";
 import Carousel from "./Carousel";
 import {

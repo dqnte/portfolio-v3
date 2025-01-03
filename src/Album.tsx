@@ -6,7 +6,7 @@ import {
   useMotionValueEvent,
   type AnimationControls,
 } from "framer-motion";
-import Image from "./Image";
+import Image from "./components/Image";
 import East from "@mui/icons-material/East";
 import West from "@mui/icons-material/West";
 import Close from "@mui/icons-material/Close";
