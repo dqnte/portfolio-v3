@@ -3,69 +3,79 @@ import { Link, useLocation } from "react-router";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { IAlbum } from "./utilities";
 
-function Mode({
+type HeaderState = "hidden" | "default";
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+const Mode = ({
   useDarkTheme,
   setDarkTheme,
 }: {
   useDarkTheme: boolean;
   setDarkTheme: (value: boolean) => void;
-}) {
+}) => {
   const [showDark, setShowDark] = useState(useDarkTheme);
   useEffect(() => {
     setShowDark(useDarkTheme);
   }, [useDarkTheme]);
 
-  const handleEnter = (event) => {
-    setShowDark(!showDark);
-  };
-
-  const handleLeave = (event) => {
-    setShowDark(useDarkTheme);
-  };
-
   return (
-    <div className="Header__Mode">
+    <div className="Header__mode">
       <button
-        className={`Header__Mode_button ${showDark ? "selected" : ""}`}
+        className={`Header--btn ${showDark ? "selected" : ""}`}
         onClick={() => setDarkTheme(true)}
       >
         dark
-        {/* <DarkMode /> */}
       </button>
       <button
-        className={`Header__Mode_button ${!showDark ? "selected" : ""}`}
+        className={`Header--btn ${!showDark ? "selected" : ""}`}
         onClick={() => setDarkTheme(false)}
       >
         light
-        {/* <LightMode /> */}
       </button>
     </div>
   );
-}
+};
 
-function Name({
-  closeMenu,
+const Name = ({
   headerState,
 }: {
   closeMenu: () => void;
-  headerState: string;
-}) {
+  headerState: HeaderState;
+}) => {
+  const location = useLocation();
+  const key = location.pathname;
+  const atHome = key === "/";
+
   return (
-    <div className={`Header__Name ${headerState === "hidden" ? "hidden" : ""}`}>
-      <Link to="/">dante tobar</Link>
+    <div className={`Header__name ${headerState === "hidden" ? "hidden" : ""}`}>
+      <Link className={`Header--link ${atHome ? "selected" : ""}`} to="/">
+        dante tobar
+      </Link>
     </div>
   );
-}
+};
 
-function Menu({ toggleMenu }: { toggleMenu: () => void }) {
+const Menu = ({
+  toggleMenu,
+  showMenu,
+}: {
+  toggleMenu: () => void;
+  showMenu: boolean;
+}) => {
   return (
-    <button className="Header__Menu" onClick={toggleMenu}>
+    <button
+      className={`Header__menu Header--btn ${showMenu ? "selected" : ""}`}
+      onClick={toggleMenu}
+    >
       menu
     </button>
   );
-}
+};
 
-function Navigation() {
+const Navigation = () => {
   const location = useLocation();
   const [hoverPage, setHoverPage] = useState(null);
 
@@ -92,28 +102,25 @@ function Navigation() {
   }, [location]);
 
   return (
-    <div className="Header__Nav">
+    <div className="Header__nav">
       <Link
         to="/archive"
-        className={`${hoverPage === "archive" ? "selected" : ""}`}
+        className={`Header--link ${hoverPage === "archive" ? "selected" : ""}`}
       >
         archive
       </Link>
       <Link
         to="/about"
-        className={`${hoverPage === "about" ? "selected" : ""}`}
+        className={`Header--link ${hoverPage === "about" ? "selected" : ""}`}
       >
         about
       </Link>
     </div>
   );
-}
-
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-function Header({
+
+const Header = ({
   useDarkTheme,
   setDarkTheme,
   toggleMenu,
@@ -127,9 +134,9 @@ function Header({
   closeMenu: () => void;
   showMenu: boolean;
   albums: IAlbum[];
-}) {
+}) => {
   const location = useLocation();
-  const [headerState, setHeaderState] = useState("hidden");
+  const [headerState, setHeaderState] = useState<HeaderState>("hidden");
   const { scrollY } = useScroll();
 
   useEffect(() => {
@@ -159,18 +166,18 @@ function Header({
   return (
     <>
       <span className={"Header__background"} />
-      <div className={`Header ${showMenu ? "menu-open" : "menu-closed"}`}>
+      <div className={`Header ${showMenu ? "Header--open" : ""}`}>
         <Name closeMenu={closeMenu} headerState={headerState} />
-        <div className="Header__Text">
-          <p>photographer - engineer </p>
+        <div className={"Header__bio"}>
+          <p>photographer - engineer</p>
           <p>based in nyc</p>
         </div>
         <Navigation />
         <Mode useDarkTheme={useDarkTheme} setDarkTheme={setDarkTheme} />
-        <Menu toggleMenu={toggleMenu} />
+        <Menu toggleMenu={toggleMenu} showMenu={showMenu} />
       </div>
     </>
   );
-}
+};
 
 export default Header;

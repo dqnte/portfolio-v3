@@ -1,54 +1,89 @@
 @use "constants" as *;
 
-.dark {
-  .Header__background {
-    background: rgba($bg-dark-main, 0.98);
-  }
+.Header {
+  height: $header-height;
+  width: 100%;
+  padding: $header-padding-top $gutter-width;
+  padding-bottom: $header-padding-bottom;
 
-  .Header__Name,
-  .Header__Menu,
-  .Header__Nav,
-  .Header__Mode_button {
-    color: $fg-dark-main;
-  }
+  position: fixed;
+  top: 0;
+  z-index: 1000;
 
-  ::after {
-    background: $fg-dark-main;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
-  .menu-open {
-    .Header__Name,
-    .Header__Menu {
-      color: $fg-dark-main;
-    }
+  @include unselectable;
+  font-size: 16px;
+  font-weight: bold;
+  font-variant: small-caps;
 
-    ::after {
-      background: $fg-dark-main;
-    }
-  }
-}
+  &__background {
+    height: $header-height;
+    width: 100%;
 
-.light {
-  .Header__background {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+
+    transition: background 300ms;
     background: rgba($bg-light-main, 0.98);
   }
 
-  .Header__Name,
-  .Header__Menu,
-  .Header__Mode_button {
-    color: $fg-light-main;
+  &--btn,
+  &--link {
+    @include strikethrough-button;
+    transition: color 200ms;
+    font-size: inherit;
+    font-weight: inherit;
+    font-variant: inherit;
+    color: inherit;
+  }
+
+  &__name {
+    justify-self: left;
+    opacity: 1;
+
+    transition:
+      color 300ms,
+      opacity 200ms !important;
+  }
+
+  &__bio {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-self: right;
+  }
+
+  &__mode {
+    justify-self: right;
+  }
+
+  &__menu {
+    display: none;
+  }
+}
+
+.light .Header {
+  color: $fg-light-main;
+
+  &__background {
+    background: rgba($bg-light-main, 0.98);
   }
 
   ::after {
     background: $fg-light-main;
   }
 
-  .menu-open {
-    .Header__Name,
-    .Header__Menu,
-    .Header__Mode_button {
-      color: $fg-dark-main;
-    }
+  &--open {
+    color: $fg-dark-main;
 
     ::after {
       background: $fg-dark-main;
@@ -56,152 +91,55 @@
   }
 }
 
-.Header {
-  font-size: 30px;
-  font-weight: Bold;
-  z-index: 1000;
-
-  padding: $header-padding-top $gutter-width;
-  padding-bottom: $header-padding-bottom;
-  height: $header-height;
-
-  position: fixed;
-  top: 0;
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+.dark .Header {
+  color: $fg-dark-main;
 
   &__background {
-    z-index: 10;
-    width: 100%;
-    height: $header-height;
-    position: fixed;
-    top: 0;
-    transition: background 300ms;
-    background: rgba($bg-light-main, 0.98);
-
-    @media (max-width: $mobile) {
-      height: $header-height-mobile;
-    }
+    background: rgba($bg-dark-main, 0.98);
   }
 
-  .Header__Name,
-  .Header__Menu {
-    transition: color 200ms;
+  ::after {
+    background: $fg-dark-main;
   }
 
-  &.menu-open {
-    .Header__Name,
-    .Header__Menu {
-      transition: color 300ms;
-    }
+  &--open {
+    color: $fg-dark-main;
 
-    .Header__Menu::after {
-      width: 110%;
+    ::after {
+      background: $fg-dark-main;
     }
   }
+}
 
-  @media (max-width: $mobile) {
+@media (max-width: $mobile) {
+  .Header {
     height: $header-height-mobile;
     grid-template-columns: 1fr 1fr;
-  }
 
-  &__Name {
-    @include strikethrough-button;
-    height: min-content;
-    justify-self: left;
-
-    grid-column-start: 1;
-    opacity: 1;
-
-    transition:
-      color 300ms,
-      opacity 200ms !important;
-
-    &.hidden {
-      transition-delay: 0ms;
-      opacity: 0;
+    &__mode,
+    &__nav,
+    &__bio {
+      display: none;
     }
 
-    @media (min-width: $mobile) {
-      opacity: 1 !important;
-    }
+    &__name {
+      &.hidden {
+        transition-delay: 0ms;
+        opacity: 0;
+      }
 
-    @media (max-width: $mobile) {
-      &::after {
-        width: 0 !important;
+      ::after {
+        display: none;
       }
     }
-  }
 
-  &__Text {
-    @include unselectable;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    p {
-      margin: 0;
+    &__menu {
+      display: flex;
+      justify-self: right;
     }
 
-    @media (max-width: $mobile) {
-      display: none;
-    }
-  }
-
-  &__Nav {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-self: right;
-
-    a {
-      @include strikethrough-button;
-    }
-
-    @media (max-width: $mobile) {
-      display: none;
-    }
-  }
-
-  &__Menu {
-    @include strikethrough-button;
-    height: min-content;
-    justify-self: right;
-
-    @media (min-width: $mobile) {
-      display: none;
-    }
-  }
-
-  &__Mode {
-    justify-self: right;
-    @media (max-width: $mobile) {
-      display: none;
-    }
-  }
-
-  &__Menu,
-  &__Name,
-  &__Text,
-  &__Mode,
-  &__Nav {
-    font-size: 16px;
-    font-weight: bold;
-    font-variant: small-caps;
-    position: relative;
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      @include strikethrough-button;
-      font-size: 16px !important; // these seem to be overriden on mobile
-      font-weight: bold;
-      font-variant: small-caps;
+    &__background {
+      height: $header-height-mobile;
     }
   }
 }
