@@ -104,10 +104,10 @@ $mobile: 700px;
   transition: color 300ms;
 
   .dark &:hover {
-    color: $bg-light-accent;
+    color: $bg-dark-accent;
   }
 
   .light &:hover {
-    color: $bg-dark-accent;
+    color: $bg-light-accent;
   }
 }

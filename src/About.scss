@@ -91,20 +91,8 @@
   line-height: 1.75;
 
   &--link {
-    color: inherit;
-    transition: color 200ms;
-  }
-}
-
-.dark .Bio {
-  &--link:hover {
-    color: $bg-dark-accent;
-  }
-}
-
-.light .Bio {
-  &--link:hover {
-    color: $bg-light-accent;
+    @include common-link;
+    text-decoration: underline;
   }
 }
 
@@ -128,12 +116,10 @@
   }
 
   &--link {
+    @include common-link;
     display: flex;
     align-items: center;
     gap: 8px;
-
-    color: inherit;
-    transition: color 200ms;
   }
 }
 
@@ -141,18 +127,10 @@
   &__topline {
     background: $fg-dark-main;
   }
-
-  &--link:hover {
-    color: $bg-dark-accent;
-  }
 }
 
 .light .Socials {
   &__topline {
     background: $fg-light-main;
-  }
-
-  &--link:hover {
-    color: $bg-light-accent;
   }
 }
