@@ -14,6 +14,7 @@ const ArchiveAlbum = ({ album }: { album: IAlbum }) => {
             key={photo.smallUrl}
             className={"Arc-album__image"}
             photo={photo}
+            useAspect={true}
           />
         ))}
       </div>

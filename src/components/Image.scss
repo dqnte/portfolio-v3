@@ -5,12 +5,20 @@
   height: inherit;
   width: inherit;
 
-  &__Loading {
+  &__loading {
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
     width: 100%;
+
+    .dark & {
+      background-color: $bg-dark-overlay;
+    }
+
+    .light & {
+      background-color: $bg-light-overlay;
+    }
   }
 
   &__img {
@@ -19,17 +27,5 @@
     &.hide {
       opacity: 0;
     }
-  }
-}
-
-.dark {
-  .Image__Loading {
-    background-color: $bg-dark-overlay;
-  }
-}
-
-.light {
-  .Image__Loading {
-    background-color: $bg-light-overlay;
   }
 }

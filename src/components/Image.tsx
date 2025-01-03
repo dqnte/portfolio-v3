@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IPhoto } from "./utilities";
+import { IPhoto } from "../utilities";
 
 const Image = ({
   photo,
@@ -10,6 +10,7 @@ const Image = ({
   onMouseLeave,
   onLoad,
   shouldLoad = true,
+  useAspect = false,
 }: {
   photo: IPhoto;
   className?: string;
@@ -19,6 +20,7 @@ const Image = ({
   onMouseLeave?: () => void;
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement>) => void;
   shouldLoad?: boolean;
+  useAspect?: boolean;
 }) => {
   const [isLoaded, setIsLoaded] = useState(!shouldLoad);
 
@@ -41,9 +43,10 @@ const Image = ({
       />
       {!isLoaded && (
         <div
-          className={`Image__Loading ${className ?? ""}`}
+          className={`Image__loading ${className ?? ""}`}
           style={{
             background: photo?.color,
+            aspectRatio: useAspect && photo.width / photo.height,
           }}
         />
       )}
