@@ -3,9 +3,13 @@ import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Menu(props) {
-  const { show, closeMenu } = props;
-
+const Menu = ({
+  show,
+  closeMenu,
+}: {
+  show: boolean;
+  closeMenu: () => void;
+}) => {
   const [hoverPage, setHoverPage] = useState(null);
 
   const location = useLocation();
@@ -51,43 +55,35 @@ export default function Menu(props) {
           exit={{ height: "0vh", transition: { delay: TEXT_IN * 2 } }}
         >
           <motion.div
-            className="Menu__Pages"
+            className="Menu-pages"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { delay: SLIDE_IN + TEXT_IN } }}
             exit={{ opacity: 0 }}
           >
             <Link
               to="/"
-              className={`Menu_Link ${hoverPage === "home" ? "selected" : ""}`}
+              className={`Menu-pages__link ${hoverPage === "home" ? "selected" : ""}`}
               onClick={closeMenu}
             >
-              <span className="Menu_Link_Text">home</span>
+              home
             </Link>
-            {/* <Link */}
-            {/*   to="/photo" */}
-            {/*   className={`Menu_Link ${hoverPage === "photo" ? "selected" : ""}`} */}
-            {/*   onClick={closeMenu} */}
-            {/* > */}
-            {/*   <span className="Menu_Link_Text">photo</span> */}
-            {/* </Link> */}
-            {/* <h1> • </h1> */}
             <Link
               to="/about"
-              className={`Menu_Link ${hoverPage === "about" ? "selected" : ""}`}
+              className={`Menu-pages__link ${hoverPage === "about" ? "selected" : ""}`}
               onClick={closeMenu}
             >
-              <span className="Menu_Link_Text">about</span>
+              about
             </Link>
             <Link
               to="/archive"
-              className={`Menu_Link ${hoverPage === "archive" ? "selected" : ""}`}
+              className={`Menu-pages__link ${hoverPage === "archive" ? "selected" : ""}`}
               onClick={closeMenu}
             >
-              <span className="Menu_Link_Text">archive</span>
+              archive
             </Link>
           </motion.div>
           <motion.div
-            className="Menu__Socials"
+            className="Menu-socials"
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
@@ -97,13 +93,13 @@ export default function Menu(props) {
           >
             <a
               href="https://www.instagram.com/dantistador/"
-              className="Menu__Socials_Link"
+              className="Menu-socials__link"
             >
               instagram
             </a>
             <a
               href="https://www.linkedin.com/in/dante-m-tobar/"
-              className="Menu__Socials_Link"
+              className="Menu-socials__link"
             >
               linkedin
             </a>
@@ -112,4 +108,6 @@ export default function Menu(props) {
       )}
     </AnimatePresence>
   );
-}
+};
+
+export default Menu;

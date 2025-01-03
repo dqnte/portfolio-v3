@@ -1,106 +1,83 @@
 @use "constants" as *;
 
 .Menu {
+  @include unselectable;
+
+  width: 100%;
+  display: flex;
+
+  position: fixed;
+  z-index: 999;
+  top: 0;
+
+  flex-direction: column;
   transition:
     color 150ms ease-out,
     background 150ms ease-out;
-  position: fixed;
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
 
   scroll-snap-align: start;
+  color: $bg-light-main;
 
-  top: 0;
-  width: 100%;
-
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
-
-  &_Link {
-    transition: color 150ms ease-out;
-    text-decoration: none;
-
-    @include strikethrough-button;
-
-    &::after {
-      height: 5px;
-    }
-
-    &_Text {
-      display: inline-block;
-      font-size: 63px;
-      line-height: 53px;
-      height: 64px;
-      font-family: $font-accent;
-      font-variant: small-caps;
-    }
+  .dark & {
+    background: $bg-dark-accent;
   }
 
-  &__Pages {
+  .light & {
+    background: $bg-light-accent;
+  }
+
+
+  &-pages {
+    width: 100%;
+    padding: $gutter-width;
+    padding-top: calc(2 * $header-height);
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
     flex-wrap: wrap;
-    padding: $gutter-width;
-    padding-top: calc(2 * $header-height);
     gap: $gutter-width;
-    width: 100%;
-    &_Link {
-      color: white;
+
+    &__link {
+      transition: color 150ms ease-out;
+      @include strikethrough-button;
+
+      height: 64px;
+      display: inline-block; // makes strikethrough align in the middle of link
+
+      &::after {
+        height: 5px;
+      }
+
+      color: $bg-light-main;
       text-decoration: none;
-      font-size: 2.5rem;
+      font-size: 63px;
+      line-height: 53px;
+      font-family: $font-accent;
+      font-variant: small-caps;
+
+      &::after {
+        background: $bg-light-main;
+      }
     }
   }
 
-  &__Socials {
+  &-socials {
+    padding: $gutter-width;
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 1rem;
-    padding: $gutter-width;
 
-    &_Link {
+    &__link {
       margin: 0;
+      color: $bg-light-main;
       text-decoration: none;
       font-size: 20px;
       font-variant: small-caps;
       font-weight: bold;
     }
-  }
-}
-
-.dark .Menu {
-  color: $fg-dark-main;
-  background: $bg-dark-accent;
-
-  &_Link {
-    color: $fg-dark-main;
-    &::after {
-      background: $fg-dark-main;
-    }
-  }
-
-  &__Socials_Link {
-    color: $fg-dark-main;
-  }
-}
-
-.light .Menu {
-  color: $bg-light-main;
-  background: $bg-light-accent;
-
-  &_Link {
-    color: $bg-light-main;
-    &::after {
-      background: $bg-light-main;
-    }
-  }
-
-  &__Socials_Link {
-    color: $bg-light-main;
   }
 }
