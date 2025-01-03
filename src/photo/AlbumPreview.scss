@@ -1,0 +1,44 @@
+@use "../constants" as *;
+
+.AlbumPreview {
+  height: 100%;
+  padding: $gutter-width;
+  padding-top: 0;
+
+  display: flex;
+  gap: $gutter-width;
+  overflow-x: scroll;
+
+  &__link {
+    height: 100%;
+  }
+
+  &__trailer {
+    height: 100%;
+    padding-left: 200px;
+  }
+
+  &__image {
+    height: 100%;
+
+    opacity: 0.75;
+    transition: opacity 200ms ease-in-out;
+    &.show {
+      opacity: 1;
+    }
+  }
+
+  &__indicator {
+    height: 3px;
+    width: 100%;
+    margin-top: 3px;
+
+    display: block;
+
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    &.show {
+      opacity: 1;
+    }
+  }
+}

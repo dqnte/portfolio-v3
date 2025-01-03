@@ -2,7 +2,7 @@ import { IAlbum, findAlbumFromLocation } from "../utilities";
 import Album from "./Album";
 import PhotoMobile from "./Mobile";
 import { useLocation } from "react-router";
-import Carousel from "./Carousel";
+import AlbumPreview from "./AlbumPreview";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Riser from "../components/Riser";
@@ -39,7 +39,10 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
             </motion.div>
           )}
           {selectedAlbum && <Album album={selectedAlbum} />}
-          <Carousel albums={displayableAlbums} selectedAlbum={selectedAlbum} />
+          <AlbumPreview
+            albums={displayableAlbums}
+            selectedAlbum={selectedAlbum}
+          />
         </div>
         <PhotoMobile albums={displayableAlbums} />
       </Riser>
