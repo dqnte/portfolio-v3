@@ -1,7 +1,7 @@
 import Header from "./Header";
 
 import About from "./About";
-import Photo from "./Photo";
+import Photo from "./photo";
 import Menu from "./Menu";
 import Archive from "./Archive";
 import { fetchPhotoManifest } from "./utilities";
