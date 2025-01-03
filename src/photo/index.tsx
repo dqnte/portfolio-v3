@@ -31,14 +31,13 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
     <AnimatePresence>
       <Riser>
         <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
-          {!selectedAlbum && (
-            <motion.div className="Photo__empty">
-              <div className={"Photo__empty_title"}>
-                <h1>Dante Tobar</h1>
-              </div>
+          {selectedAlbum ? (
+            <Album album={selectedAlbum} />
+          ) : (
+            <motion.div className="Photo-empty">
+              <h1 className={"Photo-empty__title"}>Dante Tobar</h1>
             </motion.div>
           )}
-          {selectedAlbum && <Album album={selectedAlbum} />}
           <AlbumPreview
             albums={displayableAlbums}
             selectedAlbum={selectedAlbum}

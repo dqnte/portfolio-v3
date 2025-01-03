@@ -40,5 +40,13 @@
     &.show {
       opacity: 1;
     }
+
+    .dark & {
+      background: $fg-dark-main;
+    }
+
+    .light & {
+      background: $fg-light-main;
+    }
   }
 }

@@ -3,44 +3,6 @@
 @use "Mobile";
 @use "AlbumPreview";
 
-.light {
-  .Photo {
-    &__empty_title {
-      color: black;
-    }
-
-    &__mobile {
-      &_topline {
-        background: $fg-light-main;
-      }
-    }
-
-    &__preview {
-      &__image {
-        &__indicator {
-          background: $fg-light-main;
-        }
-      }
-    }
-  }
-}
-
-.dark {
-  .Photo {
-    &__empty_title {
-      color: white;
-    }
-
-    &__preview {
-      &__image {
-        &__indicator {
-          background: $fg-dark-main;
-        }
-      }
-    }
-  }
-}
-
 .Photo {
   height: 100vh;
   padding-top: $header-height;
@@ -62,36 +24,29 @@
     grid-template-rows: 60% 40%;
   }
 
-  &__empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $gutter-width;
+  &-empty {
     height: 100%;
     padding-bottom: $gutter-width;
 
-    &_title {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      transition: all 200ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 
+    &__title {
       width: 100%;
-      height: 100%;
       padding: 0 $gutter-width;
 
-      h1 {
-        font-size: 5rem;
-        font-family: $font-accent;
-        width: 100%;
-      }
-    }
+      transition: all 200ms ease-in-out;
+      font-size: 5rem;
+      font-family: $font-accent;
 
-    &_line {
-      margin-left: calc($gutter-width * 2);
-      width: 100%;
-      height: 3px;
-      background: black;
+      .dark & {
+        color: white;
+      }
+
+      .light & {
+        color: black;
+      }
     }
   }
 }
