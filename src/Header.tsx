@@ -23,18 +23,18 @@ const Mode = ({
 
   return (
     <div className="Header__mode">
-      <button
+      <a
         className={`Header--btn ${showDark ? "selected" : ""}`}
         onClick={() => setDarkTheme(true)}
       >
         dark
-      </button>
-      <button
+      </a>
+      <a
         className={`Header--btn ${!showDark ? "selected" : ""}`}
         onClick={() => setDarkTheme(false)}
       >
         light
-      </button>
+      </a>
     </div>
   );
 };
@@ -66,12 +66,13 @@ const Menu = ({
   showMenu: boolean;
 }) => {
   return (
-    <button
+    // we use an <a /> because the font sizing wasn't working on mobile
+    <a
       className={`Header__menu Header--btn ${showMenu ? "selected" : ""}`}
       onClick={toggleMenu}
     >
       menu
-    </button>
+    </a>
   );
 };
 
@@ -118,7 +119,6 @@ const Navigation = () => {
     </div>
   );
 };
-
 
 const Header = ({
   useDarkTheme,
