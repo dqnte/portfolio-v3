@@ -1,7 +1,7 @@
-import Image from "./components/Image";
+import Image from "../components/Image";
 import { Link } from "react-router";
 import { useState } from "react";
-import { IAlbum } from "./utilities";
+import { IAlbum } from "../utilities";
 
 export const Carousel = ({
   albums,

@@ -1,14 +1,12 @@
 @use "constants";
 @use "About";
-@use "Album";
 @use "App";
 @use "Archive";
 @use "Header";
-@use "Home";
 @use "Menu";
-@use "Photo";
-@use "components/Image";
-@use "components/Riser";
+
+@use "components";
+@use "photo";
 
 body {
   margin: 0;

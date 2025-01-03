@@ -1,6 +1,6 @@
-import { IAlbum, findAlbumFromLocation } from "./utilities";
+import { IAlbum, findAlbumFromLocation } from "../utilities";
 import Album from "./Album";
-import Image from "./components/Image";
+import Image from "../components/Image";
 import { useLocation } from "react-router";
 import Carousel from "./Carousel";
 import {
@@ -10,7 +10,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
-import Riser from "./components/Riser";
+import Riser from "../components/Riser";
 
 const AlbumMobile = ({ album }: { album: IAlbum }) => {
   const ref = useRef(null);

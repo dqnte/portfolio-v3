@@ -6,13 +6,13 @@ import {
   useMotionValueEvent,
   type AnimationControls,
 } from "framer-motion";
-import Image from "./components/Image";
+import Image from "../components/Image";
 import East from "@mui/icons-material/East";
 import West from "@mui/icons-material/West";
 import Close from "@mui/icons-material/Close";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
-import { IAlbum, IPhoto } from "./utilities";
+import { IAlbum, IPhoto } from "../utilities";
 
 import { useEffect, useState, useRef } from "react";
 
