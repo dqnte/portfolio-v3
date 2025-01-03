@@ -68,11 +68,19 @@ const Controls = ({
   });
 
   return (
-    <div className="Album__controls">
-      <button onClick={() => scroll("left")} disabled={position === "left"}>
+    <div className="Album-controls">
+      <button
+        className={"Album-controls__btn"}
+        onClick={() => scroll("left")}
+        disabled={position === "left"}
+      >
         <West />
       </button>
-      <button onClick={() => scroll("right")} disabled={position === "right"}>
+      <button
+        className={"Album-controls__btn"}
+        onClick={() => scroll("right")}
+        disabled={position === "right"}
+      >
         <East />
       </button>
     </div>
@@ -173,14 +181,11 @@ export default function Album({ album }: { album: IAlbum }) {
         exit={{ opacity: 0, y: 10 }}
       >
         <div className="Album__title">
-          <h1 className="Album__title_text">{album.location}</h1>
-          {/* <button className="Album__title_download"> */}
-          {/*   <Download onClick={() => downloadAlbum(album)} /> */}
-          {/* </button> */}
+          <h1>{album.location}</h1>
           <Controls carouselRef={carouselRef} controls={controls} />
         </div>
         <motion.div
-          className="Album__carousel"
+          className="Album-carousel"
           ref={carouselRef}
           custom={{ scrollOffset: 0 }}
           animate={controls}
@@ -188,7 +193,7 @@ export default function Album({ album }: { album: IAlbum }) {
         >
           {album.photos.map((photo) => (
             <div
-              className="Album__carousel_photo"
+              className="Album-carousel__photo"
               key={photo.smallUrl}
               onClick={() => openPhoto(photo)}
             >
@@ -201,44 +206,44 @@ export default function Album({ album }: { album: IAlbum }) {
       {selectedIndex !== null && (
         <motion.div
           key="selected"
-          className={"Album__overlay"}
+          className={"Album-overlay"}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.2 } }}
           exit={{ opacity: 0 }}
         >
           <button
-            className={"Album__overlay_controls close"}
+            className={"Album-overlay__controls close"}
             onClick={() => setSelectedIndex(null)}
           >
             <Close />
           </button>
           <button
             disabled={selectedIndex === album.photos.length - 1}
-            className={"Album__overlay_controls next"}
+            className={"Album-overlay__controls next"}
             onClick={nextPhoto}
           >
             <ChevronRight />
           </button>
           <button
             disabled={selectedIndex === 0}
-            className={"Album__overlay_controls prev"}
+            className={"Album-overlay__controls prev"}
             onClick={prevPhoto}
           >
             <ChevronLeft />
           </button>
           <motion.div
-            className={`Album__carousel_photo selected ${orientation}`}
+            className={`Album-overlay__photo ${orientation}`}
             initial={{ y: 10 }}
             animate={{ y: 0, transition: { duration: 0.2 } }}
             exit={{ y: 10 }}
           >
-            <div className="Album__carousel_photo_container">
+            <div className="Album-overlay__image">
               <Image
                 photo={album.photos[selectedIndex]}
                 alt={album.photos[selectedIndex]?.title}
                 onLoad={(e) => sizeImage(e.target)}
               />
-              <div className="Album__carousel_photo_info">
+              <div className="Album-overlay__info">
                 <h4>{album.date}</h4>
                 <h4>{album.photos[selectedIndex].camera}</h4>
               </div>

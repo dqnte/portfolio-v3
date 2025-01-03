@@ -1,280 +1,218 @@
 @use "../constants" as *;
 
 .Album {
+  height: 100%;
+
   display: grid;
   position: relative;
   grid-template-rows: 1fr 10fr;
-  height: 100%;
   overflow: hidden;
 
   &__title {
+    padding: $gutter-width;
+    padding-bottom: 0;
+
     display: flex;
-    gap: 1rem;
     align-items: center;
     justify-content: space-between;
-    padding-top: $gutter-width;
-
-    &_text {
-      font-family: $font-accent;
-      padding-left: $gutter-width;
-      margin: 0;
-    }
-
-    &_download {
-      @include plain-button;
-      position: relative;
-      top: 3px;
-    }
-  }
-
-  &__controls {
-    display: flex;
-    padding-right: $gutter-width;
     gap: 1rem;
 
-    button {
-      @include plain-button;
-      transition: opacity 300ms;
-
-      &:disabled {
-        opacity: 0.8;
-      }
-    }
-  }
-
-  &__scroll {
-    position: absolute;
-    height: 100%;
-    bottom: 0;
-    width: 100px;
-    z-index: 1000;
-
-    &.left {
-      margin-left: $gutter-width;
-    }
-
-    &.right {
-      right: 0;
-      margin-right: $gutter-width;
-    }
-  }
-
-  &__overlay {
-    z-index: 1000;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    overflow: hidden;
-
-    &_controls {
-      @include plain-button;
-      position: absolute;
-      z-index: 1001;
-      margin: $gutter-width;
-      font-weight: bold;
-      font-variant: small-caps;
-      transition: color 200ms;
-
-      &:hover {
-        color: $bg-light-accent;
-      }
-
-      svg {
-        font-size: 2rem;
-      }
-
-      &.close {
-        top: 0;
-        right: 0;
-        svg {
-          font-size: 1.5rem;
-        }
-      }
-
-      &.prev {
-        margin: 0 $gutter-width;
-        left: 0;
-        top: calc(50% - 1rem);
-      }
-
-      &.next {
-        margin: 0 $gutter-width;
-        right: 0;
-        top: calc(50% - 1rem);
-      }
-    }
-  }
-
-  &__carousel {
-    @include sans-scrollbar;
-    height: 100%;
-    display: flex;
-    overflow-x: scroll;
-    padding: $gutter-width 0;
-
-    &_photo {
-      display: flex;
-      position: relative;
-      padding-left: $gutter-width;
-      height: 100%;
-      cursor: pointer;
-
-      img {
-        height: inherit;
-      }
-
-      &_container {
-        display: flex;
-        width: min-content;
-        height: min-content;
-      }
-
-      &.selected {
-        cursor: default;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: $gutter-width;
-        height: 100vh;
-        width: 100vw;
-        top: 0;
-      }
-
-      &.portrait {
-        .Album__carousel_photo_container {
-          flex-direction: column;
-        }
-
-        .Album__carousel_photo_info {
-          padding: 0 $gutter-width;
-          height: $gutter-width * 4;
-        }
-      }
-
-      &.landscape {
-        .Album__carousel_photo_info {
-          padding: $gutter-width 0;
-          width: $gutter-width * 4;
-          writing-mode: vertical-rl;
-        }
-      }
-
-      &_info {
-        display: flex;
-        font-family: $font-accent;
-        background: #fff;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      &_download {
-        @include plain-button;
-        display: unset;
-        opacity: 0;
-        position: absolute;
-        right: 0;
-        padding: 10px;
-        color: $bg-light-main;
-        transition: opacity 150ms;
-      }
-
-      &:hover .Album__carousel_photo_download {
-        display: unset;
-        opacity: 1;
-      }
-
-      &:first-child {
-        padding-left: $gutter-width;
-      }
-
-      &:last-child {
-        padding-right: $gutter-width;
-      }
-    }
+    font-family: $font-accent;
   }
 }
 
-.dark {
-  .Album {
-    &__carousel_photo_info {
-      background: #000;
+.Album-controls {
+  display: flex;
+  gap: 1rem;
+
+  &__btn {
+    @include plain-button;
+    transition: opacity 300ms;
+
+    &:disabled {
+      color: grey !important;
     }
 
-    &__scroll {
-      &:hover {
-        background: rgba($bg-dark-main, 0.2);
-      }
-    }
-
-    &__controls button {
+    .dark & {
       color: $fg-dark-main;
 
       &:hover {
         color: $bg-dark-accent;
       }
-
-      &:disabled {
-        color: gray;
-      }
     }
 
-    &__overlay {
-      background: rgba($bg-dark-main, 0.98);
-
-      &_controls {
-        color: $fg-dark-main;
-
-        &:disabled {
-          color: gray !important;
-        }
-
-        &:hover {
-          color: $bg-dark-accent;
-        }
-      }
-    }
-  }
-}
-
-.light {
-  .Album {
-    &__carousel_photo_info {
-      background: #fff;
-    }
-
-    &__scroll {
-      &:hover {
-        background: rgba($bg-light-main, 0.2);
-      }
-    }
-
-    &__controls button {
+    .light & {
       color: $fg-light-main;
 
       &:hover {
         color: $bg-light-accent;
       }
+    }
+  }
+}
 
-      &:disabled {
-        color: gray;
+.Album-carousel {
+  @include sans-scrollbar;
+  height: 100%;
+  padding: $gutter-width 0;
+  display: flex;
+  overflow-x: scroll;
+
+  &__photo {
+    height: 100%;
+    padding-left: $gutter-width;
+
+    display: flex;
+    position: relative;
+    cursor: pointer;
+
+    img {
+      height: inherit;
+    }
+
+    &:first-child {
+      padding-left: $gutter-width;
+    }
+
+    &:last-child {
+      padding-right: $gutter-width;
+    }
+  }
+}
+
+.Album-overlay {
+  height: 100vh;
+  width: 100vw;
+
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  overflow: hidden;
+
+  &__photo {
+    width: 100vw;
+    height: 100vh;
+    padding: $gutter-width;
+
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: default;
+
+    &.portrait {
+      .Album-overlay__image {
+        flex-direction: column;
+      }
+
+      .Album-overlay__info {
+        padding: 0 $gutter-width;
+        height: $gutter-width * 4;
       }
     }
 
-    &__overlay {
-      background: rgba($bg-light-main, 0.98);
+    &.landscape {
+      .Album-overlay__info {
+        padding: $gutter-width 0;
+        width: $gutter-width * 4;
+        writing-mode: vertical-rl;
+      }
+    }
+  }
 
-      &_controls {
-        color: $fg-light-main;
+  &__image {
+    display: flex;
+    width: min-content;
+    height: min-content;
 
-        &:disabled {
-          color: gray !important;
-        }
+    img {
+      height: inherit;
+    }
+  }
 
-        &:hover {
-          color: $bg-light-accent;
-        }
+  &__info {
+    display: flex;
+    font-family: $font-accent;
+    background: #fff;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__controls {
+    @include plain-button;
+    margin: $gutter-width;
+
+    position: absolute;
+    z-index: 1001;
+
+    font-weight: bold;
+    font-variant: small-caps;
+    transition: color 200ms;
+
+    &:hover {
+      color: $bg-light-accent;
+    }
+
+    &:disabled {
+      color: grey !important;
+    }
+
+    svg {
+      font-size: 2rem;
+    }
+
+    &.close {
+      top: 0;
+      right: 0;
+      svg {
+        font-size: 1.5rem;
+      }
+    }
+
+    &.prev {
+      margin: 0 $gutter-width;
+      left: 0;
+      top: calc(50% - 1rem);
+    }
+
+    &.next {
+      margin: 0 $gutter-width;
+      right: 0;
+      top: calc(50% - 1rem);
+    }
+  }
+
+  .dark & {
+    background: rgba($bg-dark-main, 0.98);
+
+    &__info {
+      background: #000;
+    }
+
+    &__controls {
+      color: $fg-dark-main;
+
+      &:hover {
+        color: $bg-dark-accent;
+      }
+    }
+  }
+
+  .light & {
+    background: rgba($bg-light-main, 0.98);
+
+    &__info {
+      background: #fff;
+    }
+
+    &__controls {
+      color: $fg-light-main;
+
+      &:hover {
+        color: $bg-light-accent;
       }
     }
   }
