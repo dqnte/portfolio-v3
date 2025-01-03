@@ -1,16 +1,43 @@
-import { IAlbum } from "./utilities";
+import { IAlbum, findAlbumFromLocation } from "./utilities";
 
 import Riser from "./components/Riser";
 import Image from "./components/Image";
-import { useLocation, type Location, Link } from "react-router";
+import { useLocation, Link } from "react-router";
 import { useEffect, useState } from "react";
 
-const findAlbumFromLocation = (location: Location, albums: IAlbum[]) => {
-  const key = location.pathname.split("/")[2];
-  return albums.find((album) => album.key === key);
+const ArchiveAlbum = ({ album }: { album: IAlbum }) => {
+  return (
+    <Riser motionKey={"Arc-album"}>
+      <div className={"Arc-album"}>
+        {album.photos.map((photo) => (
+          <Image
+            key={photo.smallUrl}
+            className={"Arc-album__image"}
+            photo={photo}
+          />
+        ))}
+      </div>
+    </Riser>
+  );
 };
 
-export default function Archive({ albums }: { albums: IAlbum[] }) {
+const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
+  return (
+    <Riser motionKey={"Arc-table"}>
+      <ul className={"Arc-table__list"}>
+        {albums.map((album) => (
+          <li key={album.key} className="Arc-table__item">
+            <Link className={"Arc__link"} to={`/archive/${album.key}`}>
+              {album.key}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </Riser>
+  );
+};
+
+const Archive = ({ albums }: { albums: IAlbum[] }) => {
   const location = useLocation();
   const [selectedAlbum, setAlbum] = useState<IAlbum>(
     findAlbumFromLocation(location, albums),
@@ -27,34 +54,20 @@ export default function Archive({ albums }: { albums: IAlbum[] }) {
   }, [location, albums]);
 
   return (
-    <div className={"Archive Archive__table"}>
-      <h1 className={"Archive__table_header"}>
-        <Link to={"/archive"}>archive/</Link>
+    <div className={"Arc"}>
+      <h1 className={"Arc__header"}>
+        <Link className={"Arc__link"} to={"/archive"}>
+          archive/
+        </Link>
         {selectedAlbum?.key}
       </h1>
       {selectedAlbum ? (
-        <Riser motionKey={"Archive__album"}>
-          <div className={"Archive__album_container"}>
-            {selectedAlbum.photos.map((photo) => (
-              <Image
-                key={photo.smallUrl}
-                className={"Archive__image"}
-                photo={photo}
-              />
-            ))}
-          </div>
-        </Riser>
+        <ArchiveAlbum album={selectedAlbum} />
       ) : (
-        <Riser motionKey={"Archive__table"}>
-          <ul className={"Archive__table_list"}>
-            {albums.map((album) => (
-              <li key={album.key}>
-                <Link to={`/archive/${album.key}`}>{album.key}</Link>
-              </li>
-            ))}
-          </ul>
-        </Riser>
+        <ArchiveTable albums={albums} />
       )}
     </div>
   );
-}
+};
+
+export default Archive;

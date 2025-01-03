@@ -1,95 +1,51 @@
 @use "constants" as *;
 
-.dark {
-  .Archive {
-    a {
-      color: $fg-dark-main;
+.Arc {
+  padding: $gutter-width;
+  padding-top: $header-height;
 
-      &:hover {
-        color: $bg-dark-accent;
-      }
-    }
-
-    &__table {
-      &_header {
-        background: $bg-dark-main;
-      }
-    }
+  @media (max-width: $mobile) {
+    padding-top: $header-height-mobile;
   }
-}
 
-.light {
-  .Archive {
-    a {
-      color: $fg-light-main;
-
-      &:hover {
-        color: $bg-light-accent;
-      }
-    }
-
-    &__table {
-      &_header {
-        background: $bg-light-main;
-      }
-    }
-  }
-}
-
-.Archive {
-  a {
+  &__link {
+    @include common-link;
     font-family: $font-accent;
     font-weight: bold;
-    text-decoration: none;
-    color: $fg-light-main;
-    transition: color 300ms;
-
-    &:hover {
-      color: $bg-light-accent;
-    }
   }
 
-  h1 {
+  &__header {
     margin-bottom: $gutter-width;
+    transition: background 300ms;
   }
+}
 
-  &__table {
-    padding: $gutter-width;
-    padding-top: $header-height;
-    min-height: calc(100vh);
+.Arc-album {
+  width: 100%;
 
-    @media (max-width: $mobile) {
-      padding-top: $header-height-mobile;
-    }
-
-    &_header {
-      transition: background 300ms;
-      padding: $gutter-width 0;
-    }
-
-    &_list {
-      margin: 0;
-
-      li {
-        list-style: none;
-        margin-bottom: 1.5rem;
-      }
-    }
-  }
-
-  &__album {
-    &_container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: $gutter-width;
-      width: 100%;
-    }
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $gutter-width;
 
   &__image {
     height: unset;
     width: 100%;
     max-width: 600px;
+  }
+}
+
+.Arc-table {
+  min-height: 100vh;
+  padding: $gutter-width;
+  padding-top: $header-height;
+
+  &__list {
+    margin: 0;
+  }
+
+  &__item {
+    list-style: none;
+    margin-bottom: 1.5rem;
   }
 }

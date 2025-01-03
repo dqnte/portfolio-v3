@@ -1,4 +1,4 @@
-import { IAlbum } from "./utilities";
+import { IAlbum, findAlbumFromLocation } from "./utilities";
 import Album from "./Album";
 import Image from "./components/Image";
 import { useLocation } from "react-router";
@@ -11,11 +11,6 @@ import {
 } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import Riser from "./components/Riser";
-
-const findAlbumFromLocation = (location, albums) => {
-  const key = location.pathname.split("/")[2];
-  return albums.find((album) => album.key === key);
-};
 
 const AlbumMobile = ({ album }: { album: IAlbum }) => {
   const ref = useRef(null);

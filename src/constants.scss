@@ -97,3 +97,17 @@ $mobile: 700px;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
+@mixin common-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 300ms;
+
+  .dark &:hover {
+    color: $bg-light-accent;
+  }
+
+  .light &:hover {
+    color: $bg-dark-accent;
+  }
+}

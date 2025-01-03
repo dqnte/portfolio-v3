@@ -1,4 +1,5 @@
 import jsyaml from "js-yaml";
+import { type Location } from "react-router";
 
 const BASE_URL = "https://s3.us-west-1.amazonaws.com/dantetobar.com";
 
@@ -36,7 +37,6 @@ export async function fetchPhotoManifest(): Promise<IAlbum[]> {
     return [];
   }
 
-
   return manifest.albums.map((album: IAlbum) => {
     return {
       key: album.key,
@@ -55,4 +55,9 @@ export async function fetchPhotoManifest(): Promise<IAlbum[]> {
 
 export const downloadAlbum = (album: IAlbum) => {
   const photos = album.photos.map((photo) => photo.smallUrl);
+};
+
+export const findAlbumFromLocation = (location: Location, albums: IAlbum[]) => {
+  const key = location.pathname.split("/")[2];
+  return albums.find((album) => album.key === key);
 };
