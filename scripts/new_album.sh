@@ -35,3 +35,24 @@ do
 done
 
 nvim $directory/manifest.yaml
+
+# Create new archive index.html
+image=$(cat $directory/manifest.yaml | grep "/albums/$key" | head -n 1 | sed "s/^   - smallUrl: //")
+
+new_file=$desktop/$key/index.html
+cat deployed/index.html > $new_file
+
+sed -i '' 's|\/index|../../index|g' "$new_file"
+sed -i '' 's|\/index|../../index|g' "$new_file"
+sed -i '' 's|\/favicon|../../favicon|g' "$new_file"
+sed -i '' "s|<title>Dante Tobar</title>|<title>$key</title>|" "$new_file"
+sed -i '' "s|<head>|<head><meta property=\"og:image\" content=\"../..$image\" />|" "$new_file"
+
+mkdir $desktop/deploy-$key
+mkdir $desktop/deploy-$key/albums
+mkdir $desktop/deploy-$key/albums/$key
+cp $directory/*.jpg $desktop/deploy-$key/albums/$key
+
+mkdir $desktop/deploy-$key/archive
+mkdir $desktop/deploy-$key/archive/$key
+cp $new_file $desktop/deploy-$key/archive/$key/index.html
