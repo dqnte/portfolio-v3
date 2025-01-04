@@ -43,7 +43,6 @@ new_file=$desktop/$key/index.html
 cat deployed/index.html > $new_file
 
 sed -i '' 's|\/index|../../index|g' "$new_file"
-sed -i '' 's|\/index|../../index|g' "$new_file"
 sed -i '' 's|\/favicon|../../favicon|g' "$new_file"
 sed -i '' "s|<title>Dante Tobar</title>|<title>$key</title>|" "$new_file"
 sed -i '' "s|<head>|<head><meta property=\"og:image\" content=\"../..$image\" />|" "$new_file"
