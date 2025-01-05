@@ -33,7 +33,7 @@
   &--btn,
   &--link {
     @include strikethrough-button;
-    transition: color 200ms;
+    transition: color 300ms;
     font-size: inherit;
     font-weight: inherit;
     font-variant: inherit;
@@ -43,10 +43,7 @@
   &__name {
     justify-self: left;
     opacity: 1;
-
-    transition:
-      color 300ms,
-      opacity 200ms !important;
+    transition: opacity 300ms;
   }
 
   &__bio {

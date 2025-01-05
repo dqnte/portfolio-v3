@@ -9,7 +9,9 @@
 
   display: grid;
   grid-template-rows: 80% 20%;
-  transition: all 250ms;
+  transition:
+    height 250ms,
+    grid-template-rows 250ms;
 
   @media (max-width: $mobile) {
     display: none;

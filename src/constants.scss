@@ -16,20 +16,6 @@ $bg-dark-accent: #0865c0;
 $font-main: "Inter", sans-serif;
 $font-accent: "Space Mono", monospace;
 
-@mixin base-transition {
-  transition: opacity 150ms ease-out;
-}
-
-@mixin transitioning {
-  filter: grayscale(100%);
-  -webkit-filter: grayscale(100%);
-  opacity: 0%;
-
-  transition:
-    filter $first-transition-time ease-in,
-    opacity $second-transition-time ease-out
-      calc($first-transition-time + $first-delay);
-}
 
 @mixin plain-button {
   border: none;
@@ -55,7 +41,8 @@ $font-accent: "Space Mono", monospace;
     width: 0%;
     transition:
       width 200ms,
-      background 200ms;
+      background 300ms;
+
     z-index: -1;
   }
 

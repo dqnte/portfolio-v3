@@ -42,10 +42,16 @@ const Bio = () => {
   return (
     <div className="Bio">
       <h1 className="Bio__name">Dante Tobar</h1>
-      <p className="Bio__text">
-        I'm an engineer & photographer. I shoot both film and digital. Most of
-        my photos are candids, but there are some posed exceptions. Currently, I
-        work at{" "}
+      <div>
+        {" "}
+        <p className="Bio__text">
+          I'm an engineer & photographer. I shoot both film and digital. Most of
+          my photos are candids, but there are some posed exceptions. Currently,
+          I work at
+        </p>{" "}
+        {/* when the a tag was inside the p tag, the animation transition times were */}
+        {/* stacking on eachother. This caused weirdness when transitioning from light */}
+        {/* to dark mode. */}
         <a
           href="https://www.fabrichealth.com/about"
           target="_blank"
@@ -54,9 +60,11 @@ const Bio = () => {
         >
           fabric
         </a>{" "}
-        as a fullstack engineer. If you want to get in contact, feel free to dm
-        me.
-      </p>
+        <p className={"Bio__text"}>
+          as a fullstack engineer. If you want to get in contact, feel free to
+          dm me.
+        </p>
+      </div>
     </div>
   );
 };

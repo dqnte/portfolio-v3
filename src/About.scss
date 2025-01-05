@@ -25,9 +25,13 @@
     justify-content: center;
     align-items: center;
 
+    transition: background 300ms;
+
     & span {
       font-size: 13px;
       font-weight: 600;
+
+      transition: color 300ms;
     }
   }
 
@@ -94,6 +98,15 @@
     @include common-link;
     text-decoration: underline;
   }
+
+  &__name {
+    transition: color 300ms;
+  }
+
+  &__text {
+    display: inline;
+    transition: color 300ms;
+  }
 }
 
 .Socials {
@@ -106,6 +119,8 @@
   &__topline {
     height: 3px;
     width: 100%;
+
+    transition: background 300ms;
   }
 
   &__links {
