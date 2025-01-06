@@ -90,6 +90,10 @@ $mobile: 700px;
   text-decoration: none;
   transition: color 300ms;
 
+  :hover {
+    transition: color 150ms;
+  }
+
   .dark &:hover {
     color: $bg-dark-accent;
   }
