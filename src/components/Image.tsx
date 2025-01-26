@@ -84,7 +84,7 @@ const Image = ({
           style={dimensions}
         />
       )}
-      {true && (
+      {!isLoaded && (
         <div
           className={`Image__loading ${className ?? ""}`}
           style={{

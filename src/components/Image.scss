@@ -1,5 +1,17 @@
 @use "../constants" as *;
 
+@keyframes aimation-loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .Image {
   height: inherit;
   width: inherit;
@@ -16,13 +28,41 @@
 
     height: 100%;
     width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      animation: 2s linear 0.5s infinite normal none running aimation-loading;
+      position: absolute;
+      transform: translateX(-100%);
+      inset: 0px;
+    }
 
     .dark & {
       background-color: $bg-dark-overlay;
+
+      &::after {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.06),
+          transparent
+        );
+      }
     }
 
     .light & {
       background-color: $bg-light-overlay;
+
+      &::after {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 0, 0, 0.03),
+          transparent
+        );
+      }
     }
   }
 
