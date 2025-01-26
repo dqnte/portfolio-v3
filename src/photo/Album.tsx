@@ -197,7 +197,7 @@ export default function Album({ album }: { album: IAlbum }) {
               key={photo.smallUrl}
               onClick={() => openPhoto(photo)}
             >
-              <Image photo={photo} alt={photo.title} />
+              <Image sizeOn={"h"} photo={photo} alt={photo.title} />
             </div>
           ))}
         </motion.div>
@@ -239,6 +239,7 @@ export default function Album({ album }: { album: IAlbum }) {
           >
             <div className="Album-overlay__image">
               <Image
+                sizeOn={"h"}
                 photo={album.photos[selectedIndex]}
                 alt={album.photos[selectedIndex]?.title}
                 onLoad={(e) => sizeImage(e.target)}

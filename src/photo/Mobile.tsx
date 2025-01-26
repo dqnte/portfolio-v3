@@ -1,9 +1,5 @@
 import { IAlbum } from "../utilities";
-import {
-  useMotionValueEvent,
-  useScroll,
-  motion,
-} from "framer-motion";
+import { useMotionValueEvent, useScroll, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "../components/Image";
 
@@ -38,14 +34,15 @@ const AlbumMobile = ({ album }: { album: IAlbum }) => {
               className={"Album-photos__container"}
               key={`photo-${photo.smallUrl}`}
             >
+              <div className={"Album-photos__image"}>
                 <Image
+                  sizeOn={"w"}
                   inViewRef={ref}
                   fetchPriority={i === 0 ? "high" : "low"}
                   key={`image-${photo.smallUrl}`}
                   photo={photo}
-                  containerClassName={"Album-photos__image"}
                 />
-              )
+              </div>
             </div>
           );
         })}

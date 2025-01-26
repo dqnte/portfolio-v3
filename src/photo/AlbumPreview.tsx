@@ -42,6 +42,7 @@ const AlbumPreview = ({
           className={"AlbumPreview__link"}
         >
           <Image
+            sizeOn={"h"}
             onMouseEnter={() => setHover(album)}
             onMouseLeave={() => setHover(null)}
             photo={album.photos[0]}

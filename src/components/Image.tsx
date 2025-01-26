@@ -1,19 +1,42 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { IPhoto } from "../utilities";
 import { useInView } from "framer-motion";
+
+const useRefDimensions = (ref: any) => {
+  const [dimensions, setDimensions] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const { current } = ref;
+    const resizeObserver = new ResizeObserver(() => {
+      const boundingRect = current.getBoundingClientRect();
+      const { width, height } = boundingRect;
+      setDimensions({ width: Math.round(width), height: Math.round(height) });
+    });
+
+    resizeObserver.observe(ref.current);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+  return dimensions;
+};
 
 const Image = ({
   photo,
   className,
-  containerClassName,
   alt,
   onMouseEnter,
   onMouseLeave,
   onLoad,
   shouldLoad = true,
-  useAspect = false,
   fetchPriority,
   inViewRef,
+  sizeOn,
 }: {
   photo: IPhoto;
   className?: string;
@@ -23,9 +46,9 @@ const Image = ({
   onMouseLeave?: () => void;
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement>) => void;
   shouldLoad?: boolean;
-  useAspect?: boolean;
   fetchPriority?: "auto" | "high" | "low";
   inViewRef?: React.RefObject<HTMLDivElement>;
+  sizeOn: "w" | "h";
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(!shouldLoad);
@@ -38,9 +61,17 @@ const Image = ({
   };
 
   const inView = useInView(inViewRef ?? containerRef, { once: true });
+  const aspectRatio = photo.height / photo.width;
+
+  const { width, height } = useRefDimensions(containerRef);
+
+  const dimensions = {
+    width: sizeOn === "h" && height ? height / aspectRatio : undefined,
+    height: sizeOn === "w" && width ? width * aspectRatio : undefined,
+  };
 
   return (
-    <div className={`Image ${containerClassName ?? ""}`} ref={containerRef}>
+    <div className={"Image"} ref={containerRef}>
       {inView && (
         <img
           onLoad={loaded}
@@ -50,14 +81,15 @@ const Image = ({
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           fetchPriority={fetchPriority}
+          style={dimensions}
         />
       )}
-      {!isLoaded && (
+      {true && (
         <div
           className={`Image__loading ${className ?? ""}`}
           style={{
             background: photo?.color,
-            aspectRatio: useAspect && photo.width / photo.height,
+            ...dimensions,
           }}
         />
       )}

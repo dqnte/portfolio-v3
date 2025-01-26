@@ -60,7 +60,7 @@
     scroll-snap-type: x mandatory;
 
     &__container {
-      width: 100vw;
+      width: 100%;
       max-height: 80vh;
 
       scroll-snap-align: start;
@@ -68,15 +68,11 @@
 
     &__image {
       padding: 0 $gutter-width;
+      width: 100vw;
 
       display: flex;
       align-items: center;
       justify-content: center;
-
-      img {
-        max-width: 100%;
-        max-height: 80vh;
-      }
     }
   }
 }
