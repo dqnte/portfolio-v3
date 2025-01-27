@@ -5,6 +5,7 @@ import {
   useScroll,
   useMotionValueEvent,
   type AnimationControls,
+  type MotionValue,
 } from "framer-motion";
 import Image from "../components/Image";
 import East from "@mui/icons-material/East";
@@ -19,9 +20,11 @@ import { useEffect, useState, useRef } from "react";
 const Controls = ({
   carouselRef,
   controls,
+  scrollX,
 }: {
   carouselRef: React.RefObject<HTMLDivElement>;
   controls: AnimationControls;
+  scrollX: MotionValue<number>;
 }) => {
   const [position, setPosition] = useState<"left" | "right" | "center">("left");
 
@@ -50,11 +53,9 @@ const Controls = ({
     });
   };
 
-  const { scrollX } = useScroll({
-    container: carouselRef,
-  });
-
   useMotionValueEvent(scrollX, "change", (latest) => {
+    if (typeof latest !== "number") return;
+
     if (latest === 0) {
       setPosition("left");
     } else if (
@@ -99,6 +100,10 @@ export default function Album({ album }: { album: IAlbum }) {
       carouselRef.current.scrollLeft = 0;
     }
   }, [album.key]);
+
+  const { scrollX } = useScroll({
+    container: carouselRef,
+  });
 
   /*
    * This functions finds the correct size for the image to fit the screen
@@ -182,7 +187,11 @@ export default function Album({ album }: { album: IAlbum }) {
       >
         <div className="Album__title">
           <h1>{album.location}</h1>
-          <Controls carouselRef={carouselRef} controls={controls} />
+          <Controls
+            carouselRef={carouselRef}
+            controls={controls}
+            scrollX={scrollX}
+          />
         </div>
         <motion.div
           className="Album-carousel"
