@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { IAlbum } from "./utilities";
@@ -40,6 +40,7 @@ const Mode = ({
 };
 
 const Name = ({
+  closeMenu,
   headerState,
 }: {
   closeMenu: () => void;
@@ -51,7 +52,7 @@ const Name = ({
 
   return (
     <div className={`Header__name ${headerState === "hidden" ? "hidden" : ""}`}>
-      <Link className={`Header--link ${atHome ? "selected" : ""}`} to="/">
+      <Link className={`Header--link ${atHome ? "selected" : ""}`} to="/" onClick={closeMenu}>
         dante tobar
       </Link>
     </div>
