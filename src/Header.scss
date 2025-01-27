@@ -135,6 +135,11 @@
     &__menu {
       display: flex;
       justify-self: right;
+
+      // hover styles do not disappear on mobile
+      &:not(.selected)::after {
+        width: 0px;
+      }
     }
 
     &__background {
