@@ -37,6 +37,7 @@ const Image = ({
   fetchPriority,
   inViewRef,
   sizeOn,
+  containerClassName,
 }: {
   photo: IPhoto;
   className?: string;
@@ -71,7 +72,7 @@ const Image = ({
   };
 
   return (
-    <div className={"Image"} ref={containerRef}>
+    <div className={`Image ${containerClassName ?? ""}`} ref={containerRef}>
       {inView && (
         <img
           onLoad={loaded}

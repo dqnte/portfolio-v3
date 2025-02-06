@@ -1,28 +1,64 @@
-import { IAlbum, findAlbumFromLocation } from "./utilities";
+import { IAlbum, findAlbumFromLocation, IPhoto } from "./utilities";
 
 import Riser from "./components/Riser";
 import Image from "./components/Image";
 import { useLocation, Link } from "react-router";
 import { useEffect, useState, useMemo } from "react";
 
+import { useBreakpoint } from "./hooks";
+
 const ArchiveAlbum = ({ album }: { album: IAlbum }) => {
+  const breakpoint = useBreakpoint();
+
+  const columns = useMemo(() => {
+    const numCols = breakpoint === "mobile" ? 1 : 2;
+    const sortedColumns: Record<number, IPhoto[]> = {};
+    const heights: Record<number, number> = {};
+
+    for (let i = 0; i < numCols; i++) {
+      sortedColumns[i] = [];
+      heights[i] = 0;
+    }
+
+    album.photos.forEach((photo) => {
+      const height = photo.height / photo.width;
+      const smallestCol = Object.entries(heights).reduce(
+        (smallest, [key, value]) => {
+          return value < heights[smallest] ? key : smallest;
+        },
+        0,
+      );
+      heights[smallestCol] += height;
+      sortedColumns[smallestCol].push(photo);
+    });
+
+    return sortedColumns;
+  }, [album.photos, breakpoint]);
+
   return (
     <Riser motionKey={"Arc-album"}>
-      <h2 className={"Arc-table__title"}>
+      <h2 className={"Arc-album__title"}>
         <Link to={"/archive"} className={"Arc__link"}>
           {".."}
         </Link>{" "}
         / {album.key}
       </h2>
       <div className={"Arc-album"}>
-        {album.photos.map((photo) => (
-          <Image
-            key={photo.smallUrl}
-            className={"Arc-album__image"}
-            photo={photo}
-            sizeOn={"w"}
-          />
-        ))}
+        {Object.values(columns).map((column) => {
+          return (
+            <div className={"Arc-album__column"}>
+              {column.map((photo) => {
+                return (
+                  <Image
+                    photo={photo}
+                    containerClassName={"Arc-album__photo"}
+                    sizeOn={"w"}
+                  />
+                );
+              })}
+            </div>
+          );
+        })}
       </div>
     </Riser>
   );
