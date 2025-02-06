@@ -39,12 +39,68 @@
   padding: $gutter-width;
   padding-top: $header-height;
 
-  &__list {
-    margin: 0;
+  &__title {
+    padding: $gutter-width 0;
   }
 
-  &__item {
-    list-style: none;
-    margin-bottom: 1.5rem;
+  &__year {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gutter-width;
+    padding-bottom: $gutter-width;
+
+    &__album {
+      height: 150px;
+      width: 150px;
+
+      text-decoration: none;
+      background-position: center;
+      background-size: cover;
+
+
+      @media (max-width: $mobile) {
+        width: calc(33.33vw - $gutter-width * 4 / 3);
+        height: calc(33.33vw - $gutter-width * 4 / 3);
+      }
+
+      @media (max-width: 530px) {
+        width: calc(50vw - $gutter-width * 1.5);
+        height: calc(50vw - $gutter-width * 1.5);
+
+      }
+
+      @media (max-width: 370px) {
+        width: calc(100vw - $gutter-width * 2);
+        height: calc(100vw - $gutter-width * 2);
+      }
+    }
+
+    &__overlay {
+      padding: 10px;
+      padding-top: 15px;
+      height: 100%;
+      width: 100%;
+
+      color: $fg-dark-main;
+      font-size: 12px;
+      font-weight: bold;
+      font-variant: small-caps;
+
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      // overlay transition styles
+      background-color: rgba(0, 0, 0, 0.7);
+      transition: opacity 300ms;
+      opacity: 0;
+      &:hover {
+        opacity: 1;
+      }
+
+      > p:last-child {
+        font-weight: normal;
+      }
+    }
   }
 }
