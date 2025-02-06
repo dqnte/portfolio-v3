@@ -2,12 +2,18 @@
 
 .About {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   padding-top: $header-height;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 
   &__container {
     height: min-content;
     width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: $gutter-width;
 
     display: grid;
