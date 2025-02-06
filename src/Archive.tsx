@@ -44,12 +44,13 @@ const ArchiveAlbum = ({ album }: { album: IAlbum }) => {
         / {album.key}
       </h2>
       <div className={"Arc-album"}>
-        {Object.values(columns).map((column) => {
+        {Object.values(columns).map((column, i) => {
           return (
-            <div className={"Arc-album__column"}>
+            <div className={"Arc-album__column"} key={i}>
               {column.map((photo) => {
                 return (
                   <Image
+                    key={photo.smallUrl}
                     photo={photo}
                     containerClassName={"Arc-album__photo"}
                     sizeOn={"w"}
@@ -88,7 +89,14 @@ const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
   const albumsByYear = useMemo(() => {
     const byYear = albums.reduce(
       (acc, album) => {
-        const year = album.key.split("-")[0];
+        let year = album.key.split("-")[0];
+
+        if (Number(year) < 23) {
+          year = "etc...";
+        } else {
+          year = "20" + year;
+        }
+
         if (!acc[year]) {
           acc[year] = [];
         }
@@ -107,6 +115,9 @@ const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
 
     // sort years
     return Object.entries(byYear).sort((a, b) => {
+      if (a[0] === "etc...") {
+        return 1;
+      }
       return a[0] > b[0] ? -1 : 1;
     });
   }, [albums]);
@@ -115,12 +126,13 @@ const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
     <Riser motionKey={"Arc-table"}>
       {albumsByYear.map(([year, albums]) => {
         return (
-          <div>
-            <h2 className={"Arc-table__title"}>20{year}</h2>
+          <div key={year}>
+            <h2 className={"Arc-table__title"}>{year}</h2>
             <div className={"Arc-table__year"}>
               {albums.map((album) => {
                 return (
                   <Link
+                    key={album.key}
                     className={"Arc-table__year__album"}
                     to={`/archive/${album.key}`}
                     style={{
