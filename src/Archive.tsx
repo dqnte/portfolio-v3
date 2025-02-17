@@ -113,13 +113,17 @@ const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
       });
     });
 
-    // sort years
-    return Object.entries(byYear).sort((a, b) => {
-      if (a[0] === "etc...") {
-        return 1;
-      }
-      return a[0] > b[0] ? -1 : 1;
-    });
+    const etc = byYear["etc..."];
+
+    const sorted = Object.entries(byYear)
+    // pull out etc since sorting didn't work on firefox
+      .filter((a) => a[0] !== "etc...")
+      .sort((a, b) => {
+        return a[0] > b[0] ? -1 : 1;
+      });
+
+    sorted.push(["etc...", etc]);
+    return sorted
   }, [albums]);
 
   return (
