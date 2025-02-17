@@ -6,9 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 const Menu = ({
   show,
   closeMenu,
+  setDarkTheme,
+  useDarkTheme,
 }: {
   show: boolean;
   closeMenu: () => void;
+  setDarkTheme: (value: boolean) => void;
+  useDarkTheme: boolean;
 }) => {
   const [hoverPage, setHoverPage] = useState(null);
 
@@ -43,9 +47,9 @@ const Menu = ({
       {show && (
         <motion.div
           className="Menu"
-          initial={{ height: "0vh" }}
+          initial={{ height: "0dvh" }}
           animate={{
-            height: "100vh",
+            height: "100dvh",
             transition: {
               duration: SLIDE_IN,
               type: "tween",
@@ -83,26 +87,46 @@ const Menu = ({
             </Link>
           </motion.div>
           <motion.div
-            className="Menu-socials"
+            className="Menu-bottom"
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
-              transition: { delay: SLIDE_IN + TEXT_IN + 0.025 },
+              transition: { delay: SLIDE_IN + TEXT_IN },
             }}
             exit={{ opacity: 0 }}
           >
-            <a
-              href="https://www.instagram.com/dantistador/"
-              className="Menu-socials__link"
-            >
-              instagram
-            </a>
-            <a
-              href="https://www.linkedin.com/in/dante-m-tobar/"
-              className="Menu-socials__link"
-            >
-              linkedin
-            </a>
+            <motion.div className="Menu-socials">
+              <a
+                href="https://www.instagram.com/dantistador/"
+                className="Menu-socials__link"
+              >
+                instagram
+              </a>
+              <a
+                href="https://www.linkedin.com/in/dante-m-tobar/"
+                className="Menu-socials__link"
+              >
+                linkedin
+              </a>
+            </motion.div>
+            <div className={"Menu-controls"}>
+              <button
+                className={`Menu-controls__link ${useDarkTheme ? "selected" : ""}`}
+                onClick={() => {
+                  setDarkTheme(true);
+                }}
+              >
+                dark
+              </button>
+              <button
+                className={`Menu-controls__link ${useDarkTheme ? "" : "selected"}`}
+                onClick={() => {
+                  setDarkTheme(false);
+                }}
+              >
+                light
+              </button>
+            </div>
           </motion.div>
         </motion.div>
       )}

@@ -16,7 +16,9 @@ function App() {
   /* --- IMAGES --- */
   const [albums, setAlbums] = useState([]);
   useEffect(() => {
-    console.log("ok hacker... u can find the source code here: http://github.com/dqnte/portfolio-v3");
+    console.log(
+      "ok hacker... u can find the source code here: http://github.com/dqnte/portfolio-v3",
+    );
     fetchPhotoManifest().then((albums) => {
       setAlbums(albums);
     });
@@ -41,7 +43,7 @@ function App() {
 
   return (
     <BrowserRouter>
-     <div className={`App ${useDarkTheme ? "dark" : "light"}`}>
+      <div className={`App ${useDarkTheme ? "dark" : "light"}`}>
         <Header
           useDarkTheme={useDarkTheme}
           setDarkTheme={setDarkTheme}
@@ -50,7 +52,12 @@ function App() {
           showMenu={showMenu}
           albums={albums}
         />
-        <Menu closeMenu={closeMenu} show={showMenu} />
+        <Menu
+          closeMenu={closeMenu}
+          show={showMenu}
+          setDarkTheme={setDarkTheme}
+          useDarkTheme={useDarkTheme}
+        />
         <Routes>
           {<Route path="/*" element={<Photo albums={albums} />} />}
           <Route path="/about" element={<About />} />
