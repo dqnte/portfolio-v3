@@ -1,66 +1,24 @@
 @use "../constants" as *;
 
-.Album {
-  height: 100%;
-
-  display: grid;
-  position: relative;
-  grid-template-rows: 1fr 10fr;
-  overflow: hidden;
-
-  &__title {
-    padding: $gutter-width;
-    padding-bottom: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-
-    font-family: $font-accent;
-  }
-}
-
-.Album-controls {
-  display: flex;
-  gap: 1rem;
-
-  &__btn {
-    @include plain-button;
-    transition: opacity 300ms;
-
-    &:disabled {
-      color: grey !important;
-    }
-
-    .dark & {
-      color: $fg-dark-main;
-
-      &:hover {
-        color: $bg-dark-accent;
-      }
-    }
-
-    .light & {
-      color: $fg-light-main;
-
-      &:hover {
-        color: $bg-light-accent;
-      }
-    }
-  }
-}
-
-.Album-carousel {
+.PhotoGrid {
   @include sans-scrollbar;
-  height: 100%;
-  padding: $gutter-width 0;
-  display: flex;
-  overflow-x: scroll;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: $gutter-width;
+  width: 100%;
+  max-width: 1200px;
+  justify-self: center;
+
+  &__column {
+    @include sans-scrollbar;
+    display: flex;
+    flex-direction: column;
+    gap: $gutter-width;
+    width: 100%;
+  }
 
   &__photo {
-    height: 100%;
-    padding-left: $gutter-width;
+    width: 100%;
 
     display: flex;
     position: relative;
@@ -69,23 +27,16 @@
     img {
       height: inherit;
     }
-
-    &:first-child {
-      padding-left: $gutter-width;
-    }
-
-    &:last-child {
-      padding-right: $gutter-width;
-    }
   }
 }
 
-.Album-overlay {
+.PhotoGrid-overlay {
   height: 100vh;
   width: 100vw;
 
-  position: absolute;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 1000;
   overflow: hidden;
 
@@ -104,18 +55,18 @@
     cursor: default;
 
     &.portrait {
-      .Album-overlay__image {
+      .PhotoGrid-overlay__image {
         flex-direction: column;
       }
 
-      .Album-overlay__info {
+      .PhotoGrid-overlay__info {
         padding: 0 $gutter-width;
         height: $gutter-width * 4;
       }
     }
 
     &.landscape {
-      .Album-overlay__info {
+      .PhotoGrid-overlay__info {
         padding: $gutter-width 0;
         width: $gutter-width * 4;
         writing-mode: vertical-rl;

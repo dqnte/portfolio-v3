@@ -144,6 +144,7 @@
 
     &__background {
       height: $header-height-mobile;
+      transition: opacity 300ms;
     }
   }
 }

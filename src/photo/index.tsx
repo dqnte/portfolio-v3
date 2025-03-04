@@ -1,12 +1,13 @@
 import { IAlbum, findAlbumFromLocation } from "../utilities";
-import Album from "./Album";
 import PhotoMobile from "./Mobile";
 import { useLocation } from "react-router";
 import AlbumPreview from "./AlbumPreview";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useBreakpoint } from "../hooks";
 import Riser from "../components/Riser";
+import PhotoGrid from "../components/PhotoGrid";
+import ScrollTop from "../components/ScrollTop";
 
 const Photo = ({ albums }: { albums: IAlbum[] }) => {
   const location = useLocation();
@@ -36,21 +37,28 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
         {breakpoint === "mobile" ? (
           <PhotoMobile albums={displayableAlbums} />
         ) : (
-          <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
-            {selectedAlbum ? (
-              <Album album={selectedAlbum} />
-            ) : (
-              <motion.div className="Photo-empty">
-                <h1 className={"Photo-empty__title"}>Dante Tobar</h1>
-              </motion.div>
-            )}
-            <AlbumPreview
-              albums={displayableAlbums}
-              selectedAlbum={selectedAlbum}
-            />
-          </div>
+          <AnimatePresence>
+            <Riser motionKey={selectedAlbum?.key}>
+              <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
+                <h1 className={"Photo__title"}>
+                  {selectedAlbum?.location ?? "Dante Tobar"}
+                </h1>
+                <div className={"Photo-container"}>
+                  {selectedAlbum ? (
+                    <PhotoGrid photos={selectedAlbum.photos} numCols={2} />
+                  ) : (
+                    <AlbumPreview
+                      albums={displayableAlbums}
+                      selectedAlbum={selectedAlbum}
+                    />
+                  )}
+                </div>
+              </div>
+            </Riser>
+          </AnimatePresence>
         )}
       </Riser>
+      <ScrollTop />
     </AnimatePresence>
   );
 };

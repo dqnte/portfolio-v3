@@ -6,11 +6,11 @@
 
   &__bio {
     padding: $gutter-width;
-    padding-top: 30vh;
+    padding-top: 0;
     padding-bottom: 0;
 
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     font-variant: small-caps;
   }
 
@@ -23,9 +23,19 @@
     height: 3px;
     width: 80px;
     margin: calc($gutter-width * 2) 0;
+    margin-top: 30px;
     margin-left: $gutter-width;
+    margin-bottom: calc($gutter-width * 7);
 
     display: flex;
+
+    .dark & {
+      background-color: $fg-dark-main;
+    }
+
+    .light & {
+      background-color: $fg-light-main;
+    }
   }
 
   .Album-mobile {
@@ -61,8 +71,6 @@
 
     &__container {
       width: 100%;
-      max-height: 80vh;
-
       scroll-snap-align: start;
     }
 

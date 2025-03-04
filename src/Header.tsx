@@ -51,7 +51,7 @@ const Name = ({
   const atHome = key === "/";
 
   return (
-    <div className={`Header__name ${headerState === "hidden" ? "hidden" : ""}`}>
+    <div className={`Header__name ${headerState === "hidden" ? "" : ""}`}>
       <Link className={`Header--link ${atHome ? "selected" : ""}`} to="/" onClick={closeMenu}>
         dante tobar
       </Link>
@@ -166,7 +166,7 @@ const Header = ({
 
   return (
     <>
-      <span className={"Header__background"} />
+      <span className={`Header__background ${headerState === 'hidden'? 'hidden' : ''}`} />
       <div className={`Header ${showMenu ? "Header--open" : ""}`}>
         <Name closeMenu={closeMenu} headerState={headerState} />
         <div className={"Header__bio"}>

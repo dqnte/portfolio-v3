@@ -1,0 +1,37 @@
+@use "../constants" as *;
+
+.ScrollTop {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $gutter-width;
+  padding-bottom: calc($gutter-width * 2);
+
+  &__button {
+    @include plain-button;
+    padding: 20px;
+    border-radius: 50%;
+    transition: background 200ms, color 200ms, border-color 200ms;
+
+    .light & {
+      border: 1px solid $fg-light-main;
+    }
+
+    .dark & {
+      border: 1px solid $fg-dark-main;
+    }
+
+    &:hover {
+      .light & {
+        color: $bg-light-accent;
+        border-color: $bg-light-accent;
+      }
+
+      .dark & {
+        color: $bg-dark-accent;
+        border-color: $bg-dark-accent;
+      }
+    }
+  }
+}

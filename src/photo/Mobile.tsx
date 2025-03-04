@@ -2,6 +2,7 @@ import { IAlbum } from "../utilities";
 import { useMotionValueEvent, useScroll, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "../components/Image";
+import ScrollTop from "../components/ScrollTop";
 
 const AlbumMobile = ({ album }: { album: IAlbum }) => {
   const ref = useRef(null);
@@ -60,7 +61,6 @@ const PhotoMobile = ({ albums }: { albums: IAlbum[] }) => {
   return (
     <div className={"Photo-mobile"}>
       <div className={"Photo-mobile__bio"}>
-        <h2 className={"Photo-mobile__header"}>Dante Tobar</h2>
         <p>photographer - engineer</p>
         <p>based in nyc</p>
       </div>
@@ -68,6 +68,7 @@ const PhotoMobile = ({ albums }: { albums: IAlbum[] }) => {
       {albums.map((album) => {
         return <AlbumMobile key={album.key} album={album} />;
       })}
+      <ScrollTop />
     </div>
   );
 };

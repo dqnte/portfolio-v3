@@ -42,19 +42,15 @@ const AlbumPreview = ({
           className={"AlbumPreview__link"}
         >
           <Image
-            sizeOn={"h"}
+            sizeOn={"w"}
             onMouseEnter={() => setHover(album)}
             onMouseLeave={() => setHover(null)}
             photo={album.photos[0]}
             alt={album.location}
             className={`${showHoverStyles(album) ? "show" : ""} AlbumPreview__image`}
           />
-          <span
-            className={`${showHoverStyles(album) && selectedAlbum ? "show" : ""} AlbumPreview__indicator`}
-          />
         </Link>
       ))}
-      <div className="AlbumPreview__trailer" />
     </div>
   );
 };

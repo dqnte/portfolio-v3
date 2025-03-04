@@ -1,39 +1,15 @@
-import { IAlbum, findAlbumFromLocation, IPhoto } from "./utilities";
+import { IAlbum, findAlbumFromLocation } from "./utilities";
 
 import Riser from "./components/Riser";
-import Image from "./components/Image";
+import ScrollTop from "./components/ScrollTop";
+import PhotoGrid from "./components/PhotoGrid";
 import { useLocation, Link } from "react-router";
 import { useEffect, useState, useMemo } from "react";
-
 import { useBreakpoint } from "./hooks";
 
 const ArchiveAlbum = ({ album }: { album: IAlbum }) => {
   const breakpoint = useBreakpoint();
-
-  const columns = useMemo(() => {
-    const numCols = breakpoint === "mobile" ? 1 : 2;
-    const sortedColumns: Record<number, IPhoto[]> = {};
-    const heights: Record<number, number> = {};
-
-    for (let i = 0; i < numCols; i++) {
-      sortedColumns[i] = [];
-      heights[i] = 0;
-    }
-
-    album.photos.forEach((photo) => {
-      const height = photo.height / photo.width;
-      const smallestCol = Object.entries(heights).reduce(
-        (smallest, [key, value]) => {
-          return value < heights[smallest] ? key : smallest;
-        },
-        0,
-      );
-      heights[smallestCol] += height;
-      sortedColumns[smallestCol].push(photo);
-    });
-
-    return sortedColumns;
-  }, [album.photos, breakpoint]);
+  const numCols = breakpoint === "mobile" ? 1 : 2;
 
   return (
     <Riser motionKey={"Arc-album"}>
@@ -43,23 +19,8 @@ const ArchiveAlbum = ({ album }: { album: IAlbum }) => {
         </Link>{" "}
         / {album.key}
       </h2>
-      <div className={"Arc-album"}>
-        {Object.values(columns).map((column, i) => {
-          return (
-            <div className={"Arc-album__column"} key={i}>
-              {column.map((photo) => {
-                return (
-                  <Image
-                    key={photo.smallUrl}
-                    photo={photo}
-                    containerClassName={"Arc-album__photo"}
-                    sizeOn={"w"}
-                  />
-                );
-              })}
-            </div>
-          );
-        })}
+      <div className={"Arc-album__photo"}>
+        <PhotoGrid photos={album.photos} numCols={numCols} />
       </div>
     </Riser>
   );
@@ -116,21 +77,22 @@ const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
     const etc = byYear["etc..."];
 
     const sorted = Object.entries(byYear)
-    // pull out etc since sorting didn't work on firefox
+      // pull out etc since sorting didn't work on firefox
       .filter((a) => a[0] !== "etc...")
       .sort((a, b) => {
         return a[0] > b[0] ? -1 : 1;
       });
 
-    sorted.push(["etc...", etc]);
-    return sorted
+    if (etc) sorted.push(["etc...", etc]);
+
+    return sorted;
   }, [albums]);
 
   return (
     <Riser motionKey={"Arc-table"}>
       {albumsByYear.map(([year, albums]) => {
         return (
-          <div key={year}>
+          <div key={year} className={"Arc-table"}>
             <h2 className={"Arc-table__title"}>{year}</h2>
             <div className={"Arc-table__year"}>
               {albums.map((album) => {
@@ -175,13 +137,16 @@ const Archive = ({ albums }: { albums: IAlbum[] }) => {
   }, [location, albums]);
 
   return (
-    <div className={"Arc"}>
-      {selectedAlbum ? (
-        <ArchiveAlbum album={selectedAlbum} />
-      ) : (
-        <ArchiveTable albums={albums} />
-      )}
-    </div>
+    <>
+      <div className={"Arc"}>
+        {selectedAlbum ? (
+          <ArchiveAlbum album={selectedAlbum} />
+        ) : (
+          <ArchiveTable albums={albums} />
+        )}
+      </div>
+      <ScrollTop />
+    </>
   );
 };
 

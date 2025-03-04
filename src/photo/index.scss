@@ -1,14 +1,10 @@
 @use "../constants" as *;
-@use "Album";
 @use "Mobile";
 @use "AlbumPreview";
 
 .Photo {
-  height: 100vh;
   padding-top: $header-height;
-
   display: grid;
-  grid-template-rows: 80% 20%;
   transition:
     height 250ms,
     grid-template-rows 250ms;
@@ -21,34 +17,28 @@
     }
   }
 
-  &.show-none {
-    height: 80vh;
-    grid-template-rows: 60% 40%;
+  &-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: $gutter-width;
   }
 
-  &-empty {
-    height: 100%;
-    padding-bottom: $gutter-width;
+  &__title {
+    width: 100%;
+    padding: calc(2 * $gutter-width);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    transition: all 200ms ease-in-out;
+    font-size: 5rem;
+    font-family: $font-accent;
+    text-align: center;
 
-    &__title {
-      width: 100%;
-      padding: 0 $gutter-width;
+    .dark & {
+      color: white;
+    }
 
-      transition: all 200ms ease-in-out;
-      font-size: 5rem;
-      font-family: $font-accent;
-
-      .dark & {
-        color: white;
-      }
-
-      .light & {
-        color: black;
-      }
+    .light & {
+      color: black;
     }
   }
 }

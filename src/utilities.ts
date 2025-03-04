@@ -12,6 +12,8 @@ export interface IPhoto {
   width: number;
   color?: string;
   title: string;
+  date: string;
+  location: string;
 }
 
 export interface IAlbum {
@@ -47,6 +49,8 @@ export async function fetchPhotoManifest(): Promise<IAlbum[]> {
         return {
           ...photo,
           smallUrl: `${BASE_URL}${photo.smallUrl}`,
+          location: album.location,
+          date: album.date,
         };
       }),
     };
@@ -61,3 +65,29 @@ export const findAlbumFromLocation = (location: Location, albums: IAlbum[]) => {
   const key = location.pathname.split("/")[2];
   return albums.find((album) => album.key === key);
 };
+
+export const mapPhotosToColumns = (photos: IPhoto[], numCols: number): Record<number, IPhoto[]> => {
+  const sortedColumns: Record<number, IPhoto[]> = {};
+  const heights: Record<number, number> = {};
+
+  for (let i = 0; i < numCols; i++) {
+    sortedColumns[i] = [];
+    heights[i] = 0;
+  }
+
+  photos.forEach((photo) => {
+    const height = photo.height / photo.width;
+    const smallestCol = Object.entries(heights).reduce(
+      (smallest, [key, value]) => {
+        return value < heights[smallest] ? key : smallest;
+      },
+      0,
+    );
+
+    heights[smallestCol] += height;
+    sortedColumns[smallestCol].push(photo);
+  });
+
+  return sortedColumns;
+};
+
