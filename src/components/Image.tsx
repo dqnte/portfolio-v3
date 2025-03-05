@@ -67,8 +67,8 @@ const Image = ({
   const { width, height } = useRefDimensions(containerRef);
 
   const dimensions = {
-    width: sizeOn === "h" && height ? height / aspectRatio : undefined,
-    height: sizeOn === "w" && width ? width * aspectRatio : undefined,
+    width: sizeOn === "h" && height ? height / aspectRatio : "100%",
+    height: sizeOn === "w" && width ? width * aspectRatio : "100%",
   };
 
   return (
