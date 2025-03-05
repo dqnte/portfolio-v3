@@ -43,7 +43,7 @@ $font-accent: "Space Mono", monospace;
       width 200ms,
       background 300ms;
 
-    z-index: -1;
+    z-index: 1;
   }
 
   &:hover::after,

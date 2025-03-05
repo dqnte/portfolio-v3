@@ -8,6 +8,35 @@ import { useBreakpoint } from "../hooks";
 import Riser from "../components/Riser";
 import PhotoGrid from "../components/PhotoGrid";
 import ScrollTop from "../components/ScrollTop";
+import { Link } from "react-router";
+
+const Title = ({
+  selectedAlbum,
+  albums,
+}: {
+  selectedAlbum: IAlbum | null;
+  albums: IAlbum[];
+}) => {
+  const prevAlbum = albums[albums.indexOf(selectedAlbum) - 1];
+  const nextAlbum = albums[albums.indexOf(selectedAlbum) + 1];
+
+  return (
+    <div className={`Photo__title ${selectedAlbum ? "" : "empty"}`}>
+      {selectedAlbum && (
+        <div className={"Photo__title_buttons"}>
+          <Link to={"/"}>home</Link>
+        </div>
+      )}
+      <h1>{selectedAlbum?.location ?? "Dante Tobar"}</h1>
+      {selectedAlbum && (
+        <div className={"Photo__title_buttons"}>
+          {prevAlbum && <Link to={`/photo/${prevAlbum.key}`}>prev</Link>}
+          {nextAlbum && <Link to={`/photo/${nextAlbum.key}`}>next</Link>}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Photo = ({ albums }: { albums: IAlbum[] }) => {
   const location = useLocation();
@@ -23,6 +52,9 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
       const currentAlbum = findAlbumFromLocation(location, albums);
       setAlbum(currentAlbum);
     }
+
+    window.scrollTo(0, 0);
+
   }, [location, albums]);
 
   const displayableAlbums = albums.filter(
@@ -40,9 +72,10 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
           <AnimatePresence>
             <Riser motionKey={selectedAlbum?.key}>
               <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
-                <h1 className={"Photo__title"}>
-                  {selectedAlbum?.location ?? "Dante Tobar"}
-                </h1>
+                <Title
+                  selectedAlbum={selectedAlbum}
+                  albums={displayableAlbums}
+                />
                 <div className={"Photo-container"}>
                   {selectedAlbum ? (
                     <PhotoGrid photos={selectedAlbum.photos} numCols={2} />

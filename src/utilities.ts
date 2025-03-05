@@ -61,7 +61,7 @@ export const downloadAlbum = (album: IAlbum) => {
   const photos = album.photos.map((photo) => photo.smallUrl);
 };
 
-export const findAlbumFromLocation = (location: Location, albums: IAlbum[]) => {
+export const findAlbumFromLocation = (location: Location, albums: IAlbum[]): IAlbum => {
   const key = location.pathname.split("/")[2];
   return albums.find((album) => album.key === key);
 };
