@@ -2,7 +2,6 @@
 
 .AlbumPreview {
   @include sans-scrollbar;
-  padding: $gutter-width;
   padding-top: 0;
 
   gap: $gutter-width;

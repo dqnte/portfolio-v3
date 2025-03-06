@@ -2,7 +2,6 @@ import { IAlbum } from "../utilities";
 import { useMotionValueEvent, useScroll, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "../components/Image";
-import ScrollTop from "../components/ScrollTop";
 
 const AlbumMobile = ({ album }: { album: IAlbum }) => {
   const ref = useRef(null);
@@ -68,7 +67,6 @@ const PhotoMobile = ({ albums }: { albums: IAlbum[] }) => {
       {albums.map((album) => {
         return <AlbumMobile key={album.key} album={album} />;
       })}
-      <ScrollTop />
     </div>
   );
 };

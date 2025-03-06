@@ -54,7 +54,6 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
     }
 
     window.scrollTo(0, 0);
-
   }, [location, albums]);
 
   const displayableAlbums = albums.filter(
@@ -64,12 +63,12 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
   const breakpoint = useBreakpoint();
 
   return (
-    <AnimatePresence>
+    <AnimatePresence key={"Photo"}>
       <Riser>
         {breakpoint === "mobile" ? (
           <PhotoMobile albums={displayableAlbums} />
         ) : (
-          <AnimatePresence>
+          <AnimatePresence key={"PhotoDesktop"}>
             <Riser motionKey={selectedAlbum?.key}>
               <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
                 <Title
@@ -91,7 +90,7 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
           </AnimatePresence>
         )}
       </Riser>
-      <ScrollTop />
+      <ScrollTop key={'photo'}/>
     </AnimatePresence>
   );
 };

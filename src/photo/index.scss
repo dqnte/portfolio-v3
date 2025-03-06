@@ -22,7 +22,8 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    padding-bottom: $gutter-width;
+    padding: $gutter-width;
+    padding-top: 0;
   }
 
   &__title {
@@ -30,6 +31,7 @@
     display: grid;
     grid-template-columns: min-content 1fr min-content;
 
+    padding: $gutter-width;
     padding-top: calc(2 * $gutter-width);
     padding-bottom: calc(3 * $gutter-width);
     max-width: 1200px;
@@ -42,6 +44,7 @@
     h1 {
       font-size: 3rem;
       grid-column: 2;
+      padding: 0 calc(2 * $gutter-width);
     }
 
     &.empty h1 {

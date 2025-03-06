@@ -81,7 +81,7 @@ const Image = ({
           alt={alt}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          fetchPriority={fetchPriority}
+          fetchpriority={fetchPriority}
           style={dimensions}
         />
       )}

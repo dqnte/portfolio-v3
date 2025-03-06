@@ -3,6 +3,7 @@
 .Arc {
   padding: $gutter-width;
   padding-top: $header-height;
+  min-height: 100vh;
 
   @media (max-width: $mobile) {
     padding-top: $header-height-mobile;
