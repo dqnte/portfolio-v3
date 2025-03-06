@@ -5,7 +5,6 @@ import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
 import { IPhoto, mapPhotosToColumns } from "../utilities";
 
-import { useBreakpoint } from "../hooks";
 import { useState } from "react";
 
 export default function PhotoGrid({
@@ -17,7 +16,6 @@ export default function PhotoGrid({
 }) {
   const numColumns = numCols || 3;
   const columns = mapPhotosToColumns(photos, numColumns);
-
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [orientation, setOrientation] = useState(null);
 
@@ -140,25 +138,28 @@ export default function PhotoGrid({
             >
               <ChevronLeft />
             </button>
-            <motion.div
-              className={`PhotoGrid-overlay__photo ${orientation}`}
-              initial={{ y: 10 }}
-              animate={{ y: 0, transition: { duration: 0.2 } }}
-              exit={{ y: 10 }}
-            >
-              <div className="PhotoGrid-overlay__image">
-                <Image
-                  sizeOn={"h"}
-                  photo={photos[selectedIndex]}
-                  alt={photos[selectedIndex]?.title}
-                  onLoad={(e) => sizeImage(e.target)}
-                />
-                <div className="PhotoGrid-overlay__info">
-                  <h4>{photos[selectedIndex].date}</h4>
-                  <h4>{photos[selectedIndex].camera}</h4>
+            <AnimatePresence>
+              <motion.div
+                key={selectedIndex}
+                className={`PhotoGrid-overlay__photo ${orientation}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.2 } }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="PhotoGrid-overlay__image">
+                  <Image
+                    sizeOn={"h"}
+                    photo={photos[selectedIndex]}
+                    alt={photos[selectedIndex]?.title}
+                    onLoad={(e) => sizeImage(e.target)}
+                  />
+                  <div className="PhotoGrid-overlay__info">
+                    <h4>{photos[selectedIndex].date}</h4>
+                    <h4>{photos[selectedIndex].camera}</h4>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>

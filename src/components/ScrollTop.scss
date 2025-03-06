@@ -13,24 +13,18 @@
     @include plain-button;
     padding: 20px;
     border-radius: 50%;
-    transition:
-      background 200ms,
-      color 200ms,
-      border-color 200ms;
     height: 70px;
     width: 70px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     font-variant: small-caps;
 
     .light & {
       color: $fg-light-main;
-      border: 2px solid $fg-light-main;
     }
 
     .dark & {
       color: $fg-dark-main;
-      border: 2px solid $fg-dark-main;
     }
   }
 }
