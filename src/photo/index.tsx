@@ -24,13 +24,12 @@ const Title = ({
     <div className={`Photo__title ${selectedAlbum ? "" : "empty"}`}>
       {selectedAlbum && (
         <div className={"Photo__title_buttons"}>
-          <Link to={"/"}>home</Link>
+          {prevAlbum && <Link to={`/photo/${prevAlbum.key}`}>prev</Link>}
         </div>
       )}
       <h1>{selectedAlbum?.location ?? "Dante Tobar"}</h1>
       {selectedAlbum && (
         <div className={"Photo__title_buttons"}>
-          {prevAlbum && <Link to={`/photo/${prevAlbum.key}`}>prev</Link>}
           {nextAlbum && <Link to={`/photo/${nextAlbum.key}`}>next</Link>}
         </div>
       )}

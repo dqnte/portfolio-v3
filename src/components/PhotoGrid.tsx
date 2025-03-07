@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "../components/Image";
+import HoverButton from "../components/HoverButton";
 import Close from "@mui/icons-material/Close";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
@@ -33,7 +34,7 @@ export default function PhotoGrid({
     const aspectRatio = image.naturalWidth / image.naturalHeight;
 
     const windowWidth =
-      document.documentElement.clientWidth - closeButtonWidth * 2;
+      document.documentElement.clientWidth - closeButtonWidth - gutter * 4;
     const windowHeight = document.documentElement.clientHeight;
 
     // using this because of the container Image component
@@ -119,25 +120,27 @@ export default function PhotoGrid({
             exit={{ opacity: 0 }}
           >
             <button
-              className={"PhotoGrid-overlay__controls close"}
+              className="PhotoGrid-overlay__controls close"
               onClick={() => setSelectedIndex(null)}
             >
-              <Close />
+              exit
             </button>
-            <button
+            <HoverButton
               disabled={selectedIndex === photos.length - 1}
               className={"PhotoGrid-overlay__controls next"}
               onClick={nextPhoto}
-            >
-              <ChevronRight />
-            </button>
-            <button
+              component={<ChevronRight />}
+              text={"next"}
+              direction={"right"}
+            />
+            <HoverButton
               disabled={selectedIndex === 0}
               className={"PhotoGrid-overlay__controls prev"}
               onClick={prevPhoto}
-            >
-              <ChevronLeft />
-            </button>
+              component={<ChevronLeft />}
+              text={"prev"}
+              direction={"left"}
+            />
             <AnimatePresence>
               <motion.div
                 key={selectedIndex}

@@ -1,0 +1,22 @@
+@use "../constants" as *;
+
+.HoverButton {
+  @include plain-button;
+  padding: 20px;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  font-size: 14px;
+  font-weight: bold;
+  font-variant: small-caps;
+
+  padding: $gutter-width;
+
+  .light & {
+    color: $fg-light-main;
+  }
+
+  .dark & {
+    color: $fg-dark-main;
+  }
+}

@@ -43,7 +43,6 @@
   &__photo {
     width: 100vw;
     height: 100vh;
-    padding: $gutter-width;
 
     position: absolute;
     top: 0;
@@ -94,18 +93,12 @@
 
   &__controls {
     @include plain-button;
-    margin: $gutter-width;
 
     position: absolute;
     z-index: 1001;
 
     font-weight: bold;
     font-variant: small-caps;
-    transition: color 200ms;
-
-    &:hover {
-      color: $bg-light-accent;
-    }
 
     &:disabled {
       color: grey !important;
@@ -116,21 +109,28 @@
     }
 
     &.close {
+      @include strikethrough-button;
+      margin: $gutter-width;
+      font-size: 14px;
+      position: absolute;
       top: 0;
       right: 0;
-      svg {
-        font-size: 1.5rem;
+
+      .light &::after {
+        background: $fg-light-main;
+      }
+
+      .dark &::after {
+        background: $fg-dark-main;
       }
     }
 
     &.prev {
-      margin: 0 $gutter-width;
       left: 0;
       top: calc(50% - 1rem);
     }
 
     &.next {
-      margin: 0 $gutter-width;
       right: 0;
       top: calc(50% - 1rem);
     }
@@ -142,14 +142,6 @@
     &__info {
       background: #000;
     }
-
-    &__controls {
-      color: $fg-dark-main;
-
-      &:hover {
-        color: $bg-dark-accent;
-      }
-    }
   }
 
   .light & {
@@ -159,12 +151,5 @@
       background: #fff;
     }
 
-    &__controls {
-      color: $fg-light-main;
-
-      &:hover {
-        color: $bg-light-accent;
-      }
-    }
   }
 }
