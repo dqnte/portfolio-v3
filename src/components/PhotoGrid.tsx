@@ -75,6 +75,9 @@ export default function PhotoGrid({
 
   const openPhoto = (photo: IPhoto) => {
     const index = photos.indexOf(photo);
+    // disable scrolling
+    document.body.style.overflow = "hidden";
+
     setSelectedIndex(index);
   };
 
@@ -86,9 +89,15 @@ export default function PhotoGrid({
     setSelectedIndex(selectedIndex - 1);
   };
 
+  const closeOverlay = () => {
+    // enable scrolling
+    document.body.style.overflow = "auto";
+    setSelectedIndex(null);
+  }
+
   return (
     <div
-      className="PhotoGrid"
+      className={ `PhotoGrid ${selectedIndex && 'overlay-open'}` }
       style={{
         gridTemplateColumns: `${[...Array(numColumns)]
           .map(() => "1fr")
@@ -121,7 +130,7 @@ export default function PhotoGrid({
           >
             <button
               className="PhotoGrid-overlay__controls close"
-              onClick={() => setSelectedIndex(null)}
+              onClick={closeOverlay}
             >
               exit
             </button>
