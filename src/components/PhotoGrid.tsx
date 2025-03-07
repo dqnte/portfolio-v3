@@ -93,11 +93,11 @@ export default function PhotoGrid({
     // enable scrolling
     document.body.style.overflow = "auto";
     setSelectedIndex(null);
-  }
+  };
 
   return (
     <div
-      className={ `PhotoGrid ${selectedIndex && 'overlay-open'}` }
+      className={`PhotoGrid ${selectedIndex && "overlay-open"}`}
       style={{
         gridTemplateColumns: `${[...Array(numColumns)]
           .map(() => "1fr")
@@ -167,6 +167,11 @@ export default function PhotoGrid({
                   />
                   <div className="PhotoGrid-overlay__info">
                     <h4>{photos[selectedIndex].date}</h4>
+                    <div className="PhotoGrid-overlay__info_count">
+                      <span>{selectedIndex + 1}</span>
+                      <span>•</span>
+                      <span>{photos.length}</span>
+                    </div>
                     <h4>{photos[selectedIndex].camera}</h4>
                   </div>
                 </div>

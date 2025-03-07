@@ -84,11 +84,42 @@
   }
 
   &__info {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     font-family: $font-accent;
     background: #fff;
-    align-items: center;
-    justify-content: space-between;
+
+    h4:first-child {
+      align-self: center;
+      justify-self: start;
+    }
+
+    h4:last-child {
+      align-self: center;
+      justify-self: end;
+    }
+
+    &_count {
+      align-self: center;
+      justify-self: center;
+
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 14px;
+
+      .portrait & {
+        height: 100%;
+        gap: calc($gutter-width / 2);
+      }
+
+      .landscape & {
+        width: 100%;
+        writing-mode: horizontal-tb;
+        flex-direction: column;
+        gap: calc($gutter-width / 4);
+      }
+    }
   }
 
   &__controls {
@@ -127,12 +158,12 @@
 
     &.prev {
       left: 0;
-      top: calc(50% - 1rem);
+      top: calc(50% - $gutter-width - 16px);
     }
 
     &.next {
       right: 0;
-      top: calc(50% - 1rem);
+      top: calc(50% - $gutter-width - 16px);
     }
   }
 
@@ -150,6 +181,5 @@
     &__info {
       background: #fff;
     }
-
   }
 }
