@@ -41,6 +41,7 @@
   overflow: hidden;
 
   &__photo {
+    cursor: pointer;
     width: 100vw;
     height: 100vh;
 
@@ -50,8 +51,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    cursor: default;
 
     &.portrait {
       .PhotoGrid-overlay__image {
@@ -77,6 +76,7 @@
     display: flex;
     width: min-content;
     height: min-content;
+    cursor: default;
 
     img {
       height: inherit;

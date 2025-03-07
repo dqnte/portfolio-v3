@@ -1,23 +1,26 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "../components/Image";
 import HoverButton from "../components/HoverButton";
-import Close from "@mui/icons-material/Close";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
 import { IPhoto, mapPhotosToColumns } from "../utilities";
+import useKeypress from "../hooks/useKeypress";
 
 import { useState } from "react";
 
-export default function PhotoGrid({
+const Overlay = ({
   photos,
-  numCols,
+  selectedIndex,
+  closeOverlay,
+  nextPhoto,
+  prevPhoto,
 }: {
   photos: IPhoto[];
-  numCols?: number;
-}) {
-  const numColumns = numCols || 3;
-  const columns = mapPhotosToColumns(photos, numColumns);
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  selectedIndex: number;
+  closeOverlay: () => void;
+  nextPhoto: () => void;
+  prevPhoto: () => void;
+}) => {
   const [orientation, setOrientation] = useState(null);
 
   /*
@@ -73,6 +76,85 @@ export default function PhotoGrid({
     }
   };
 
+  useKeypress("Escape", closeOverlay);
+  useKeypress("ArrowRight", nextPhoto);
+  useKeypress("ArrowLeft", prevPhoto);
+
+  return (
+    <motion.div
+      key="selected"
+      className={"PhotoGrid-overlay"}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.2 } }}
+      exit={{ opacity: 0 }}
+    >
+      <button
+        className="PhotoGrid-overlay__controls close"
+        onClick={closeOverlay}
+      >
+        exit
+      </button>
+      <HoverButton
+        disabled={selectedIndex === photos.length - 1}
+        className={"PhotoGrid-overlay__controls next"}
+        onClick={nextPhoto}
+        component={<ChevronRight />}
+        text={"next"}
+        direction={"right"}
+      />
+      <HoverButton
+        disabled={selectedIndex === 0}
+        className={"PhotoGrid-overlay__controls prev"}
+        onClick={prevPhoto}
+        component={<ChevronLeft />}
+        text={"prev"}
+        direction={"left"}
+      />
+      <AnimatePresence>
+        <motion.div
+          key={selectedIndex}
+          className={`PhotoGrid-overlay__photo ${orientation}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.2 } }}
+          exit={{ opacity: 0 }}
+          onClick={closeOverlay}
+        >
+          <div
+            className="PhotoGrid-overlay__image"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              sizeOn={"h"}
+              photo={photos[selectedIndex]}
+              alt={photos[selectedIndex]?.title}
+              onLoad={(e) => sizeImage(e.target)}
+            />
+            <div className="PhotoGrid-overlay__info">
+              <h4>{photos[selectedIndex].date}</h4>
+              <div className="PhotoGrid-overlay__info_count">
+                <span>{selectedIndex + 1}</span>
+                <span>•</span>
+                <span>{photos.length}</span>
+              </div>
+              <h4>{photos[selectedIndex].camera}</h4>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
+export default function PhotoGrid({
+  photos,
+  numCols,
+}: {
+  photos: IPhoto[];
+  numCols?: number;
+}) {
+  const numColumns = numCols || 3;
+  const columns = mapPhotosToColumns(photos, numColumns);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const openPhoto = (photo: IPhoto) => {
     const index = photos.indexOf(photo);
     // disable scrolling
@@ -82,11 +164,21 @@ export default function PhotoGrid({
   };
 
   const nextPhoto = () => {
-    setSelectedIndex(selectedIndex + 1);
+    setSelectedIndex((prevIndex) => {
+      if (prevIndex === photos.length - 1) {
+        return prevIndex;
+      }
+      return prevIndex + 1;
+    });
   };
 
   const prevPhoto = () => {
-    setSelectedIndex(selectedIndex - 1);
+    setSelectedIndex((prevIndex) => {
+      if (prevIndex === 0) {
+        return prevIndex;
+      }
+      return prevIndex - 1;
+    });
   };
 
   const closeOverlay = () => {
@@ -121,63 +213,13 @@ export default function PhotoGrid({
       })}
       <AnimatePresence>
         {selectedIndex !== null && (
-          <motion.div
-            key="selected"
-            className={"PhotoGrid-overlay"}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.2 } }}
-            exit={{ opacity: 0 }}
-          >
-            <button
-              className="PhotoGrid-overlay__controls close"
-              onClick={closeOverlay}
-            >
-              exit
-            </button>
-            <HoverButton
-              disabled={selectedIndex === photos.length - 1}
-              className={"PhotoGrid-overlay__controls next"}
-              onClick={nextPhoto}
-              component={<ChevronRight />}
-              text={"next"}
-              direction={"right"}
-            />
-            <HoverButton
-              disabled={selectedIndex === 0}
-              className={"PhotoGrid-overlay__controls prev"}
-              onClick={prevPhoto}
-              component={<ChevronLeft />}
-              text={"prev"}
-              direction={"left"}
-            />
-            <AnimatePresence>
-              <motion.div
-                key={selectedIndex}
-                className={`PhotoGrid-overlay__photo ${orientation}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 0.2 } }}
-                exit={{ opacity: 0 }}
-              >
-                <div className="PhotoGrid-overlay__image">
-                  <Image
-                    sizeOn={"h"}
-                    photo={photos[selectedIndex]}
-                    alt={photos[selectedIndex]?.title}
-                    onLoad={(e) => sizeImage(e.target)}
-                  />
-                  <div className="PhotoGrid-overlay__info">
-                    <h4>{photos[selectedIndex].date}</h4>
-                    <div className="PhotoGrid-overlay__info_count">
-                      <span>{selectedIndex + 1}</span>
-                      <span>•</span>
-                      <span>{photos.length}</span>
-                    </div>
-                    <h4>{photos[selectedIndex].camera}</h4>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
+          <Overlay
+            photos={photos}
+            selectedIndex={selectedIndex}
+            closeOverlay={closeOverlay}
+            nextPhoto={nextPhoto}
+            prevPhoto={prevPhoto}
+          />
         )}
       </AnimatePresence>
     </div>
