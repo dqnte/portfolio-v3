@@ -147,12 +147,19 @@
       top: 0;
       right: 0;
 
-      .light &::after {
-        background: $fg-light-main;
+      .light & {
+        color: $fg-light-main;
+
+        &::after {
+          background: $fg-light-main;
+        }
       }
 
-      .dark &::after {
-        background: $fg-dark-main;
+      .dark & {
+        color: $fg-dark-main;
+        &::after {
+          background: $fg-dark-main;
+        }
       }
     }
 
