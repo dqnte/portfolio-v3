@@ -5,6 +5,7 @@ import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
 import { IPhoto, mapPhotosToColumns } from "../utilities";
 import useKeypress from "../hooks/useKeypress";
+import useBreakpoint from "../hooks/useBreakpoint";
 
 import { useState } from "react";
 
@@ -155,7 +156,12 @@ export default function PhotoGrid({
   const numColumns = numCols || 3;
   const columns = mapPhotosToColumns(photos, numColumns);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const breakpoint = useBreakpoint();
+
   const openPhoto = (photo: IPhoto) => {
+    if (breakpoint === "mobile") {
+      return;
+    }
     const index = photos.indexOf(photo);
     // disable scrolling
     document.body.style.overflow = "hidden";
@@ -204,6 +210,9 @@ export default function PhotoGrid({
                 className="PhotoGrid__photo"
                 key={photo.smallUrl}
                 onClick={() => openPhoto(photo)}
+                style={{
+                  cursor: breakpoint === "mobile" ? "default" : "pointer",
+                }}
               >
                 <Image sizeOn={"w"} photo={photo} alt={photo.title} />
               </div>
