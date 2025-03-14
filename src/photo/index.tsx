@@ -6,39 +6,14 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useBreakpoint } from "../hooks";
 import Riser from "../components/Riser";
+import Title from "../components/Title";
 import PhotoGrid from "../components/PhotoGrid";
 import ScrollTop from "../components/ScrollTop";
-import { Link } from "react-router";
-
-const Title = ({
-  selectedAlbum,
-  albums,
-}: {
-  selectedAlbum: IAlbum | null;
-  albums: IAlbum[];
-}) => {
-  const prevAlbum = albums[albums.indexOf(selectedAlbum) - 1];
-  const nextAlbum = albums[albums.indexOf(selectedAlbum) + 1];
-
-  return (
-    <div className={`Photo__title ${selectedAlbum ? "" : "empty"}`}>
-      {selectedAlbum && (
-        <div className={"Photo__title_buttons"}>
-          {prevAlbum && <Link to={`/photo/${prevAlbum.key}`}>prev</Link>}
-        </div>
-      )}
-      <h1>{selectedAlbum?.location ?? "Dante Tobar"}</h1>
-      {selectedAlbum && (
-        <div className={"Photo__title_buttons"}>
-          {nextAlbum && <Link to={`/photo/${nextAlbum.key}`}>next</Link>}
-        </div>
-      )}
-    </div>
-  );
-};
+import { useNavigate } from "react-router";
 
 const Photo = ({ albums }: { albums: IAlbum[] }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [selectedAlbum, setAlbum] = useState(
     findAlbumFromLocation(location, albums),
@@ -61,35 +36,66 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
 
   const breakpoint = useBreakpoint();
 
+  const handleBack = () => {
+    navigate("/");
+  };
+
+  const nextAlbum =
+    displayableAlbums[displayableAlbums.indexOf(selectedAlbum) + 1];
+  const handleNext = () => {
+    if (nextAlbum) {
+      navigate(`/photo/${nextAlbum.key}`);
+    }
+  };
+
+  const prevAlbum =
+    displayableAlbums[displayableAlbums.indexOf(selectedAlbum) - 1];
+  const handlePrev = () => {
+    if (prevAlbum) {
+      navigate(`/photo/${prevAlbum.key}`);
+    }
+  };
+
   return (
     <AnimatePresence key={"Photo"}>
-      <Riser>
+      <Riser
+        style={{ minHeight: "100vh" }}
+        motionKey={selectedAlbum ? "preview" : "album"}
+      >
         {breakpoint === "mobile" ? (
           <PhotoMobile albums={displayableAlbums} />
         ) : (
-          <AnimatePresence key={"PhotoDesktop"}>
-            <Riser motionKey={selectedAlbum?.key}>
-              <div className={`Photo ${!selectedAlbum ? "show-none" : ""}`}>
+          <AnimatePresence key={"PhotoDesktop"} initial={false}>
+            {!["/", "/photo"].includes(location.pathname) ? (
+              <div className={"Photo"}>
                 <Title
-                  selectedAlbum={selectedAlbum}
-                  albums={displayableAlbums}
+                  text={selectedAlbum?.location}
+                  handleBack={handleBack}
+                  handlePrev={prevAlbum && handlePrev}
+                  handleNext={nextAlbum && handleNext}
                 />
-                <div className={"Photo-container"}>
-                  {selectedAlbum ? (
-                    <PhotoGrid photos={selectedAlbum.photos} numCols={2} />
-                  ) : (
-                    <AlbumPreview
-                      albums={displayableAlbums}
-                      selectedAlbum={selectedAlbum}
+                <Riser motionKey={selectedAlbum?.key}>
+                  <div className={"Photo-container"}>
+                    <PhotoGrid
+                      photos={selectedAlbum?.photos ?? []}
+                      numCols={2}
                     />
-                  )}
-                </div>
+                  </div>
+                </Riser>
               </div>
-            </Riser>
+            ) : (
+              <div className={"PhotoPreview"}>
+                <h1 className={"PhotoPreview__title"}>Dante Tobar</h1>
+                <AlbumPreview
+                  albums={displayableAlbums}
+                  selectedAlbum={selectedAlbum}
+                />
+              </div>
+            )}
           </AnimatePresence>
         )}
       </Riser>
-      <ScrollTop key={'photo'}/>
+      <ScrollTop key={"photo"} />
     </AnimatePresence>
   );
 };

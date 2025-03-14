@@ -3,6 +3,7 @@ import Image from "../components/Image";
 import HoverButton from "../components/HoverButton";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
+import Close from "@mui/icons-material/Close";
 import { IPhoto, mapPhotosToColumns } from "../utilities";
 import useKeypress from "../hooks/useKeypress";
 import useBreakpoint from "../hooks/useBreakpoint";
@@ -23,6 +24,7 @@ const Overlay = ({
   prevPhoto: () => void;
 }) => {
   const [orientation, setOrientation] = useState(null);
+  const [canClose, setCanClose] = useState(false);
 
   /*
    * This functions finds the correct size for the image to fit the screen
@@ -89,12 +91,13 @@ const Overlay = ({
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
     >
-      <button
-        className="PhotoGrid-overlay__controls close"
+      <HoverButton
+        className={"PhotoGrid-overlay__controls close"}
         onClick={closeOverlay}
-      >
-        exit
-      </button>
+        component={<Close />}
+        text={"exit"}
+        hovered={canClose}
+      />
       <HoverButton
         disabled={selectedIndex === photos.length - 1}
         className={"PhotoGrid-overlay__controls next"}
@@ -119,10 +122,14 @@ const Overlay = ({
           animate={{ opacity: 1, transition: { duration: 0.2 } }}
           exit={{ opacity: 0 }}
           onClick={closeOverlay}
+          onMouseEnter={() => setCanClose(true)}
+          onMouseLeave={() => setCanClose(false)}
         >
           <div
             className="PhotoGrid-overlay__image"
             onClick={(e) => e.stopPropagation()}
+            onMouseEnter={() => setCanClose(false)}
+            onMouseLeave={() => setCanClose(true)}
           >
             <Image
               sizeOn={"h"}

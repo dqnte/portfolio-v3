@@ -135,32 +135,9 @@
       color: grey !important;
     }
 
-    svg {
-      font-size: 2rem;
-    }
-
     &.close {
-      @include strikethrough-button;
-      margin: $gutter-width;
-      font-size: 14px;
-      position: absolute;
       top: 0;
       right: 0;
-
-      .light & {
-        color: $fg-light-main;
-
-        &::after {
-          background: $fg-light-main;
-        }
-      }
-
-      .dark & {
-        color: $fg-dark-main;
-        &::after {
-          background: $fg-dark-main;
-        }
-      }
     }
 
     &.prev {

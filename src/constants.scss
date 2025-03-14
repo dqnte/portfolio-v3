@@ -64,7 +64,7 @@ $gutter-width: 20px;
 $outer-column-width: 27px;
 $header-padding-top: 15px;
 $header-padding-bottom: $header-padding-top;
-$header-height: 50px + $header-padding-top + $header-padding-bottom;
+$header-height: 20px * 2 + $header-padding-top + $header-padding-bottom;
 $header-height-mobile: 25px + $header-padding-top + $header-padding-bottom;
 
 $mobile: 700px;

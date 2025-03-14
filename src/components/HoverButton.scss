@@ -19,4 +19,8 @@
   .dark & {
     color: $fg-dark-main;
   }
+
+  &:disabled {
+    color: grey !important;
+  }
 }

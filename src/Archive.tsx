@@ -3,25 +3,56 @@ import { IAlbum, findAlbumFromLocation } from "./utilities";
 import Riser from "./components/Riser";
 import ScrollTop from "./components/ScrollTop";
 import PhotoGrid from "./components/PhotoGrid";
+import Title from "./components/Title";
 import { useLocation, Link } from "react-router";
 import { useEffect, useState, useMemo } from "react";
 import { useBreakpoint } from "./hooks";
+import { useNavigate } from "react-router";
 
-const ArchiveAlbum = ({ album }: { album: IAlbum }) => {
+const ArchiveAlbum = ({
+  album,
+  albums,
+}: {
+  album: IAlbum;
+  albums: IAlbum[];
+}) => {
   const breakpoint = useBreakpoint();
+  const navigate = useNavigate();
   const numCols = breakpoint === "mobile" ? 1 : 2;
+
+  const handleBack = () => {
+    navigate("/archive");
+  };
+
+  const sortedAlbums = albums.sort((a, b) => {
+    return a.key > b.key ? -1 : 1;
+  })
+
+  const currentIndex = sortedAlbums.findIndex((a) => a.key === album.key);
+  const nextAlbum = sortedAlbums[currentIndex + 1];
+  const handlePrev = () => {
+    navigate(`/archive/${prevAlbum?.key}`);
+  };
+  const prevAlbum = sortedAlbums[currentIndex - 1];
+  const handleNext = () => {
+    navigate(`/archive/${nextAlbum?.key}`);
+  };
 
   return (
     <Riser motionKey={"Arc-album"}>
-      <h2 className={"Arc-album__title"}>
-        <Link to={"/archive"} className={"Arc__link"}>
-          {".."}
-        </Link>{" "}
-        / {album.key}
-      </h2>
-      <div className={"Arc-album__photo"}>
-        <PhotoGrid photos={album.photos} numCols={numCols} />
+      <div className={"Arc-album__container"}>
+        <Title
+          text={album.key}
+          handleBack={handleBack}
+          handlePrev={prevAlbum && handlePrev}
+          handleNext={nextAlbum && handleNext}
+        />
       </div>
+      <Riser motionKey={album.key}>
+        <div className={"Arc-album__container"}>
+          <PhotoGrid photos={album.photos} numCols={numCols} />
+        </div>
+      </Riser>
     </Riser>
   );
 };
@@ -127,8 +158,8 @@ const Archive = ({ albums }: { albums: IAlbum[] }) => {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (location.pathname === "/archive") {
-      window.scrollTo(0, 0);
       setAlbum(null);
     } else {
       const currentAlbum = findAlbumFromLocation(location, albums);
@@ -140,7 +171,7 @@ const Archive = ({ albums }: { albums: IAlbum[] }) => {
     <>
       <div className={"Arc"}>
         {selectedAlbum ? (
-          <ArchiveAlbum album={selectedAlbum} />
+          <ArchiveAlbum album={selectedAlbum} albums={albums} />
         ) : (
           <ArchiveTable albums={albums} />
         )}

@@ -8,27 +8,40 @@ export const HoverButton = ({
   component,
   onClick,
   className,
+  hovered,
 }: {
   disabled?: boolean;
-  direction: string;
+  direction?: string;
   text: string;
   component: any;
   onClick: () => void;
   className: string;
+  hovered?: boolean;
 }) => {
   const [hover, setHover] = useState(false);
 
-  const initial = {
+  let initial: any = {
     opacity: 0,
-    x: direction === "left" ? 8 : direction === "right" ? -8 : 0,
-    y: direction === "up" ? 8 : direction === "down" ? -8 : 0,
-  };
+  }
 
-  const exit = {
+  let exit: any = {
     opacity: 0,
-    x: direction === "left" ? -8 : direction === "right" ? 8 : 0,
-    y: direction === "up" ? -8 : direction === "down" ? 8 : 0,
-  };
+  }
+
+  if (direction === "left") {
+    initial.x = 8;
+    exit.x = -8;
+  } else if (direction === "right") {
+    initial.x = -8;
+    exit.x = 8;
+  } else if (direction === "up") {
+    initial.y = 8;
+    exit.y = -8;
+  } else if (direction === "down") {
+    initial.y = -8;
+    exit.y = 8;
+  }
+
 
   useEffect(() => {
     if (disabled) {
@@ -44,15 +57,15 @@ export const HoverButton = ({
       onClick={onClick}
       disabled={disabled}
     >
-      <AnimatePresence mode={"wait"}>
+      <AnimatePresence mode={"wait"} initial={false}>
         <motion.div
-          key={hover ? "component" : "text"}
+          key={hover || hovered ? "component" : "text"}
           initial={initial}
           animate={{ opacity: 1, y: 0, x: 0 }}
           exit={exit}
           transition={{ duration: 0.15 }}
         >
-          {hover ? component : text}
+          {hover || hovered ? component : text}
         </motion.div>
       </AnimatePresence>
     </button>

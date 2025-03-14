@@ -1,0 +1,52 @@
+@use "../constants" as *;
+
+.Title {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  align-items: center;
+
+  padding-top: calc(3 * $gutter-width);
+  padding-bottom: calc(3 * $gutter-width);
+  max-width: calc(1200px + 2 * $gutter-width);
+
+  transition: all 200ms ease-in-out;
+  font-family: $font-accent;
+  text-align: center;
+
+  @media (max-width: $mobile) {
+    grid-template-columns: min-content 1fr;
+    padding: $gutter-width 0;
+
+  }
+
+  & h2 {
+    width: 500px;
+    justify-self: center;
+
+    @media (max-width: $mobile) {
+      text-align: right;
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+
+  &__buttons {
+    align-self: center;
+    display: flex;
+
+    &.navigation {
+      justify-content: flex-end;
+      gap: $gutter-width;
+
+      @media (max-width: $mobile) {
+        display: none;
+      }
+    }
+  }
+
+  &__button {
+    padding: 0;
+    width: 45px;
+  }
+}
