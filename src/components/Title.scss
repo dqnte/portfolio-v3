@@ -8,7 +8,7 @@
 
   padding-top: calc(3 * $gutter-width);
   padding-bottom: calc(3 * $gutter-width);
-  max-width: calc(1200px + 2 * $gutter-width);
+  max-width: 1200px;
 
   transition: all 200ms ease-in-out;
   font-family: $font-accent;
