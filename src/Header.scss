@@ -11,6 +11,7 @@
   z-index: 1000;
 
   display: grid;
+  grid-gap: $gutter-width;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
   @include unselectable;
@@ -53,15 +54,13 @@
   }
 
   &__nav {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-self: right;
-
-    &_row {
-      display: flex;
-      gap: calc($gutter-width * 2);
-    }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: calc(66% + ($gutter-width / (3 * 2)));
+    grid-gap: 0 $gutter-width;
+    justify-self: end;
+    justify-items: end;
+    align-items: start;
   }
 
   &__mode {

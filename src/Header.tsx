@@ -52,7 +52,11 @@ const Name = ({
 
   return (
     <div className={`Header__name ${headerState === "hidden" ? "" : ""}`}>
-      <Link className={`Header--link ${atHome ? "selected" : ""}`} to="/" onClick={closeMenu}>
+      <Link
+        className={`Header--link ${atHome ? "selected" : ""}`}
+        to="/"
+        onClick={closeMenu}
+      >
         dante tobar
       </Link>
     </div>
@@ -97,6 +101,9 @@ const Navigation = () => {
       case "archive":
         setHoverPage("archive");
         break;
+      case "projects":
+        setHoverPage("projects");
+        break;
       default:
         setHoverPage("home");
         break;
@@ -110,6 +117,12 @@ const Navigation = () => {
         className={`Header--link ${hoverPage === "archive" ? "selected" : ""}`}
       >
         archive
+      </Link>
+      <Link
+        to="/projects"
+        className={`Header--link ${hoverPage === "projects" ? "selected" : ""}`}
+      >
+        projects
       </Link>
       <Link
         to="/about"
@@ -166,12 +179,14 @@ const Header = ({
 
   return (
     <>
-      <span className={`Header__background ${headerState === 'hidden'? 'hidden' : ''}`} />
+      <span
+        className={`Header__background ${headerState === "hidden" ? "hidden" : ""}`}
+      />
       <div className={`Header ${showMenu ? "Header--open" : ""}`}>
         <Name closeMenu={closeMenu} headerState={headerState} />
         <div className={"Header__bio"}>
           <p>photographer - engineer</p>
-          <p>based in nyc</p>
+          <p>based in new york</p>
         </div>
         <Navigation />
         <Mode useDarkTheme={useDarkTheme} setDarkTheme={setDarkTheme} />

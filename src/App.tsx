@@ -4,6 +4,7 @@ import About from "./About";
 import Photo from "./photo";
 import Menu from "./Menu";
 import Archive from "./Archive";
+import Grid from "./components/Grid";
 import { fetchPhotoManifest } from "./utilities";
 
 import { useState, useEffect } from "react";
@@ -64,6 +65,7 @@ function App() {
           <Route path="/archive/*" element={<Archive albums={albums} />} />
         </Routes>
       </div>
+      <Grid />
     </BrowserRouter>
   );
 }

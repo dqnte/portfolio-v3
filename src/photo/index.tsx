@@ -20,6 +20,7 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (location.pathname === "/photo") {
       setAlbum(null);
     } else {
@@ -27,7 +28,6 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
       setAlbum(currentAlbum);
     }
 
-    window.scrollTo(0, 0);
   }, [location, albums]);
 
   const displayableAlbums = albums.filter(
