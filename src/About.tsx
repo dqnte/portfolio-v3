@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { LinkedIn, Instagram, GitHub } from "@mui/icons-material";
 import { useEffect } from "react";
 import Riser from "./components/Riser";
+import IconButton from "./components/IconButton";
 
 const Socials = () => {
   return (
@@ -15,7 +16,9 @@ const Socials = () => {
           rel="noreferrer"
           className="Socials--link"
         >
-          <Instagram />
+          <IconButton>
+            <Instagram />
+          </IconButton>
         </a>
         <a
           className="Socials--link"
@@ -23,7 +26,9 @@ const Socials = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <LinkedIn />
+          <IconButton>
+            <LinkedIn />
+          </IconButton>
         </a>
         <a
           className="Socials--link"
@@ -31,7 +36,9 @@ const Socials = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <GitHub />
+          <IconButton>
+            <GitHub />
+          </IconButton>
         </a>
       </div>
     </div>
