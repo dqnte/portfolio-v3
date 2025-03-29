@@ -8,6 +8,7 @@ build:
 
 up:
 	cp public/photo-manifest.yaml dist/
+	cp public/project-manifest.yaml dist/
 	npm start
 
 dev: up

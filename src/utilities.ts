@@ -21,7 +21,24 @@ export interface IAlbum {
   location: string;
   date: string;
   photos: IPhoto[];
+  display?: "all" | "archive" | "hidden";
+}
+
+export type ILink = {
+  type: "instagram" | "music";
+  text: string;
+  to: string;
+};
+
+export interface IProject {
+  key: string;
+  title: string;
+  tags: string[];
+  description: string;
+  links?: ILink[];
+  date?: string;
   display?: "all" | "archive" | "hide";
+  photos: IPhoto[];
 }
 
 const pullConfig = async (url: string) => {
@@ -57,16 +74,49 @@ export async function fetchPhotoManifest(): Promise<IAlbum[]> {
   });
 }
 
+export async function fetchProjectManifest(): Promise<IProject[]> {
+  const manifest = await pullConfig("/project-manifest.yaml");
+
+  if (!manifest.projects) {
+    return [];
+  }
+
+  return manifest.projects.map((project: IProject) => {
+    return {
+      key: project.key,
+      title: project.title,
+      description: project.description,
+      date: project.date,
+      display: project.display,
+      tags: project.tags,
+      links: project.links,
+      photos: project.photos.map((photo) => {
+        return {
+          ...photo,
+          smallUrl: `${BASE_URL}${photo.smallUrl}`,
+        };
+      }),
+    };
+  });
+}
+
 export const downloadAlbum = (album: IAlbum) => {
   const photos = album.photos.map((photo) => photo.smallUrl);
 };
 
-export const findAlbumFromLocation = (location: Location, albums: IAlbum[]): IAlbum => {
+type AlbumType = IAlbum | IProject;
+export const findAlbumFromLocation = <T extends AlbumType>(
+  location: Location,
+  albums: T[],
+): T => {
   const key = location.pathname.split("/")[2];
   return albums.find((album) => album.key === key);
 };
 
-export const mapPhotosToColumns = (photos: IPhoto[], numCols: number): Record<number, IPhoto[]> => {
+export const mapPhotosToColumns = (
+  photos: IPhoto[],
+  numCols: number,
+): Record<number, IPhoto[]> => {
   const sortedColumns: Record<number, IPhoto[]> = {};
   const heights: Record<number, number> = {};
 
@@ -90,4 +140,3 @@ export const mapPhotosToColumns = (photos: IPhoto[], numCols: number): Record<nu
 
   return sortedColumns;
 };
-

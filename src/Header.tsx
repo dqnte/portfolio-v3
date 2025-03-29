@@ -122,7 +122,7 @@ const Navigation = () => {
         to="/projects"
         className={`Header--link ${hoverPage === "projects" ? "selected" : ""}`}
       >
-        projects
+        work
       </Link>
       <Link
         to="/about"
@@ -154,7 +154,10 @@ const Header = ({
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    if (location.pathname === "/" || location.pathname === "/photo") {
+    if (
+      location.pathname === "/" ||
+      location.pathname === "/photo"
+    ) {
       if (scrollY.get() < 300) {
         setHeaderState("hidden");
       } else {

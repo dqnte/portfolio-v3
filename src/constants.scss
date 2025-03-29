@@ -35,7 +35,7 @@ $font-accent: "Space Mono", monospace;
   &::after {
     position: absolute;
     top: 51%;
-    right: -5%;
+    right: -5px;
     content: " ";
     height: 2px;
     width: 0%;
@@ -46,10 +46,18 @@ $font-accent: "Space Mono", monospace;
     z-index: 1;
   }
 
+  .dark &::after {
+    background: $fg-dark-main;
+  }
+
+  .light &::after {
+    background: $fg-light-main;
+  }
+
   &:hover::after,
   &.selected::after {
-    left: -5%;
-    width: 110%;
+    left: -5px;
+    width: calc(100% + 10px);
   }
 
   &:disabled {
@@ -68,6 +76,7 @@ $header-height: 20px * 2 + $header-padding-top + $header-padding-bottom;
 $header-height-mobile: 25px + $header-padding-top + $header-padding-bottom;
 
 $mobile: 700px;
+$tablet: 1000px;
 
 @mixin sans-scrollbar {
   scrollbar-width: none; /* Firefox */
@@ -94,11 +103,11 @@ $mobile: 700px;
     transition: color 150ms;
   }
 
-  .dark &:hover {
-    color: $bg-dark-accent;
-  }
+  // .dark &:hover {
+  //   color: $bg-dark-accent;
+  // }
 
-  .light &:hover {
-    color: $bg-light-accent;
-  }
+  // .light &:hover {
+  //   color: $bg-light-accent;
+  // }
 }

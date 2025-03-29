@@ -52,7 +52,7 @@
     }
   }
 
-  &:hover {
+  &:hover, &.hovered {
     .IconButton__strike--outer {
       left: -5px;
       width: calc(100% + 10px);

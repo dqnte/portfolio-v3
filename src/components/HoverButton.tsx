@@ -14,8 +14,8 @@ export const HoverButton = ({
   direction?: string;
   text: string;
   component: any;
-  onClick: () => void;
-  className: string;
+  onClick?: () => void;
+  className?: string;
   hovered?: boolean;
 }) => {
   const [hover, setHover] = useState(false);
@@ -60,6 +60,7 @@ export const HoverButton = ({
       <AnimatePresence mode={"wait"} initial={false}>
         <motion.div
           key={hover || hovered ? "component" : "text"}
+          className={"HoverButton__content"}
           initial={initial}
           animate={{ opacity: 1, y: 0, x: 0 }}
           exit={exit}

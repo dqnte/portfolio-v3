@@ -1,0 +1,216 @@
+@use "./constants" as *;
+
+.Projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: $header-height;
+
+  &__grid {
+    padding: 0 $gutter-width;
+    min-height: 100%;
+  }
+
+  &__description {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    padding: 0 $gutter-width;
+    max-width: calc(1200px + 2 * $gutter-width);
+    width: 100%;
+    gap: $gutter-width;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-bottom: calc(4 * $gutter-width);
+
+    &_title {
+      grid-column: 3 / -1;
+
+      @media (max-width: $mobile) {
+        grid-column: 1 / -1;
+      }
+    }
+    &_text {
+      text-align: justify;
+      grid-column: 4 / span 6;
+      font-size: 1rem;
+      line-height: 1.75;
+
+      @media (max-width: $tablet) {
+        grid-column: 3 / span 8;
+      }
+
+      @media (max-width: $mobile) {
+        grid-column: 1 / -1;
+      }
+    }
+
+    &_links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      grid-column: 4 / span 6;
+      width: fit-content;
+      font-size: 1rem;
+      font-weight: bold;
+      font-variant: small-caps;
+      line-height: 1.75;
+
+      @media (max-width: $tablet) {
+        grid-column: 3 / span 8;
+      }
+
+      @media (max-width: $mobile) {
+        grid-column: 1 / -1;
+      }
+
+      .dark & {
+        color: $fg-dark-main !important;
+      }
+      .light & {
+        color: $fg-light-main !important;
+      }
+    }
+  }
+
+  &__title {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+
+    padding: $gutter-width;
+    padding-top: calc(2 * $gutter-width);
+    padding-bottom: calc(3 * $gutter-width);
+    max-width: calc(1200px + 2 * $gutter-width);
+    margin: 0 auto;
+
+    transition: all 200ms ease-in-out;
+    font-family: $font-accent;
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      grid-column: 2;
+      padding: 0 calc(2 * $gutter-width);
+    }
+  }
+}
+
+.ProjectsPreview {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: calc($gutter-width * 2);
+  width: 100%;
+  max-width: calc(1200px + 2 * $gutter-width);
+  margin: 0 auto;
+  background-position: top;
+  background-size: cover;
+  padding: $gutter-width;
+  padding-top: calc(3 * $gutter-width);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: calc(4 * $gutter-width) $gutter-width;
+
+  &__card {
+    position: relative;
+    grid-column: 2 / 12;
+    z-index: 2;
+    color: inherit;
+    text-decoration: none;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gutter-width;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $mobile) {
+      grid-column: 1 / -1;
+      grid-template-columns: 1fr;
+    }
+
+    &_image {
+      &.hovered {
+        filter: blur(0.25px);
+      }
+    }
+
+    &_hover {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: $gutter-width;
+      position: absolute;
+      bottom: 0;
+      z-index: 9;
+      width: 100%;
+      height: calc(100% - 28px - $gutter-width);
+      grid-column: 1 / -1;
+      transition: opacity 200ms ease-in-out;
+      opacity: 0;
+
+      @media (max-width: $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: $mobile) {
+        grid-column: 1 / -1;
+        grid-template-columns: 1fr;
+      }
+
+      &.hovered {
+        opacity: 1;
+      }
+
+      &_label {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 11;
+
+        color: $fg-dark-main;
+      }
+
+      &_overlay {
+        z-index: 10;
+        width: 100%;
+        opacity: 0.4;
+
+        background-color: $bg-dark-main;
+      }
+    }
+
+    &_text {
+      height: 28px;
+      grid-column: 1 / -1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &_title {
+        height: 28px;
+        font-variant: small-caps;
+        font-weight: bold;
+      }
+
+      &_description {
+        grid-column: 2 / 5;
+      }
+
+      p {
+        font-variant: small-caps;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+  }
+}

@@ -47,18 +47,17 @@
   }
 
   &__year {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $gutter-width;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: $gutter-width;
     padding-bottom: $gutter-width;
 
     &__album {
       height: calc(
         (min(100vw - 7 * $gutter-width, 1200px - 5 * $gutter-width)) / 6
       );
-      width: calc(
-        (min(100vw - 7 * $gutter-width, 1200px - 5 * $gutter-width)) / 6
-      );
+      width: 100%;
+      grid-column: span 2;
 
       text-decoration: none;
       background-position: center;
@@ -66,23 +65,22 @@
 
       @media (max-width: 900px) {
         height: calc(25vw - $gutter-width * 5 / 4);
-        width: calc(25vw - $gutter-width * 5 / 4);
+        grid-column: span 3;
       }
 
       @media (max-width: $mobile) {
-        width: calc(33.33vw - $gutter-width * 4 / 3);
         height: calc(33.33vw - $gutter-width * 4 / 3);
+        grid-column: span 4;
       }
 
       @media (max-width: 530px) {
-        width: calc(50vw - $gutter-width * 1.5);
         height: calc(50vw - $gutter-width * 1.5);
+        grid-column: span 6;
       }
 
       @media (max-width: 370px) {
-        grid-template-columns: 1fr;
-        width: calc(100vw - $gutter-width * 2);
         height: calc(100vw - $gutter-width * 2);
+        grid-column: span 12;
       }
     }
 

@@ -4,6 +4,7 @@ import About from "./About";
 import Photo from "./photo";
 import Menu from "./Menu";
 import Archive from "./Archive";
+import Projects from "./Projects";
 import Grid from "./components/Grid";
 import { fetchPhotoManifest } from "./utilities";
 
@@ -63,6 +64,7 @@ function App() {
           {<Route path="/*" element={<Photo albums={albums} />} />}
           <Route path="/about" element={<About />} />
           <Route path="/archive/*" element={<Archive albums={albums} />} />
+          <Route path="/projects/*" element={<Projects />} />
         </Routes>
       </div>
       <Grid />

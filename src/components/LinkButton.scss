@@ -1,0 +1,17 @@
+@use "../constants" as *;
+
+.LinkButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+
+  .dark & {
+    color: $fg-dark-main;
+  }
+
+  .light & {
+    color: $fg-light-main;
+  }
+}

@@ -11,6 +11,7 @@ directory=$desktop/$new_dir
 touch $directory/manifest.yaml
 key=$(basename $directory)
 
+echo $key
 echo -n "Location: "
 read location
 

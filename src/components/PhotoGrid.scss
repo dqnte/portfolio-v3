@@ -8,6 +8,7 @@
   width: 100%;
   max-width: 1200px;
   justify-self: center;
+  margin: 0 auto;
 
   &__column {
     @include sans-scrollbar;

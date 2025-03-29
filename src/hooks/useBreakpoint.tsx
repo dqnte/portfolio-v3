@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-type BREAKPOINT = "mobile" | "desktop";
+type BREAKPOINT = "mobile" | "tablet" | "desktop";
 
 const breakpoints: Record<number, BREAKPOINT> = {
   700: "mobile",
-  960: "desktop",
+  1000: "tablet",
 };
 
 export const useBreakpoint = (): BREAKPOINT => {
@@ -24,11 +24,12 @@ export const useBreakpoint = (): BREAKPOINT => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     handleResize();
-
     if (0 < windowSize.width && windowSize.width < 700) {
       setBreakPoint(breakpoints[700]);
+    } else if (700 < windowSize.width && windowSize.width < 1000) {
+      setBreakPoint(breakpoints[1000]);
     } else {
-      setBreakPoint(breakpoints[960]);
+      setBreakPoint("desktop");
     }
 
     return () => window.removeEventListener("resize", handleResize);

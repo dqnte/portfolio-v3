@@ -81,6 +81,8 @@ const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
   const albumsByYear = useMemo(() => {
     const byYear = albums.reduce(
       (acc, album) => {
+        if (album.display === 'hidden') return acc;
+
         let year = album.key.split("-")[0];
 
         if (Number(year) < 23) {

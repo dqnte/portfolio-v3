@@ -8,9 +8,11 @@ const Grid = () => {
     <>
       {showGrid && (
         <div className={"Grid"}>
-          {Array.from({ length: rows }).map((_, i) => {
-            return <div key={i} className={"Grid__column"} />;
-          })}
+          <div className={"Grid__container"}>
+            {Array.from({ length: rows }).map((_, i) => {
+              return <div key={i} className={"Grid__column"} />;
+            })}
+          </div>
         </div>
       )}
       <button className={"Grid__toggle"} onClick={() => setShowGrid(!showGrid)}>

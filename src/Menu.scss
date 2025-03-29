@@ -59,7 +59,7 @@
       font-variant: small-caps;
 
       &::after {
-        background: $bg-light-main;
+        background: $bg-light-main !important;
       }
     }
   }
@@ -87,7 +87,7 @@
       font-weight: bold;
 
       &::after {
-        background: $bg-light-main;
+        background: $bg-light-main !important;
       }
     }
   }
