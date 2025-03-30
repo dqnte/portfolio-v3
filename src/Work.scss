@@ -1,14 +1,15 @@
 @use "./constants" as *;
 
-.Projects {
+.Work {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
   padding-top: $header-height;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
 
   &__grid {
-    padding: 0 $gutter-width;
     min-height: 100%;
   }
 
@@ -96,7 +97,7 @@
   }
 }
 
-.ProjectsPreview {
+.WorkPreview {
   display: flex;
   flex-direction: column;
   position: relative;

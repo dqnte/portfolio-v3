@@ -16,20 +16,20 @@ import ScrollTop from "./components/ScrollTop";
 import { AnimatePresence } from "framer-motion";
 import { useBreakpoint } from "./hooks";
 
-const ProjectsPreview = ({ albums }: { albums: IProject[] }) => {
+const WorkPreview = ({ albums }: { albums: IProject[] }) => {
   const breakpoint = useBreakpoint();
   const numPhotos =
     breakpoint === "mobile" ? 1 : breakpoint === "tablet" ? 2 : 3;
 
   return (
-    <div className={"ProjectsPreview"}>
+    <div className={"WorkPreview"}>
       {albums.map((album) => (
         <Link
-          to={`/projects/${album.key}`}
+          to={`/work/${album.key}`}
           key={album.key}
-          className={"ProjectsPreview__card"}
+          className={"WorkPreview__card"}
         >
-          <div className={"ProjectsPreview__card_text"}>
+          <div className={"WorkPreview__card_text"}>
             {breakpoint === "mobile" ? (
               <h4>{album.title}</h4>
             ) : (
@@ -40,7 +40,7 @@ const ProjectsPreview = ({ albums }: { albums: IProject[] }) => {
             <Image
               sizeOn={"w"}
               photo={photo}
-              className={`ProjectsPreview__card_image`}
+              className={`WorkPreview__card_image`}
             />
           ))}
         </Link>
@@ -49,10 +49,10 @@ const ProjectsPreview = ({ albums }: { albums: IProject[] }) => {
   );
 };
 
-const Projects = () => {
+const Work = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [projects, setProjects] = useState<IProject[]>([]);
+  const [work, setWork] = useState<IProject[]>([]);
   const [selectedProject, setSelectedProject] = useState<IProject | null>();
 
   const breakpoint = useBreakpoint();
@@ -60,55 +60,55 @@ const Projects = () => {
 
   useEffect(() => {
     fetchProjectManifest().then((data) => {
-      setProjects(data);
+      setWork(data);
     });
   }, []);
 
   useEffect(() => {
-    if (location.pathname === "/projects") {
+    if (location.pathname === "/work") {
       setSelectedProject(null);
     } else {
-      const currentProject = findAlbumFromLocation(location, projects);
+      const currentProject = findAlbumFromLocation(location, work);
       setSelectedProject(currentProject);
     }
 
     window.scrollTo(0, 0);
-  }, [location, projects]);
+  }, [location, work]);
 
   const handleBack = () => {
-    navigate("/projects");
+    navigate("/work");
   };
 
-  const currentIndex = projects.indexOf(selectedProject);
+  const currentIndex = work.indexOf(selectedProject);
   const handleNext = () => {
-    const nextProject = projects[currentIndex + 1];
-    navigate(`/projects/${nextProject?.key}`);
+    const nextProject = work[currentIndex + 1];
+    navigate(`/work/${nextProject?.key}`);
   };
 
   const handlePrev = () => {
-    const prevProject = projects[currentIndex - 1];
-    navigate(`/projects/${prevProject?.key}`);
+    const prevProject = work[currentIndex - 1];
+    navigate(`/work/${prevProject?.key}`);
   };
 
   return (
     <AnimatePresence>
       <Riser motionKey={selectedProject ? "single" : ""}>
-        <div className={"Projects"}>
+        <div className={"Work"}>
           {selectedProject ? (
             <>
               <Title
                 text={selectedProject.title}
                 handleBack={handleBack}
                 handlePrev={currentIndex > 0 && handlePrev}
-                handleNext={currentIndex < projects.length - 1 && handleNext}
+                handleNext={currentIndex < work.length - 1 && handleNext}
               />
               <Riser motionKey={selectedProject.key}>
-                <div className={"Projects__description"}>
-                  <p className={"Projects__description_text"}>
+                <div className={"Work__description"}>
+                  <p className={"Work__description_text"}>
                     {selectedProject.description}
                   </p>
                   {selectedProject.links?.length && (
-                    <div className={"Projects__description_links"}>
+                    <div className={"Work__description_links"}>
                       {selectedProject.links.map((link) => (
                         <LinkButton
                           to={link.to}
@@ -119,7 +119,7 @@ const Projects = () => {
                     </div>
                   )}
                 </div>
-                <div className={"Projects__grid"}>
+                <div className={"Work__grid"}>
                   <PhotoGrid
                     photos={selectedProject.photos}
                     numCols={numCols}
@@ -128,7 +128,7 @@ const Projects = () => {
               </Riser>
             </>
           ) : (
-            <ProjectsPreview albums={projects} />
+            <WorkPreview albums={work} />
           )}
         </div>
         <ScrollTop />
@@ -137,4 +137,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Work;

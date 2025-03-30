@@ -101,8 +101,8 @@ const Navigation = () => {
       case "archive":
         setHoverPage("archive");
         break;
-      case "projects":
-        setHoverPage("projects");
+      case "work":
+        setHoverPage("work");
         break;
       default:
         setHoverPage("home");
@@ -119,8 +119,8 @@ const Navigation = () => {
         archive
       </Link>
       <Link
-        to="/projects"
-        className={`Header--link ${hoverPage === "projects" ? "selected" : ""}`}
+        to="/work"
+        className={`Header--link ${hoverPage === "work" ? "selected" : ""}`}
       >
         work
       </Link>

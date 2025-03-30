@@ -27,6 +27,9 @@ const Menu = ({
       case "photo":
         setHoverPage("home");
         break;
+      case "work":
+        setHoverPage("work");
+        break;
       case "about":
         setHoverPage("about");
         break;
@@ -71,6 +74,14 @@ const Menu = ({
             >
               home
             </Link>
+            <Link
+              to="/work"
+              className={`Menu-pages__link ${hoverPage === "work" ? "selected" : ""}`}
+              onClick={closeMenu}
+            >
+              work
+            </Link>
+
             <Link
               to="/about"
               className={`Menu-pages__link ${hoverPage === "about" ? "selected" : ""}`}
