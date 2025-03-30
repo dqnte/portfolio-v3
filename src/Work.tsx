@@ -38,6 +38,7 @@ const WorkPreview = ({ albums }: { albums: IProject[] }) => {
           </div>
           {album.photos.slice(0, numPhotos).map((photo) => (
             <Image
+              key={photo.smallUrl}
               sizeOn={"w"}
               photo={photo}
               className={`WorkPreview__card_image`}
@@ -99,8 +100,14 @@ const Work = () => {
               <Title
                 text={selectedProject.title}
                 handleBack={handleBack}
-                handlePrev={currentIndex > 0 && handlePrev}
-                handleNext={currentIndex < work.length - 1 && handleNext}
+                handlePrev={
+                  currentIndex > 0 && handlePrev ? handlePrev : undefined
+                }
+                handleNext={
+                  currentIndex < work.length - 1 && handleNext
+                    ? handleNext
+                    : undefined
+                }
               />
               <Riser motionKey={selectedProject.key}>
                 <div className={"Work__description"}>
@@ -111,6 +118,7 @@ const Work = () => {
                     <div className={"Work__description_links"}>
                       {selectedProject.links.map((link) => (
                         <LinkButton
+                          key={link.to}
                           to={link.to}
                           text={link.text}
                           icon={link.type}
