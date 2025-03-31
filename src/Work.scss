@@ -17,7 +17,6 @@
     text-align: center;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    padding: 0 $gutter-width;
     max-width: calc(1200px + 2 * $gutter-width);
     width: 100%;
     gap: $gutter-width;
@@ -79,7 +78,6 @@
     display: grid;
     grid-template-columns: min-content 1fr min-content;
 
-    padding: $gutter-width;
     padding-top: calc(2 * $gutter-width);
     padding-bottom: calc(3 * $gutter-width);
     max-width: calc(1200px + 2 * $gutter-width);
@@ -107,7 +105,6 @@
   margin: 0 auto;
   background-position: top;
   background-size: cover;
-  padding: $gutter-width;
   padding-top: calc(3 * $gutter-width);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
