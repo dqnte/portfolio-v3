@@ -8,6 +8,7 @@ import { useLocation, Link } from "react-router";
 import { useEffect, useState, useMemo } from "react";
 import { useBreakpoint } from "./hooks";
 import { useNavigate } from "react-router";
+import Image from "./components/Image";
 
 const ArchiveAlbum = ({
   album,
@@ -26,7 +27,7 @@ const ArchiveAlbum = ({
 
   const sortedAlbums = albums.sort((a, b) => {
     return a.key > b.key ? -1 : 1;
-  })
+  });
 
   const currentIndex = sortedAlbums.findIndex((a) => a.key === album.key);
   const nextAlbum = sortedAlbums[currentIndex + 1];
@@ -81,7 +82,7 @@ const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
   const albumsByYear = useMemo(() => {
     const byYear = albums.reduce(
       (acc, album) => {
-        if (album.display === 'hidden') return acc;
+        if (album.display === "hidden") return acc;
 
         let year = album.key.split("-")[0];
 
@@ -134,10 +135,17 @@ const ArchiveTable = ({ albums }: { albums: IAlbum[] }) => {
                     key={album.key}
                     className={"Arc-table__year__album"}
                     to={`/archive/${album.key}`}
-                    style={{
-                      backgroundImage: `url(${album.photos[0].smallUrl})`,
-                    }}
                   >
+                    <Image
+                      photo={album.photos[0]}
+                      sizeOn={
+                        album.photos[0].width > album.photos[0].height
+                          ? "h"
+                          : "w"
+                      }
+                      alt={album.key}
+                      className={"Arc-table__year__album_img"}
+                    />
                     <div className={"Arc-table__year__overlay"}>
                       <p>{keyToDate(album.key)}</p>
                       <p>{`${album.photos.length} PHOTO${album.photos.length > 1 ? "S" : ""}`}</p>

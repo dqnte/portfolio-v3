@@ -1,7 +1,7 @@
 import jsyaml from "js-yaml";
 import { type Location } from "react-router";
 
-const BASE_URL = "https://s3.us-west-1.amazonaws.com/dantetobar.com";
+const BASE_URL = "https://dantetobar.com";
 
 export interface IPhoto {
   camera: string;
