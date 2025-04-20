@@ -9,9 +9,7 @@ const AlbumPreview = ({
   selectedAlbum: IAlbum;
 }) => {
   return (
-    <div
-      className="AlbumPreview"
-    >
+    <div className="AlbumPreview">
       {albums.map((album) => (
         <Link
           to={`/photo/${album.key}`}
@@ -19,7 +17,7 @@ const AlbumPreview = ({
           className={"AlbumPreview__link"}
         >
           <Image
-            sizeOn={"w"}
+            sizeOn={album.photos[0].width > album.photos[0].height ? "h" : "w"}
             photo={album.photos[0]}
             alt={album.location}
             className={"AlbumPreview__image"}
