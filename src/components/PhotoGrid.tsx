@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "../components/Image";
 import HoverButton from "../components/HoverButton";
@@ -200,18 +201,32 @@ export default function PhotoGrid({
     setSelectedIndex(null);
   };
 
+  const gridTemplateColumns = useMemo(() => {
+    if (photos.length === 1) {
+      const side = (numColumns - 1) / 2;
+
+      return [`${side}fr`, `1fr`, `${side}fr`].join(" ");
+    }
+
+    return [...Array(numColumns)].map(() => "1fr").join(" ");
+  }, [numColumns]);
+
   return (
     <div
       className={`PhotoGrid ${selectedIndex && "overlay-open"}`}
       style={{
-        gridTemplateColumns: `${[...Array(numColumns)]
-          .map(() => "1fr")
-          .join(" ")}`,
+        gridTemplateColumns,
       }}
     >
       {Object.values(columns).map((column, index) => {
         return (
-          <div className="PhotoGrid__column" key={index}>
+          <div
+            className="PhotoGrid__column"
+            key={index}
+            style={{
+              gridColumnStart: photos.length === 1 ? 2 : undefined,
+            }}
+          >
             {column.map((photo) => (
               <div
                 className="PhotoGrid__photo"
