@@ -33,13 +33,14 @@
 
   &--btn,
   &--link {
-    @include strikethrough-button;
+    @include highlight-button;
     transition: color 300ms;
     font-size: inherit;
     font-weight: inherit;
     font-variant: inherit;
     color: inherit;
   }
+
 
   &__name {
     justify-self: left;
@@ -70,6 +71,13 @@
   }
 
   &__menu {
+    @include strikethrough-button;
+    transition: color 300ms;
+    font-size: inherit;
+    font-weight: inherit;
+    font-variant: inherit;
+    color: inherit;
+
     display: none;
   }
 }
@@ -79,10 +87,6 @@
 
   &__background {
     background: rgba($bg-light-main, 0.98);
-  }
-
-  ::after {
-    background: $fg-light-main;
   }
 
   &--open {
@@ -99,10 +103,6 @@
 
   &__background {
     background: rgba($bg-dark-main, 0.98);
-  }
-
-  ::after {
-    background: $fg-dark-main;
   }
 
   &--open {

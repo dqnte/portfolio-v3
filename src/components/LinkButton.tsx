@@ -13,8 +13,6 @@ const LinkButton = ({
   text: string;
   icon: string;
 }) => {
-  const [hovered, setHovered] = useState(false);
-
   const icons = {
     instagram: <Instagram />,
     music: <Spotify />,
@@ -26,11 +24,11 @@ const LinkButton = ({
       to={to}
       target={"_blank"}
       className={"LinkButton"}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       {iconComponent && (
-        <IconButton hovered={hovered}>{iconComponent}</IconButton>
+        <div className={"LinkButton__icon"}>
+        {iconComponent}
+        </div>
       )}
       <span>{text}</span>
     </Link>

@@ -19,14 +19,9 @@ const Title = ({
     <div className={`Title`}>
       <div className={"Title__buttons"}>
         {handleBack && (
-          <HoverButton
-            direction={"up"}
-            text={"back"}
-            component={<NorthWest />}
-            onClick={handleBack}
-            disabled={false}
-            className={"Title__button"}
-          />
+          <button className={"Title__button"} onClick={handleBack}>
+            back
+          </button>
         )}
       </div>
       <motion.div
@@ -38,22 +33,20 @@ const Title = ({
         <h2>{text}</h2>
       </motion.div>
       <div className={"Title__buttons navigation"}>
-        <HoverButton
-          direction={"left"}
-          text={"prev"}
-          component={<ChevronLeft />}
+        <button
           onClick={handlePrev}
           disabled={handlePrev ? false : true}
           className={"Title__button"}
-        />
-        <HoverButton
-          direction={"right"}
-          text={"next"}
-          component={<ChevronRight />}
+        >
+          prev
+        </button>
+        <button
           onClick={handleNext}
           disabled={handleNext ? false : true}
           className={"Title__button"}
-        />
+        >
+          next
+        </button>
       </div>
     </div>
   );

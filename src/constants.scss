@@ -3,9 +3,9 @@ $first-gap-time: 100ms;
 $first-delay: calc($first-transition-time + $first-gap-time);
 $second-transition-time: 100ms;
 
-$bg-light-main: #f8f8f8;
-$bg-light-overlay: #fff;
-$fg-light-main: #262626;
+$bg-light-main: #f0f2f1;
+$bg-light-overlay: #fcfcfc;
+$fg-light-main: #272528;
 $bg-light-accent: #0d7ae5;
 
 $bg-dark-main: #121212;
@@ -15,7 +15,6 @@ $bg-dark-accent: #0865c0;
 
 $font-main: "Inter", sans-serif;
 $font-accent: "Space Mono", monospace;
-
 
 @mixin plain-button {
   border: none;
@@ -68,6 +67,50 @@ $font-accent: "Space Mono", monospace;
   }
 }
 
+@mixin highlight-button {
+  @include plain-button;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    mix-blend-mode: multiply;
+    top: 60%;
+    right: -10px;
+    content: " ";
+    height: 8px;
+    width: 0%;
+    opacity: 0.7;
+    transition:
+      width 200ms,
+      background 300ms;
+
+    z-index: 1;
+  }
+
+  &:hover::after,
+  &.selected::after {
+    left: -5px;
+    width: calc(100% + 15px);
+  }
+
+  &:disabled {
+    cursor: default;
+    &::after {
+      display: none;
+    }
+  }
+
+  .dark &::after {
+    opacity: 1;
+    mix-blend-mode: lighten;
+    background: $bg-dark-accent;
+  }
+
+  .light &::after {
+    background: $bg-light-accent;
+  }
+}
+
 $gutter-width: 15px;
 $outer-column-width: 27px;
 $header-padding-top: 15px;
@@ -103,11 +146,11 @@ $tablet: 1000px;
     transition: color 150ms;
   }
 
-  // .dark &:hover {
-  //   color: $bg-dark-accent;
-  // }
+  .dark &:hover {
+    color: $bg-dark-accent;
+  }
 
-  // .light &:hover {
-  //   color: $bg-light-accent;
-  // }
+  .light &:hover {
+    color: $bg-light-accent;
+  }
 }

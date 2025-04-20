@@ -1,11 +1,26 @@
 @use "../constants" as *;
 
 .LinkButton {
+  @include highlight-button;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
   text-decoration: none;
+
+
+  &::after {
+    top: 52%;
+    height: 12px;
+  }
+
+  &__icon {
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .dark & {
     color: $fg-dark-main;

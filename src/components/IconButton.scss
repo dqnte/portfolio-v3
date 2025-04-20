@@ -1,6 +1,7 @@
 @use "../constants" as *;
 
 .IconButton {
+  @include highlight-button;
   position: relative;
   padding: 3px;
   height: 30px;
@@ -9,53 +10,22 @@
   justify-content: center;
   align-items: center;
 
-  &__strike {
-    position: absolute;
-    transform: rotate(-45deg);
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &--outer {
-      position: absolute;
-      top: calc(50% - 3px);
-      right: -5px;
-      transition: width 300ms;
-      width: 0%;
-      height: 6px;
-      padding: 2px 0;
-    }
-
-    &--inner {
-      width: 100%;
-      height: 100%;
-
-      .dark & {
-        background: $fg-dark-main;
-      }
-
-      .light & {
-        background: $fg-light-main;
-      }
-    }
-    &--outer {
-      .dark & {
-        background: $bg-dark-main;
-      }
-      .light & {
-        background: $bg-light-main;
-      }
-    }
+  .dark & {
+    color: $fg-dark-main;
   }
 
-  &:hover, &.hovered {
-    .IconButton__strike--outer {
-      left: -5px;
-      width: calc(100% + 10px);
-    }
+  .light & {
+    color: $fg-light-main;
+  }
+
+  &::after {
+    top: 40%;
+    height: 20px;
+    right: -5px;
+  }
+
+  &:hover::after, &.selected::after {
+    width: calc(100% + 5px);
+    left: 0px;
   }
 }

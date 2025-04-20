@@ -73,7 +73,7 @@ const Menu = ({
   return (
     // we use an <a /> because the font sizing wasn't working on mobile
     <a
-      className={`Header__menu Header--btn ${showMenu ? "selected" : ""}`}
+      className={`Header__menu ${showMenu ? "selected" : ""}`}
       onClick={toggleMenu}
     >
       menu

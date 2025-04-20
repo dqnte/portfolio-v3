@@ -17,7 +17,6 @@
   @media (max-width: $mobile) {
     grid-template-columns: min-content 1fr;
     padding: $gutter-width 0;
-
   }
 
   & h2 {
@@ -37,7 +36,7 @@
 
     &.navigation {
       justify-content: flex-end;
-      gap: $gutter-width;
+      gap: calc($gutter-width * 2);
 
       @media (max-width: $mobile) {
         display: none;
@@ -46,6 +45,22 @@
   }
 
   &__button {
-    padding: 0;
+    @include highlight-button;
+    transition: color 200ms ease-in-out;
+    font-size: 14px;
+    font-weight: bold;
+    font-variant: small-caps;
+
+    .dark & {
+      color: $fg-dark-main;
+    }
+
+    .light & {
+      color: $fg-light-main;
+    }
+
+    &:disabled {
+      color: gray;
+    }
   }
 }
