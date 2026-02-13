@@ -188,12 +188,17 @@
     }
 
     &_text {
+      @include highlight-button;
       height: 28px;
       grid-column: 1 / -1;
-      width: 100%;
+      width: fit-content;
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      &::after {
+        height: 10px;
+      }
 
       &_title {
         height: 28px;

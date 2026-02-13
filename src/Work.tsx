@@ -17,9 +17,12 @@ import { AnimatePresence } from "framer-motion";
 import { useBreakpoint } from "./hooks";
 
 const WorkPreview = ({ albums }: { albums: IProject[] }) => {
+  const [hovered, setHovered] = useState(null)
   const breakpoint = useBreakpoint();
   const numPhotos =
     breakpoint === "mobile" ? 1 : breakpoint === "tablet" ? 2 : 3;
+
+
 
   return (
     <div className={"WorkPreview"}>
@@ -28,8 +31,10 @@ const WorkPreview = ({ albums }: { albums: IProject[] }) => {
           to={`/work/${album.key}`}
           key={album.key}
           className={"WorkPreview__card"}
+          onMouseEnter={() => setHovered(album.key)}
+          onMouseLeave={() => setHovered(null)}
         >
-          <div className={"WorkPreview__card_text"}>
+          <div className={`WorkPreview__card_text ${hovered === album.key && 'selected'}`}>
             {breakpoint === "mobile" ? (
               <h4>{album.title}</h4>
             ) : (
