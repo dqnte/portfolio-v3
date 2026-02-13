@@ -4,8 +4,8 @@
 
 Requirements:
 
-- node v20.17.0
-- npm 10.8.2
+- node v22.22.0
+- npm 10.9.4
 
 ```sh
 make install
