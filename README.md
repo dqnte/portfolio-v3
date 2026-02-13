@@ -30,7 +30,7 @@ make build
 
 Note: DO NOT DELETE `/albums` OR A POX ON YOUR HOUSE!!!
 
-3. Drag files in `deploy` and the two manifest files into S3
+3. Drag files in `dist` and the two manifest files into S3
 4. Finally, invalidate the Cloudfront cache if you want to see changes immediately
 
 
