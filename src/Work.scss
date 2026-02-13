@@ -34,7 +34,8 @@
     &_text {
       text-align: justify;
       grid-column: 4 / span 6;
-      font-size: 1rem;
+      font-size: 16px;
+      font-weight: 500;
       line-height: 1.75;
 
       @media (max-width: $tablet) {
