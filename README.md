@@ -11,7 +11,6 @@ Requirements:
 make install
 ```
 
-
 ### Running
 
 ```sh
@@ -33,8 +32,8 @@ Note: DO NOT DELETE `/albums` OR A POX ON YOUR HOUSE!!!
 3. Drag files in `dist` and the two manifest files into S3
 4. Finally, invalidate the Cloudfront cache if you want to see changes immediately
 
-
 ### Adding an Album
+
 1. Place your new album in `~/Desktop`. The images in the album should be ready for S3
 2. Run the following command:
 

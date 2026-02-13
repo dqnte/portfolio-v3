@@ -13,8 +13,8 @@ $bg-dark-overlay: #000;
 $fg-dark-main: #f8f8f8;
 $bg-dark-accent: #0865c0;
 
-$font-main: "Inter", sans-serif;
-$font-accent: "Space Mono", monospace;
+$font-main: 'Inter', sans-serif;
+$font-accent: 'Space Mono', monospace;
 
 @mixin plain-button {
   border: none;
@@ -35,7 +35,7 @@ $font-accent: "Space Mono", monospace;
     position: absolute;
     top: 51%;
     right: -5px;
-    content: " ";
+    content: ' ';
     height: 2px;
     width: 0%;
     transition:
@@ -76,7 +76,7 @@ $font-accent: "Space Mono", monospace;
     mix-blend-mode: multiply;
     top: 60%;
     right: -10px;
-    content: " ";
+    content: ' ';
     height: 8px;
     width: 0%;
     opacity: 0.7;

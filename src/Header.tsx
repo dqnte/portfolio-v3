@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router";
-import { useScroll, useMotionValueEvent } from "framer-motion";
-import { IAlbum } from "./utilities";
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router';
+import { useScroll, useMotionValueEvent } from 'framer-motion';
+import { IAlbum } from './utilities';
 
-type HeaderState = "hidden" | "default";
+type HeaderState = 'hidden' | 'default';
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 const Mode = ({
@@ -23,14 +23,11 @@ const Mode = ({
 
   return (
     <div className="Header__mode">
-      <a
-        className={`Header--btn ${showDark ? "selected" : ""}`}
-        onClick={() => setDarkTheme(true)}
-      >
+      <a className={`Header--btn ${showDark ? 'selected' : ''}`} onClick={() => setDarkTheme(true)}>
         dark
       </a>
       <a
-        className={`Header--btn ${!showDark ? "selected" : ""}`}
+        className={`Header--btn ${!showDark ? 'selected' : ''}`}
         onClick={() => setDarkTheme(false)}
       >
         light
@@ -39,43 +36,24 @@ const Mode = ({
   );
 };
 
-const Name = ({
-  closeMenu,
-  headerState,
-}: {
-  closeMenu: () => void;
-  headerState: HeaderState;
-}) => {
+const Name = ({ closeMenu, headerState }: { closeMenu: () => void; headerState: HeaderState }) => {
   const location = useLocation();
   const key = location.pathname;
-  const atHome = key === "/";
+  const atHome = key === '/';
 
   return (
-    <div className={`Header__name ${headerState === "hidden" ? "" : ""}`}>
-      <Link
-        className={`Header--link ${atHome ? "selected" : ""}`}
-        to="/"
-        onClick={closeMenu}
-      >
+    <div className={`Header__name ${headerState === 'hidden' ? '' : ''}`}>
+      <Link className={`Header--link ${atHome ? 'selected' : ''}`} to="/" onClick={closeMenu}>
         dante tobar
       </Link>
     </div>
   );
 };
 
-const Menu = ({
-  toggleMenu,
-  showMenu,
-}: {
-  toggleMenu: () => void;
-  showMenu: boolean;
-}) => {
+const Menu = ({ toggleMenu, showMenu }: { toggleMenu: () => void; showMenu: boolean }) => {
   return (
     // we use an <a /> because the font sizing wasn't working on mobile
-    <a
-      className={`Header__menu ${showMenu ? "selected" : ""}`}
-      onClick={toggleMenu}
-    >
+    <a className={`Header__menu ${showMenu ? 'selected' : ''}`} onClick={toggleMenu}>
       menu
     </a>
   );
@@ -86,48 +64,39 @@ const Navigation = () => {
   const [hoverPage, setHoverPage] = useState(null);
 
   useEffect(() => {
-    const key = location.pathname.split("/")[1];
+    const key = location.pathname.split('/')[1];
 
     switch (key) {
-      case "":
-        setHoverPage("home");
+      case '':
+        setHoverPage('home');
         break;
-      case "photo":
-        setHoverPage("home");
+      case 'photo':
+        setHoverPage('home');
         break;
-      case "about":
-        setHoverPage("about");
+      case 'about':
+        setHoverPage('about');
         break;
-      case "archive":
-        setHoverPage("archive");
+      case 'archive':
+        setHoverPage('archive');
         break;
-      case "work":
-        setHoverPage("work");
+      case 'work':
+        setHoverPage('work');
         break;
       default:
-        setHoverPage("home");
+        setHoverPage('home');
         break;
     }
   }, [location]);
 
   return (
     <div className="Header__nav">
-      <Link
-        to="/archive"
-        className={`Header--link ${hoverPage === "archive" ? "selected" : ""}`}
-      >
+      <Link to="/archive" className={`Header--link ${hoverPage === 'archive' ? 'selected' : ''}`}>
         archive
       </Link>
-      <Link
-        to="/work"
-        className={`Header--link ${hoverPage === "work" ? "selected" : ""}`}
-      >
+      <Link to="/work" className={`Header--link ${hoverPage === 'work' ? 'selected' : ''}`}>
         work
       </Link>
-      <Link
-        to="/about"
-        className={`Header--link ${hoverPage === "about" ? "selected" : ""}`}
-      >
+      <Link to="/about" className={`Header--link ${hoverPage === 'about' ? 'selected' : ''}`}>
         about
       </Link>
     </div>
@@ -150,44 +119,39 @@ const Header = ({
   albums: IAlbum[];
 }) => {
   const location = useLocation();
-  const [headerState, setHeaderState] = useState<HeaderState>("hidden");
+  const [headerState, setHeaderState] = useState<HeaderState>('hidden');
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    if (
-      location.pathname === "/" ||
-      location.pathname === "/photo"
-    ) {
+    if (location.pathname === '/' || location.pathname === '/photo') {
       if (scrollY.get() < 300) {
-        setHeaderState("hidden");
+        setHeaderState('hidden');
       } else {
         scrollToTop();
       }
     } else {
-      setHeaderState("default");
+      setHeaderState('default');
     }
   }, [location, albums]);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (location.pathname !== "/") {
-      setHeaderState("default");
+  useMotionValueEvent(scrollY, 'change', latest => {
+    if (location.pathname !== '/') {
+      setHeaderState('default');
     } else {
       if (latest < 300) {
-        setHeaderState("hidden");
+        setHeaderState('hidden');
       } else if (latest > 300) {
-        setHeaderState("default");
+        setHeaderState('default');
       }
     }
   });
 
   return (
     <>
-      <span
-        className={`Header__background ${headerState === "hidden" ? "hidden" : ""}`}
-      />
-      <div className={`Header ${showMenu ? "Header--open" : ""}`}>
+      <span className={`Header__background ${headerState === 'hidden' ? 'hidden' : ''}`} />
+      <div className={`Header ${showMenu ? 'Header--open' : ''}`}>
         <Name closeMenu={closeMenu} headerState={headerState} />
-        <div className={"Header__bio"}>
+        <div className={'Header__bio'}>
           <p>photographer - engineer</p>
           <p>based in new york</p>
         </div>

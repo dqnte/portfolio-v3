@@ -1,8 +1,8 @@
-import { HoverButton } from "./HoverButton";
-import ChevronLeft from "@mui/icons-material/ChevronLeft";
-import ChevronRight from "@mui/icons-material/ChevronRight";
-import NorthWest from "@mui/icons-material/NorthWest";
-import { motion } from "framer-motion";
+import { HoverButton } from './HoverButton';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import NorthWest from '@mui/icons-material/NorthWest';
+import { motion } from 'framer-motion';
 
 const Title = ({
   text,
@@ -17,9 +17,9 @@ const Title = ({
 }) => {
   return (
     <div className={`Title`}>
-      <div className={"Title__buttons"}>
+      <div className={'Title__buttons'}>
         {handleBack && (
-          <button className={"Title__button"} onClick={handleBack}>
+          <button className={'Title__button'} onClick={handleBack}>
             back
           </button>
         )}
@@ -32,18 +32,18 @@ const Title = ({
       >
         <h2>{text}</h2>
       </motion.div>
-      <div className={"Title__buttons navigation"}>
+      <div className={'Title__buttons navigation'}>
         <button
           onClick={handlePrev}
           disabled={handlePrev ? false : true}
-          className={"Title__button"}
+          className={'Title__button'}
         >
           prev
         </button>
         <button
           onClick={handleNext}
           disabled={handleNext ? false : true}
-          className={"Title__button"}
+          className={'Title__button'}
         >
           next
         </button>

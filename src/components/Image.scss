@@ -1,4 +1,4 @@
-@use "../constants" as *;
+@use '../constants' as *;
 
 @keyframes aimation-loading {
   0% {
@@ -32,7 +32,7 @@
     overflow: hidden;
 
     &::after {
-      content: "";
+      content: '';
       animation: 2s linear 0.5s infinite normal none running aimation-loading;
       position: absolute;
       transform: translateX(-100%);
@@ -43,12 +43,7 @@
       background-color: $bg-dark-overlay;
 
       &::after {
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.06),
-          transparent
-        );
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
       }
     }
 
@@ -56,12 +51,7 @@
       background-color: $bg-light-overlay;
 
       &::after {
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(0, 0, 0, 0.04),
-          transparent
-        );
+        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.04), transparent);
       }
     }
   }

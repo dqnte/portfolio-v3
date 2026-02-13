@@ -1,17 +1,17 @@
-@use "constants";
-@use "About";
-@use "App";
-@use "Archive";
-@use "Header";
-@use "Menu";
-@use "Work";
+@use 'constants';
+@use 'About';
+@use 'App';
+@use 'Archive';
+@use 'Header';
+@use 'Menu';
+@use 'Work';
 
-@use "components";
-@use "photo";
+@use 'components';
+@use 'photo';
 
 body {
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #f8f8f8;

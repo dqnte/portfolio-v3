@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const Grid = () => {
   const rows = 12;
@@ -7,15 +7,15 @@ const Grid = () => {
   return (
     <>
       {showGrid && (
-        <div className={"Grid"}>
-          <div className={"Grid__container"}>
+        <div className={'Grid'}>
+          <div className={'Grid__container'}>
             {Array.from({ length: rows }).map((_, i) => {
-              return <div key={i} className={"Grid__column"} />;
+              return <div key={i} className={'Grid__column'} />;
             })}
           </div>
         </div>
       )}
-      <button className={"Grid__toggle"} onClick={() => setShowGrid(!showGrid)}>
+      <button className={'Grid__toggle'} onClick={() => setShowGrid(!showGrid)}>
         x
       </button>
     </>

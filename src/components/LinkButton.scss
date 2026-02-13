@@ -1,4 +1,4 @@
-@use "../constants" as *;
+@use '../constants' as *;
 
 .LinkButton {
   @include highlight-button;
@@ -7,7 +7,6 @@
   align-items: center;
   gap: 4px;
   text-decoration: none;
-
 
   &::after {
     top: 52%;

@@ -1,6 +1,6 @@
-@use "../constants" as *;
-@use "Mobile";
-@use "AlbumPreview";
+@use '../constants' as *;
+@use 'Mobile';
+@use 'AlbumPreview';
 
 .Photo {
   padding: 0 $gutter-width;

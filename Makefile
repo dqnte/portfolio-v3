@@ -6,6 +6,9 @@ i: install
 build:
 	sh scripts/build.sh
 
+format:
+	npm run format
+
 up:
 	cp public/photo-manifest.yaml dist/
 	cp public/project-manifest.yaml dist/

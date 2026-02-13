@@ -1,9 +1,9 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from 'framer-motion';
 
-import { LinkedIn, Instagram, GitHub } from "@mui/icons-material";
-import { useEffect } from "react";
-import Riser from "./components/Riser";
-import IconButton from "./components/IconButton";
+import { LinkedIn, Instagram, GitHub } from '@mui/icons-material';
+import { useEffect } from 'react';
+import Riser from './components/Riser';
+import IconButton from './components/IconButton';
 
 const Socials = () => {
   return (
@@ -50,12 +50,11 @@ const Bio = () => {
     <div className="Bio">
       <h1 className="Bio__name">Dante Tobar</h1>
       <div>
-        {" "}
+        {' '}
         <p className="Bio__text">
-          I'm an engineer & photographer. I shoot both film and digital. Most of
-          my photos are candids, but there are some posed exceptions. Currently,
-          I work at
-        </p>{" "}
+          I'm an engineer & photographer. I shoot both film and digital. Most of my photos are
+          candids, but there are some posed exceptions. Currently, I work at
+        </p>{' '}
         {/* when the a tag was inside the p tag, the animation transition times were */}
         {/* stacking on eachother. This caused weirdness when transitioning from light */}
         {/* to dark mode. */}
@@ -66,10 +65,9 @@ const Bio = () => {
           className="Bio--link"
         >
           fabric
-        </a>{" "}
-        <p className={"Bio__text"}>
-          as a fullstack engineer. If you want to get in contact, feel free to
-          dm me.
+        </a>{' '}
+        <p className={'Bio__text'}>
+          as a fullstack engineer. If you want to get in contact, feel free to dm me.
         </p>
       </div>
     </div>
@@ -83,7 +81,7 @@ const About = () => {
 
   return (
     <AnimatePresence>
-      <div className={"About"}>
+      <div className={'About'}>
         <Riser>
           <div className="About__container">
             <div className="About__image">

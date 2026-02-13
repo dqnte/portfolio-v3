@@ -1,4 +1,4 @@
-@use "constants" as *;
+@use 'constants' as *;
 
 .Header {
   height: $header-height;
@@ -40,7 +40,6 @@
     font-variant: inherit;
     color: inherit;
   }
-
 
   &__name {
     justify-self: left;

@@ -1,4 +1,4 @@
-@use "constants" as *;
+@use 'constants' as *;
 
 .Arc {
   padding: $gutter-width;
@@ -53,9 +53,7 @@
     padding-bottom: $gutter-width;
 
     &__album {
-      height: calc(
-        (min(100vw - 7 * $gutter-width, 1200px - 5 * $gutter-width)) / 6
-      );
+      height: calc((min(100vw - 7 * $gutter-width, 1200px - 5 * $gutter-width)) / 6);
       width: 100%;
       grid-column: span 2;
 

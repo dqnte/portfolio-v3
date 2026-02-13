@@ -1,15 +1,15 @@
-import { useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "../components/Image";
-import HoverButton from "../components/HoverButton";
-import ChevronLeft from "@mui/icons-material/ChevronLeft";
-import ChevronRight from "@mui/icons-material/ChevronRight";
-import Close from "@mui/icons-material/Close";
-import { IPhoto, mapPhotosToColumns } from "../utilities";
-import useKeypress from "../hooks/useKeypress";
-import useBreakpoint from "../hooks/useBreakpoint";
+import { useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from '../components/Image';
+import HoverButton from '../components/HoverButton';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import Close from '@mui/icons-material/Close';
+import { IPhoto, mapPhotosToColumns } from '../utilities';
+import useKeypress from '../hooks/useKeypress';
+import useBreakpoint from '../hooks/useBreakpoint';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 const Overlay = ({
   photos,
@@ -40,8 +40,7 @@ const Overlay = ({
 
     const aspectRatio = image.naturalWidth / image.naturalHeight;
 
-    const windowWidth =
-      document.documentElement.clientWidth - closeButtonWidth - gutter * 4;
+    const windowWidth = document.documentElement.clientWidth - closeButtonWidth - gutter * 4;
     const windowHeight = document.documentElement.clientHeight;
 
     // using this because of the container Image component
@@ -63,7 +62,7 @@ const Overlay = ({
         parent.style.height = `${height}px`;
         parent.style.width = `${width}px`;
       }
-      setOrientation("portrait");
+      setOrientation('portrait');
     } else {
       const width = windowWidth - 2 * gutter - labelHeight;
       const height = width / aspectRatio;
@@ -76,44 +75,44 @@ const Overlay = ({
         parent.style.width = `${width}px`;
         parent.style.height = `${height}px`;
       }
-      setOrientation("landscape");
+      setOrientation('landscape');
     }
   };
 
-  useKeypress("Escape", closeOverlay);
-  useKeypress("ArrowRight", nextPhoto);
-  useKeypress("ArrowLeft", prevPhoto);
+  useKeypress('Escape', closeOverlay);
+  useKeypress('ArrowRight', nextPhoto);
+  useKeypress('ArrowLeft', prevPhoto);
 
   return (
     <motion.div
       key="selected"
-      className={"PhotoGrid-overlay"}
+      className={'PhotoGrid-overlay'}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
     >
       <HoverButton
-        className={"PhotoGrid-overlay__controls close"}
+        className={'PhotoGrid-overlay__controls close'}
         onClick={closeOverlay}
         component={<Close />}
-        text={"exit"}
+        text={'exit'}
         hovered={canClose}
       />
       <HoverButton
         disabled={selectedIndex === photos.length - 1}
-        className={"PhotoGrid-overlay__controls next"}
+        className={'PhotoGrid-overlay__controls next'}
         onClick={nextPhoto}
         component={<ChevronRight />}
-        text={"next"}
-        direction={"right"}
+        text={'next'}
+        direction={'right'}
       />
       <HoverButton
         disabled={selectedIndex === 0}
-        className={"PhotoGrid-overlay__controls prev"}
+        className={'PhotoGrid-overlay__controls prev'}
         onClick={prevPhoto}
         component={<ChevronLeft />}
-        text={"prev"}
-        direction={"left"}
+        text={'prev'}
+        direction={'left'}
       />
       <AnimatePresence>
         <motion.div
@@ -128,15 +127,15 @@ const Overlay = ({
         >
           <div
             className="PhotoGrid-overlay__image"
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
             onMouseEnter={() => setCanClose(false)}
             onMouseLeave={() => setCanClose(true)}
           >
             <Image
-              sizeOn={"h"}
+              sizeOn={'h'}
               photo={photos[selectedIndex]}
               alt={photos[selectedIndex]?.title}
-              onLoad={(e) => sizeImage(e.target)}
+              onLoad={e => sizeImage(e.target)}
             />
             <div className="PhotoGrid-overlay__info">
               <h4>{photos[selectedIndex].date}</h4>
@@ -154,31 +153,25 @@ const Overlay = ({
   );
 };
 
-export default function PhotoGrid({
-  photos,
-  numCols,
-}: {
-  photos: IPhoto[];
-  numCols?: number;
-}) {
+export default function PhotoGrid({ photos, numCols }: { photos: IPhoto[]; numCols?: number }) {
   const numColumns = numCols || 3;
   const columns = mapPhotosToColumns(photos, numColumns);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const breakpoint = useBreakpoint();
 
   const openPhoto = (photo: IPhoto) => {
-    if (breakpoint === "mobile") {
+    if (breakpoint === 'mobile') {
       return;
     }
     const index = photos.indexOf(photo);
     // disable scrolling
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     setSelectedIndex(index);
   };
 
   const nextPhoto = () => {
-    setSelectedIndex((prevIndex) => {
+    setSelectedIndex(prevIndex => {
       if (prevIndex === photos.length - 1) {
         return prevIndex;
       }
@@ -187,7 +180,7 @@ export default function PhotoGrid({
   };
 
   const prevPhoto = () => {
-    setSelectedIndex((prevIndex) => {
+    setSelectedIndex(prevIndex => {
       if (prevIndex === 0) {
         return prevIndex;
       }
@@ -197,7 +190,7 @@ export default function PhotoGrid({
 
   const closeOverlay = () => {
     // enable scrolling
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = 'auto';
     setSelectedIndex(null);
   };
 
@@ -205,15 +198,15 @@ export default function PhotoGrid({
     if (photos.length === 1) {
       const side = (numColumns - 1) / 2;
 
-      return [`${side}fr`, `1fr`, `${side}fr`].join(" ");
+      return [`${side}fr`, `1fr`, `${side}fr`].join(' ');
     }
 
-    return [...Array(numColumns)].map(() => "1fr").join(" ");
+    return [...Array(numColumns)].map(() => '1fr').join(' ');
   }, [numColumns]);
 
   return (
     <div
-      className={`PhotoGrid ${selectedIndex && "overlay-open"}`}
+      className={`PhotoGrid ${selectedIndex && 'overlay-open'}`}
       style={{
         gridTemplateColumns,
       }}
@@ -227,16 +220,16 @@ export default function PhotoGrid({
               gridColumnStart: photos.length === 1 ? 2 : undefined,
             }}
           >
-            {column.map((photo) => (
+            {column.map(photo => (
               <div
                 className="PhotoGrid__photo"
                 key={photo.smallUrl}
                 onClick={() => openPhoto(photo)}
                 style={{
-                  cursor: breakpoint === "mobile" ? "default" : "pointer",
+                  cursor: breakpoint === 'mobile' ? 'default' : 'pointer',
                 }}
               >
-                <Image sizeOn={"w"} photo={photo} alt={photo.title} />
+                <Image sizeOn={'w'} photo={photo} alt={photo.title} />
               </div>
             ))}
           </div>

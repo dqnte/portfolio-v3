@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-import { IPhoto } from "../utilities";
-import { useInView } from "framer-motion";
+import { useState, useRef, useEffect } from 'react';
+import { IPhoto } from '../utilities';
+import { useInView } from 'framer-motion';
 
 const useRefDimensions = (ref: any) => {
   const [dimensions, setDimensions] = useState({
@@ -47,9 +47,9 @@ const Image = ({
   onMouseLeave?: () => void;
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement>) => void;
   shouldLoad?: boolean;
-  fetchPriority?: "auto" | "high" | "low";
+  fetchPriority?: 'auto' | 'high' | 'low';
   inViewRef?: React.RefObject<HTMLDivElement>;
-  sizeOn: "w" | "h";
+  sizeOn: 'w' | 'h';
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(!shouldLoad);
@@ -67,17 +67,17 @@ const Image = ({
   const { width, height } = useRefDimensions(containerRef);
 
   const dimensions = {
-    width: sizeOn === "h" && height ? height / aspectRatio : "100%",
-    height: sizeOn === "w" && width ? width * aspectRatio : "100%",
+    width: sizeOn === 'h' && height ? height / aspectRatio : '100%',
+    height: sizeOn === 'w' && width ? width * aspectRatio : '100%',
   };
 
   return (
-    <div className={`Image ${containerClassName ?? ""}`} ref={containerRef}>
+    <div className={`Image ${containerClassName ?? ''}`} ref={containerRef}>
       {inView && (
         <img
           onLoad={loaded}
           src={photo.smallUrl}
-          className={`Image__img ${className ?? ""} ${isLoaded ? "" : "hide"}`}
+          className={`Image__img ${className ?? ''} ${isLoaded ? '' : 'hide'}`}
           alt={alt}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
@@ -87,7 +87,7 @@ const Image = ({
       )}
       {!isLoaded && (
         <div
-          className={`Image__loading ${className ?? ""}`}
+          className={`Image__loading ${className ?? ''}`}
           style={{
             background: photo?.color,
             ...dimensions,

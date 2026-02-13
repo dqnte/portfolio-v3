@@ -1,4 +1,4 @@
-@use "../constants" as *;
+@use '../constants' as *;
 
 .IconButton {
   @include highlight-button;
@@ -24,7 +24,8 @@
     right: -5px;
   }
 
-  &:hover::after, &.selected::after {
+  &:hover::after,
+  &.selected::after {
     width: calc(100% + 5px);
     left: 0px;
   }

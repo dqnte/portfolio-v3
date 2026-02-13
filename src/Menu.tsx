@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import { useLocation, Link } from "react-router";
-import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, Link } from 'react-router';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Menu = ({
   show,
@@ -18,26 +18,26 @@ const Menu = ({
 
   const location = useLocation();
   useEffect(() => {
-    const key = location.pathname.split("/")[1];
+    const key = location.pathname.split('/')[1];
 
     switch (key) {
-      case "":
-        setHoverPage("home");
+      case '':
+        setHoverPage('home');
         break;
-      case "photo":
-        setHoverPage("home");
+      case 'photo':
+        setHoverPage('home');
         break;
-      case "work":
-        setHoverPage("work");
+      case 'work':
+        setHoverPage('work');
         break;
-      case "about":
-        setHoverPage("about");
+      case 'about':
+        setHoverPage('about');
         break;
-      case "archive":
-        setHoverPage("archive");
+      case 'archive':
+        setHoverPage('archive');
         break;
       default:
-        setHoverPage("home");
+        setHoverPage('home');
         break;
     }
   }, [location]);
@@ -50,16 +50,16 @@ const Menu = ({
       {show && (
         <motion.div
           className="Menu"
-          initial={{ height: "0dvh" }}
+          initial={{ height: '0dvh' }}
           animate={{
-            height: "100dvh",
+            height: '100dvh',
             transition: {
               duration: SLIDE_IN,
-              type: "tween",
-              ease: "easeInOut",
+              type: 'tween',
+              ease: 'easeInOut',
             },
           }}
-          exit={{ height: "0vh", transition: { delay: TEXT_IN * 2 } }}
+          exit={{ height: '0vh', transition: { delay: TEXT_IN * 2 } }}
         >
           <motion.div
             className="Menu-pages"
@@ -69,14 +69,14 @@ const Menu = ({
           >
             <Link
               to="/"
-              className={`Menu-pages__link ${hoverPage === "home" ? "selected" : ""}`}
+              className={`Menu-pages__link ${hoverPage === 'home' ? 'selected' : ''}`}
               onClick={closeMenu}
             >
               home
             </Link>
             <Link
               to="/work"
-              className={`Menu-pages__link ${hoverPage === "work" ? "selected" : ""}`}
+              className={`Menu-pages__link ${hoverPage === 'work' ? 'selected' : ''}`}
               onClick={closeMenu}
             >
               work
@@ -84,14 +84,14 @@ const Menu = ({
 
             <Link
               to="/about"
-              className={`Menu-pages__link ${hoverPage === "about" ? "selected" : ""}`}
+              className={`Menu-pages__link ${hoverPage === 'about' ? 'selected' : ''}`}
               onClick={closeMenu}
             >
               about
             </Link>
             <Link
               to="/archive"
-              className={`Menu-pages__link ${hoverPage === "archive" ? "selected" : ""}`}
+              className={`Menu-pages__link ${hoverPage === 'archive' ? 'selected' : ''}`}
               onClick={closeMenu}
             >
               archive
@@ -107,22 +107,16 @@ const Menu = ({
             exit={{ opacity: 0 }}
           >
             <motion.div className="Menu-socials">
-              <a
-                href="https://www.instagram.com/dantistador/"
-                className="Menu-socials__link"
-              >
+              <a href="https://www.instagram.com/dantistador/" className="Menu-socials__link">
                 instagram
               </a>
-              <a
-                href="https://www.linkedin.com/in/dante-m-tobar/"
-                className="Menu-socials__link"
-              >
+              <a href="https://www.linkedin.com/in/dante-m-tobar/" className="Menu-socials__link">
                 linkedin
               </a>
             </motion.div>
-            <div className={"Menu-controls"}>
+            <div className={'Menu-controls'}>
               <button
-                className={`Menu-controls__link ${useDarkTheme ? "selected" : ""}`}
+                className={`Menu-controls__link ${useDarkTheme ? 'selected' : ''}`}
                 onClick={() => {
                   setDarkTheme(true);
                 }}
@@ -130,7 +124,7 @@ const Menu = ({
                 dark
               </button>
               <button
-                className={`Menu-controls__link ${useDarkTheme ? "" : "selected"}`}
+                className={`Menu-controls__link ${useDarkTheme ? '' : 'selected'}`}
                 onClick={() => {
                   setDarkTheme(false);
                 }}

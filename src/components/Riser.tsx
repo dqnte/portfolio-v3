@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 export default function Riser({
   children,
@@ -13,7 +13,7 @@ export default function Riser({
 }) {
   return (
     <motion.div
-      className={"riser"}
+      className={'riser'}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}

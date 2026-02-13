@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
 
-
 export const useKeypress = (key: string, action: () => void) => {
   useEffect(() => {
     function onKeyup(e: KeyboardEvent) {
       if (e.key === key) {
         e.preventDefault();
-        action()
+        action();
       }
     }
 
     function onKeydown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         e.preventDefault();
       }
     }
@@ -21,8 +20,8 @@ export const useKeypress = (key: string, action: () => void) => {
     return () => {
       window.removeEventListener('keyup', onKeyup);
       window.removeEventListener('keydown', onKeydown);
-    }
+    };
   }, []);
-}
+};
 
 export default useKeypress;
