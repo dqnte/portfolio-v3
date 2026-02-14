@@ -5,7 +5,6 @@ import Photo from './photo';
 import Menu from './Menu';
 import Archive from './Archive';
 import Work from './Work';
-import Grid from './components/Grid';
 import { fetchPhotoManifest } from './utilities';
 
 import { useState, useEffect } from 'react';
@@ -13,7 +12,19 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 
 function App() {
   /* --- THEME --- */
-  const [useDarkTheme, setDarkTheme] = useState(false);
+  const [useDarkTheme, setDarkThemeInternal] = useState(false);
+  const setDarkTheme = (value: boolean) => {
+    setDarkThemeInternal(value);
+    if (value) {
+      document.body.className = 'dark';
+    } else {
+      document.body.className = 'light';
+    }
+  };
+
+  useEffect(() => {
+    setDarkTheme(useDarkTheme);
+  }, []);
 
   /* --- IMAGES --- */
   const [albums, setAlbums] = useState([]);
@@ -45,7 +56,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className={`App ${useDarkTheme ? 'dark' : 'light'}`}>
+      <div className={`App`}>
         <Header
           useDarkTheme={useDarkTheme}
           setDarkTheme={setDarkTheme}

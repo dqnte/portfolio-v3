@@ -1,4 +1,4 @@
-@use 'constants';
+@use 'constants' as *;
 @use 'About';
 @use 'App';
 @use 'Archive';
@@ -14,7 +14,32 @@ body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f8f8f8;
+}
+
+.dark {
+  background: $bg-dark-main;
+  color: $fg-dark-main;
+}
+
+.light {
+  background: $bg-light-main;
+  color: $fg-light-main;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: $font-accent;
+  transition: color 300ms;
+}
+
+p {
+  margin: 0;
+  transition: color 300ms;
 }
 
 * {
