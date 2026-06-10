@@ -15,20 +15,22 @@
   text-align: center;
 
   @media (max-width: $mobile) {
-    grid-template-columns: min-content 1fr;
+    grid-template-columns: 1fr;
     padding: $gutter-width 0;
   }
 
-  & h2 {
+  & h3 {
     width: 500px;
     justify-self: center;
+    font-size: 2rem;
 
     @media (max-width: $mobile) {
-      text-align: right;
+      text-align: left;
       width: 100%;
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
   }
+
 
   &__buttons {
     align-self: center;
@@ -48,6 +50,7 @@
     @include highlight-button;
     transition: color 200ms ease-in-out;
     font-size: 14px;
+    font-family: $font-main;
     font-weight: bold;
     font-variant: small-caps;
 
@@ -62,5 +65,11 @@
     &:disabled {
       color: gray;
     }
+  }
+
+  &__button_back {
+      @media (max-width: $mobile) {
+        display: none;
+      }
   }
 }

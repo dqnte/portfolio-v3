@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
 import { useScroll, useMotionValueEvent } from 'framer-motion';
 import { IAlbum } from './utilities';
@@ -51,11 +51,15 @@ const Name = ({ closeMenu, headerState }: { closeMenu: () => void; headerState: 
 };
 
 const Menu = ({ toggleMenu, showMenu }: { toggleMenu: () => void; showMenu: boolean }) => {
+
+  const key = location.pathname.split('/')[1];
   return (
-    // we use an <a /> because the font sizing wasn't working on mobile
-    <a className={`Header__menu ${showMenu ? 'selected' : ''}`} onClick={toggleMenu}>
+    <>
+    <Link className={`Header--link Header__current ${ showMenu && "hidden"}`} to={`/${key}`}>{!showMenu && key}</Link>
+    <button className={`Header__menu ${showMenu ? 'selected' : ''}`} onClick={toggleMenu}>
       menu
-    </a>
+    </button>
+    </>
   );
 };
 

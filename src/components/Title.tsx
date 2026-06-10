@@ -17,7 +17,7 @@ const Title = ({
 }) => {
   return (
     <div className={`Title`}>
-      <div className={'Title__buttons'}>
+      <div className={'Title__buttons Title__button_back'}>
         {handleBack && (
           <button className={'Title__button'} onClick={handleBack}>
             back
@@ -30,7 +30,7 @@ const Title = ({
         animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
         exit={{ opacity: 0 }}
       >
-        <h2>{text}</h2>
+        <h3>{text}</h3>
       </motion.div>
       <div className={'Title__buttons navigation'}>
         <button
