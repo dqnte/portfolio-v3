@@ -12,18 +12,26 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 
 function App() {
   /* --- THEME --- */
-  const [useDarkTheme, setDarkThemeInternal] = useState(false);
-  const setDarkTheme = (value: boolean) => {
+  const [useDarkTheme, setDarkThemeInternal] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved !== null) return saved === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+  const setDarkTheme = (value: boolean, save = true) => {
     setDarkThemeInternal(value);
-    if (value) {
-      document.body.className = 'dark';
-    } else {
-      document.body.className = 'light';
-    }
+    document.body.className = value ? 'dark' : 'light';
+    if (save) localStorage.setItem('theme', value ? 'dark' : 'light');
   };
 
   useEffect(() => {
-    setDarkTheme(useDarkTheme);
+    setDarkTheme(useDarkTheme, false);
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (localStorage.getItem('theme') === null) setDarkTheme(e.matches, false);
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   /* --- IMAGES --- */

@@ -19,6 +19,14 @@
     <script type="module" src="index.jsx"></script>
   </head>
   <body>
+    <script>
+      var t = localStorage.getItem('theme');
+      document.body.className = t
+        ? t
+        : window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
