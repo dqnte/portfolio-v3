@@ -51,14 +51,15 @@ const Name = ({ closeMenu, headerState }: { closeMenu: () => void; headerState: 
 };
 
 const Menu = ({ toggleMenu, showMenu }: { toggleMenu: () => void; showMenu: boolean }) => {
-
   const key = location.pathname.split('/')[1];
   return (
     <>
-    <Link className={`Header--link Header__current ${ showMenu && "hidden"}`} to={`/${key}`}>{!showMenu && key}</Link>
-    <button className={`Header__menu ${showMenu ? 'selected' : ''}`} onClick={toggleMenu}>
-      menu
-    </button>
+      <Link className={`Header--link Header__current ${showMenu && 'hidden'}`} to={`/${key}`}>
+        {!showMenu && key}
+      </Link>
+      <button className={`Header__menu ${showMenu ? 'selected' : ''}`} onClick={toggleMenu}>
+        menu
+      </button>
     </>
   );
 };

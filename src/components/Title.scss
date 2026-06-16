@@ -31,7 +31,6 @@
     }
   }
 
-
   &__buttons {
     align-self: center;
     display: flex;
@@ -68,8 +67,8 @@
   }
 
   &__button_back {
-      @media (max-width: $mobile) {
-        display: none;
-      }
+    @media (max-width: $mobile) {
+      display: none;
+    }
   }
 }
