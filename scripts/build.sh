@@ -24,4 +24,7 @@ for key in dist/archive/*/; do
     sed -i '' "s|<title>Dante Tobar</title>|<title>$base</title>|" "$key/index.html"
     sed -i '' "s|<head>|<head><meta property=\"og:image\" content=\"../..$image\" />|" "$key/index.html"
 
+cp public/photo-manifest.yaml dist
+cp public/project-manifest.yaml dist
+
 done
