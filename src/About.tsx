@@ -52,22 +52,9 @@ const Bio = () => {
       <div>
         {' '}
         <p className="Bio__text">
-          I'm an engineer & photographer. I shoot both film and digital. Most of my photos are
-          candids, but there are some posed exceptions. Currently, I work at
-        </p>{' '}
-        {/* when the a tag was inside the p tag, the animation transition times were */}
-        {/* stacking on eachother. This caused weirdness when transitioning from light */}
-        {/* to dark mode. */}
-        <a
-          href="https://www.fabrichealth.com/about"
-          target="_blank"
-          rel="noreferrer"
-          className="Bio--link"
-        >
-          fabric
-        </a>{' '}
-        <p className={'Bio__text'}>
-          as a fullstack engineer. If you want to get in contact, feel free to dm me.
+          I'm an engineer and photographer. I shoot both film and digital. Most of my photos are
+          candids, but there are some posed exceptions. If you want to get in contact, feel free to
+          dm me.
         </p>
       </div>
     </div>
