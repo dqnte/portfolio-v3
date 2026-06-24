@@ -2,12 +2,34 @@
 
 .ScrollTop {
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
   align-items: center;
   padding: $gutter-width;
-  padding-top: calc($gutter-width * 2);
+  padding-top: calc($gutter-width * 4);
   padding-bottom: calc($gutter-width * 3);
+  position: relative;
+
+  &__signature {
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    font-variant: small-caps;
+
+    .light & {
+      color: rgba($fg-light-main, 0.35);
+    }
+
+    .dark & {
+      color: rgba($fg-dark-main, 0.35);
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 10px;
+  }
 
   &__button {
     @include plain-button;
@@ -15,6 +37,7 @@
     border-radius: 50%;
     height: 70px;
     width: 70px;
+    margin-left: auto;
     font-size: 16px;
     font-weight: bold;
     font-variant: small-caps;
@@ -25,6 +48,24 @@
 
     .dark & {
       color: $fg-dark-main;
+    }
+  }
+
+  @media (max-width: $mobile) {
+    grid-template-columns: 70px 1fr 70px;
+    padding-top: calc($gutter-width * 2);
+    padding-bottom: calc($gutter-width * 2);
+
+    &__link {
+      display: none;
+
+      &:first-child {
+        display: flex;
+      }
+    }
+
+    &__button {
+      padding-right: 0px !important;
     }
   }
 }

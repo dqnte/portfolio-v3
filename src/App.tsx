@@ -86,7 +86,6 @@ function App() {
           <Route path="/work/*" element={<Work />} />
         </Routes>
       </div>
-      {/* <Grid /> */}
     </BrowserRouter>
   );
 }
