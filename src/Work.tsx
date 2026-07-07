@@ -8,7 +8,7 @@ import { IProject, fetchProjectManifest, findAlbumFromLocation } from './utiliti
 import { Link } from 'react-router';
 import Riser from './components/Riser';
 import Title from './components/Title';
-import ScrollTop from './components/ScrollTop';
+import Footer from './components/Footer';
 import { AnimatePresence } from 'framer-motion';
 import { useBreakpoint } from './hooks';
 
@@ -117,7 +117,7 @@ const Work = () => {
             <WorkPreview albums={work} />
           )}
         </div>
-        <ScrollTop />
+        <Footer />
       </Riser>
     </AnimatePresence>
   );

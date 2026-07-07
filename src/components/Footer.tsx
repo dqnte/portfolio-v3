@@ -3,25 +3,25 @@ import { LinkedIn, Instagram, GitHub } from '@mui/icons-material';
 import { HoverButton } from '../components/HoverButton';
 import IconButton from '../components/IconButton';
 
-export default function ScrollTop({ showLinks = true }: { showLinks: boolean }) {
+export default function Footer({ showLinks = true }: { showLinks: boolean }) {
   const year = new Date().getFullYear();
 
   return (
-    <div className={'ScrollTop'}>
+    <div className={'Footer'}>
       {showLinks && (
-        <div className={'ScrollTop__links'}>
+        <div className={'Footer__links'}>
           <a
             href="https://www.instagram.com/dantistador/"
             target="_blank"
             rel="noreferrer"
-            className="ScrollTop__link"
+            className="Footer__link"
           >
             <IconButton>
               <Instagram />
             </IconButton>
           </a>
           <a
-            className="ScrollTop__link"
+            className="Footer__link"
             href="https://www.linkedin.com/in/dante-m-tobar/"
             target="_blank"
             rel="noreferrer"
@@ -31,7 +31,7 @@ export default function ScrollTop({ showLinks = true }: { showLinks: boolean }) 
             </IconButton>
           </a>
           <a
-            className="ScrollTop__link"
+            className="Footer__link"
             href="https://www.github.com/dqnte"
             target="_blank"
             rel="noreferrer"
@@ -42,7 +42,7 @@ export default function ScrollTop({ showLinks = true }: { showLinks: boolean }) 
           </a>
         </div>
       )}
-      <div className={'ScrollTop__signature'}>
+      <div className={'Footer__signature'}>
         COPYRIGHT {year} © DANTE TOBAR
         <br />
         ALL RIGHTS RESERVED
@@ -54,7 +54,7 @@ export default function ScrollTop({ showLinks = true }: { showLinks: boolean }) 
         onClick={() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        className={'ScrollTop__button'}
+        className={'Footer__button'}
       />
     </div>
   );

@@ -8,7 +8,7 @@ import { useBreakpoint } from '../hooks';
 import Riser from '../components/Riser';
 import Title from '../components/Title';
 import PhotoGrid from '../components/PhotoGrid';
-import ScrollTop from '../components/ScrollTop';
+import Footer from '../components/Footer';
 import { useNavigate } from 'react-router';
 
 const Photo = ({ albums }: { albums: IAlbum[] }) => {
@@ -79,7 +79,7 @@ const Photo = ({ albums }: { albums: IAlbum[] }) => {
           </AnimatePresence>
         )}
       </Riser>
-      <ScrollTop key={'photo'} />
+      <Footer key={'photo'} />
     </AnimatePresence>
   );
 };

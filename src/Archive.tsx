@@ -1,7 +1,7 @@
 import { IAlbum, findAlbumFromLocation } from './utilities';
 
 import Riser from './components/Riser';
-import ScrollTop from './components/ScrollTop';
+import Footer from './components/Footer';
 import PhotoGrid from './components/PhotoGrid';
 import Title from './components/Title';
 import { useLocation, Link } from 'react-router';
@@ -174,7 +174,7 @@ const Archive = ({ albums }: { albums: IAlbum[] }) => {
           <ArchiveTable albums={albums} />
         )}
       </div>
-      <ScrollTop />
+      <Footer />
     </>
   );
 };
