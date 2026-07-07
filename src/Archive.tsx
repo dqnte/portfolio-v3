@@ -37,7 +37,7 @@ const ArchiveAlbum = ({ album, albums }: { album: IAlbum; albums: IAlbum[] }) =>
     <Riser motionKey={'Arc-album'}>
       <div className={'Arc-album__container'}>
         <Title
-          text={album.key}
+          text={album.location}
           handleBack={handleBack}
           handlePrev={prevAlbum && handlePrev}
           handleNext={nextAlbum && handleNext}

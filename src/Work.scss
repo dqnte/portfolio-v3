@@ -9,6 +9,10 @@
   padding-left: $gutter-width;
   padding-right: $gutter-width;
 
+  @media (max-width: $mobile) {
+    padding-top: $header-height-mobile;
+  }
+
   &__grid {
     min-height: 100%;
   }
@@ -106,7 +110,7 @@
   margin: 0 auto;
   background-position: top;
   background-size: cover;
-  padding-top: calc(3 * $gutter-width);
+  padding-top: calc(1 * $gutter-width);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: calc(4 * $gutter-width) $gutter-width;

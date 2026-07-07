@@ -28,7 +28,7 @@ const WorkPreview = ({ albums }: { albums: IProject[] }) => {
           onMouseLeave={() => setHovered(null)}
         >
           <div className={`WorkPreview__card_text ${hovered === album.key && 'selected'}`}>
-            {breakpoint === 'mobile' ? <h4>{album.title}</h4> : <h3>{album.title}</h3>}
+            {breakpoint === 'mobile' ? <h3>{album.title}</h3> : <h3>{album.title}</h3>}
           </div>
           {album.photos.slice(0, numPhotos).map(photo => (
             <Image

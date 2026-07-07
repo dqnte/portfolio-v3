@@ -40,7 +40,7 @@
 .Arc-table {
   margin: 0 auto;
   max-width: 1200px;
-  padding-top: calc($gutter-width * 2);
+  padding-top: $gutter-width;
 
   &__title {
     padding: $gutter-width 0;

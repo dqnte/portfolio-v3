@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
 import { useScroll, useMotionValueEvent } from 'framer-motion';
+import { useBreakpoint } from './hooks';
 import { IAlbum } from './utilities';
 
 type HeaderState = 'hidden' | 'default';
@@ -40,6 +41,23 @@ const Name = ({ closeMenu, headerState }: { closeMenu: () => void; headerState: 
   const location = useLocation();
   const key = location.pathname;
   const atHome = key === '/';
+  const allPath = location.pathname.split('/');
+
+  const breakpoint = useBreakpoint();
+
+  if (allPath.length > 2 && breakpoint === 'mobile') {
+    return (
+      <div className={`Header__name ${headerState === 'hidden' ? '' : ''}`}>
+        <Link
+          className={`Header--link ${atHome ? 'selected' : ''}`}
+          to={`/${allPath[1]}`}
+          onClick={closeMenu}
+        >
+          back
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className={`Header__name ${headerState === 'hidden' ? '' : ''}`}>
@@ -54,9 +72,10 @@ const Menu = ({ toggleMenu, showMenu }: { toggleMenu: () => void; showMenu: bool
   const key = location.pathname.split('/')[1];
   return (
     <>
-      <Link className={`Header--link Header__current ${showMenu && 'hidden'}`} to={`/${key}`}>
-        {!showMenu && key}
-      </Link>
+      {/* <Link className={`Header--link Header__current ${showMenu && 'hidden'}`} to={`/${key}`}> */}
+      {/*   {!showMenu && key} */}
+      {/* </Link> */}
+      <div />
       <button className={`Header__menu ${showMenu ? 'selected' : ''}`} onClick={toggleMenu}>
         menu
       </button>

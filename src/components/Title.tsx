@@ -25,6 +25,7 @@ const Title = ({
         )}
       </div>
       <motion.div
+        className={'Title__text'}
         key={text}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}

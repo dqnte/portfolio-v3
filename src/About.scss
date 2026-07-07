@@ -55,6 +55,10 @@
 @media (max-width: $mobile) {
   .About {
     padding-top: $header-height-mobile;
+
+    &__image {
+      max-width: calc(100vh - 2 * $gutter-width - $header-height-mobile);
+    }
   }
 }
 
