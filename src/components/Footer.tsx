@@ -42,11 +42,6 @@ export default function Footer({ showLinks = true }: { showLinks: boolean }) {
           </a>
         </div>
       )}
-      <div className={'Footer__signature'}>
-        COPYRIGHT {year} © DANTE TOBAR
-        <br />
-        ALL RIGHTS RESERVED
-      </div>
       <HoverButton
         direction={'up'}
         text={'top'}
@@ -56,6 +51,10 @@ export default function Footer({ showLinks = true }: { showLinks: boolean }) {
         }}
         className={'Footer__button'}
       />
+      <div className={'Footer__signature'}>
+        DANTE TOBAR
+        <br />© {year}
+      </div>
     </div>
   );
 }
