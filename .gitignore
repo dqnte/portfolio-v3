@@ -10,6 +10,7 @@
 .cache
 .parcel-cache
 parcel-bundle-reports
+/.dev
 
 # production
 /build

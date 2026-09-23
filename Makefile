@@ -13,14 +13,15 @@ format:
 	npm run format
 
 up:
-	cp public/photo-manifest.yaml dist/
-	cp public/project-manifest.yaml dist/
+	mkdir -p .dev
+	cp public/photo-manifest.yaml .dev/
+	cp public/project-manifest.yaml .dev/
 	npm start
 
 dev: up
 
 clean:
-	rm -rf .parcel-cache
+	rm -rf .parcel-cache .dev
 
 new-album:
 	zsh scripts/new_album.sh

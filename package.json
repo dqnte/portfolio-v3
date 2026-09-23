@@ -15,7 +15,7 @@
     "react-router": "^7.1.1"
   },
   "scripts": {
-    "start": "parcel src/index.html --open",
+    "start": "parcel src/index.html --open --dist-dir .dev",
     "build": "parcel build src/index.html --no-cache",
     "build:analyze": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer",
     "format": "prettier --write ."
