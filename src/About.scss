@@ -2,48 +2,46 @@
 
 .About {
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
+  min-height: 100svh;
   padding-top: $header-height;
+  padding-bottom: $header-height;
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 
   &__container {
     height: min-content;
     width: 100%;
-    max-width: 1000px;
+    max-width: calc(2 * 440px + 2 * $gutter-width + $gutter-width * 1.5);
     margin: 0 auto;
     padding: $gutter-width;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $gutter-width;
+    align-items: center;
+    gap: calc($gutter-width * 1.5);
   }
 
   &__image {
     width: 100%;
-    max-width: calc(100vh - 2 * $gutter-width - $header-height);
-    aspect-ratio: 1/1;
-    margin-left: auto;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc($gutter-width / 2);
 
-    transition: background 300ms;
-
-    & span {
-      font-size: 13px;
-      font-weight: 600;
-
-      transition: color 300ms;
+    & img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1365 / 2048;
+      object-fit: cover;
+      border: 3px solid #000;
     }
   }
 
   &__text {
     width: 100%;
-    max-width: 600px;
 
     display: flex;
     flex-direction: column;
@@ -54,11 +52,8 @@
 
 @media (max-width: $mobile) {
   .About {
-    padding-top: $header-height-mobile;
-
-    &__image {
-      max-width: calc(100vh - 2 * $gutter-width - $header-height-mobile);
-    }
+    padding-top: calc($header-height-mobile + $gutter-width * 0.5);
+    padding-bottom: calc($header-height-mobile + $gutter-width * 0.5);
   }
 }
 
@@ -67,30 +62,14 @@
     height: unset;
 
     &__container {
+      max-width: calc(440px + 2 * $gutter-width);
       grid-template-columns: 1fr;
-    }
-
-    &__image {
-      height: unset;
-      width: 100%;
     }
 
     &__text {
       padding-top: 0;
       width: 100%;
     }
-  }
-}
-
-.light .About {
-  &__image {
-    background: #fff;
-  }
-}
-
-.dark .About {
-  &__image {
-    background: #000;
   }
 }
 
