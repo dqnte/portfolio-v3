@@ -39,7 +39,7 @@ const Image = ({
   sizeOn,
   containerClassName,
 }: {
-  photo: IPhoto;
+  photo: Pick<IPhoto, 'smallUrl' | 'height' | 'width' | 'color'>;
   className?: string;
   containerClassName?: string;
   alt?: string;

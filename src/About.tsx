@@ -4,11 +4,14 @@ import { LinkedIn, Instagram, GitHub } from '@mui/icons-material';
 import { useEffect } from 'react';
 import Riser from './components/Riser';
 import IconButton from './components/IconButton';
+import Image from './components/Image';
 import { BASE_URL } from './utilities';
 
-const PROFILE_PHOTOS = ['DSC09829', 'DSC09830'].map(
-  name => `${BASE_URL}/albums/26-09-22-self/${name}.jpg`
-);
+const PROFILE_PHOTOS = ['DSC09829', 'DSC09830'].map(name => ({
+  smallUrl: `${BASE_URL}/albums/26-09-22-self/${name}.jpg`,
+  height: 2048,
+  width: 1365,
+}));
 
 const Socials = () => {
   return (
@@ -77,8 +80,14 @@ const About = () => {
         <Riser>
           <div className="About__container">
             <div className="About__image">
-              {PROFILE_PHOTOS.map(src => (
-                <img key={src} src={src} alt="Dante Tobar" />
+              {PROFILE_PHOTOS.map(photo => (
+                <Image
+                  key={photo.smallUrl}
+                  sizeOn={'w'}
+                  photo={photo}
+                  alt="Dante Tobar"
+                  className="About__photo"
+                />
               ))}
             </div>
             <div className="About__text">
