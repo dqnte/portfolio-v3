@@ -21,7 +21,7 @@
   <body>
     <script>
       var t = localStorage.getItem('theme');
-      document.body.className = t
+      document.documentElement.className = document.body.className = t
         ? t
         : window.matchMedia('(prefers-color-scheme: dark)').matches
           ? 'dark'

@@ -19,7 +19,7 @@ function App() {
   });
   const setDarkTheme = (value: boolean, save = true) => {
     setDarkThemeInternal(value);
-    document.body.className = value ? 'dark' : 'light';
+    document.documentElement.className = document.body.className = value ? 'dark' : 'light';
     if (save) localStorage.setItem('theme', value ? 'dark' : 'light');
   };
 
